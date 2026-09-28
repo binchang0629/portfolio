@@ -1,0 +1,9 @@
+{
+  "publicPrivateContactHits": [],
+  "checkedRoots": [
+    "src",
+    "public",
+    "dist"
+  ],
+  "historicalFilesKeptOutsidePublicOutput": true
+}

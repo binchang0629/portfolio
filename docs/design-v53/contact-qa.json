@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "desktop: honest unconfigured status, disabled sending, editable fields, no horizontal overflow, close and no errors",
+    "mobile: honest unconfigured status, disabled sending, editable fields, no horizontal overflow, close and no errors",
+    "Browser fixture: failure retains input; retry has same ID; success only on confirmed response; no recipient in request",
+    "NEXT TRACK contact opens form; reader exit still restores desk"
+  ],
+  "actualEmailSent": false
+}

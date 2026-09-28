@@ -1,6 +1,8 @@
 // Public URLs are shared by every instance; visual assembly stays in components.
 export const assets = {
-  background: '/assets/background/desk-player-camera-v2.png',
+  background: '/assets/background/desk-objects-transparent-v3.png',
+  memoBackground: '/assets/background/desk-memo-without-pen-v7.png',
+  pen: '/assets/desk/pen-isolated-v1.png',
   archive: '/assets/archive/topview-v1.png',
   player: { render: '/assets/player/coherent/render-v1.png', empty: '/assets/player/coherent/empty-interior-v1.png' },
   cassette: {

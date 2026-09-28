@@ -1,0 +1,16 @@
+[
+  {
+    "name": "desktop",
+    "identicalLabelAppearance": true,
+    "homeNumberTake": true,
+    "readerNumberSwap": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "identicalLabelAppearance": true,
+    "homeNumberTake": true,
+    "readerNumberSwap": true,
+    "errors": []
+  }
+]

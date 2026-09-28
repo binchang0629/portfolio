@@ -1,0 +1,239 @@
+{
+  "report": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "reducedMotion": "no-preference",
+      "first": {
+        "actual": [
+          {
+            "slot": 0,
+            "name": "01 ABOUT ME 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 1,
+            "name": "02 TEAM PLAY 현재 재생 중",
+            "disabled": true
+          },
+          {
+            "slot": 2,
+            "name": "03 DESIGN 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 3,
+            "name": "04 BRANDING 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 4,
+            "name": "05 NEXT TRACK 테이프 재생",
+            "disabled": false
+          }
+        ],
+        "occupied": 0,
+        "empty": 1
+      },
+      "swap": {
+        "actual": [
+          {
+            "slot": 0,
+            "name": "01 ABOUT ME 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 1,
+            "name": "02 TEAM PLAY 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 2,
+            "name": "03 DESIGN 현재 재생 중",
+            "disabled": true
+          },
+          {
+            "slot": 3,
+            "name": "04 BRANDING 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 4,
+            "name": "05 NEXT TRACK 테이프 재생",
+            "disabled": false
+          }
+        ],
+        "occupied": 0,
+        "empty": 1
+      },
+      "before": "171.81281923582384",
+      "after": "126.52773610592493",
+      "inspect": {
+        "overflow": false,
+        "sidebarOverflow": false,
+        "bodyOverflow": false,
+        "font": "\"Pretendard Variable\", Pretendard, sans-serif"
+      }
+    },
+    {
+      "name": "laptop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "reducedMotion": "reduce",
+      "first": {
+        "actual": [
+          {
+            "slot": 0,
+            "name": "01 ABOUT ME 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 1,
+            "name": "02 TEAM PLAY 현재 재생 중",
+            "disabled": true
+          },
+          {
+            "slot": 2,
+            "name": "03 DESIGN 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 3,
+            "name": "04 BRANDING 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 4,
+            "name": "05 NEXT TRACK 테이프 재생",
+            "disabled": false
+          }
+        ],
+        "occupied": 0,
+        "empty": 1
+      },
+      "swap": {
+        "actual": [
+          {
+            "slot": 0,
+            "name": "01 ABOUT ME 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 1,
+            "name": "02 TEAM PLAY 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 2,
+            "name": "03 DESIGN 현재 재생 중",
+            "disabled": true
+          },
+          {
+            "slot": 3,
+            "name": "04 BRANDING 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 4,
+            "name": "05 NEXT TRACK 테이프 재생",
+            "disabled": false
+          }
+        ],
+        "occupied": 0,
+        "empty": 1
+      },
+      "before": "171.81281923582384",
+      "after": "126.52773610592493",
+      "inspect": {
+        "overflow": false,
+        "sidebarOverflow": false,
+        "bodyOverflow": false,
+        "font": "\"Pretendard Variable\", Pretendard, sans-serif"
+      }
+    },
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": "reduce",
+      "first": {
+        "actual": [
+          {
+            "slot": 0,
+            "name": "01 ABOUT ME 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 1,
+            "name": "02 TEAM PLAY 현재 재생 중",
+            "disabled": true
+          },
+          {
+            "slot": 2,
+            "name": "03 DESIGN 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 3,
+            "name": "04 BRANDING 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 4,
+            "name": "05 NEXT TRACK 테이프 재생",
+            "disabled": false
+          }
+        ],
+        "occupied": 0,
+        "empty": 1
+      },
+      "swap": {
+        "actual": [
+          {
+            "slot": 0,
+            "name": "01 ABOUT ME 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 1,
+            "name": "02 TEAM PLAY 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 2,
+            "name": "03 DESIGN 현재 재생 중",
+            "disabled": true
+          },
+          {
+            "slot": 3,
+            "name": "04 BRANDING 테이프 재생",
+            "disabled": false
+          },
+          {
+            "slot": 4,
+            "name": "05 NEXT TRACK 테이프 재생",
+            "disabled": false
+          }
+        ],
+        "occupied": 0,
+        "empty": 1
+      },
+      "before": "171.81281923582384",
+      "after": "126.52773610592493",
+      "inspect": {
+        "overflow": false,
+        "sidebarOverflow": false,
+        "bodyOverflow": false,
+        "font": "\"Pretendard Variable\", Pretendard, sans-serif"
+      }
+    }
+  ],
+  "errors": []
+}

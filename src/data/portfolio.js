@@ -2,72 +2,70 @@ import { personalProjects, projects } from './projects'
 
 export const profile = {
   name: '정창빈', englishName: 'CHANG BIN', role: 'UI/UX DESIGNER',
-  intro: '사용자의 불편을 발견하고, 화면과 인터랙션으로 풀어갑니다.',
-  email: 'jcb0629@gmail.com',
+  intro: '화면을 디자인하고, 직접 구현하며 다듬고 있습니다.',
   tools: ['Figma', 'Photoshop', 'HTML', 'CSS', 'JavaScript', 'React'],
 }
 
 export const tracks = [
   { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, winding: .28, x: 405, y: 145, rotate: -12,
-    eyebrow: 'MY SIDE A', heading: '사용자 경험을 화면으로 구현하는 디자이너',
-    summary: '안녕하세요, 정창빈입니다. 보기 좋은 화면을 넘어, 사용자가 어디에서 불편을 느끼는지 이해하고 해결하는 디자인을 지향합니다.',
-    tags: ['사용자 중심', 'UI/UX 설계', '프론트엔드 이해'],
+    eyebrow: '01 / ABOUT ME', heading: '정창빈',
+    summary: 'UI/UX 디자인을 공부하고 있습니다. Figma로 설계한 화면을 HTML, CSS, JavaScript, React로 구현하는 작업도 함께 하고 있습니다.',
+    facts: [{ label: '분야', value: 'UI/UX 디자인 · 웹 화면 구현' }, { label: '사용 도구', value: profile.tools.join(', ') }],
     sections: [
-      { title: '디자인과 구현을 연결합니다', body: '나사렛대학교 IT인공지능학부에서 공부하며 UI/UX를 접했습니다. 사용자 조사, 문제 정의, 와이어프레임과 UI 디자인을 경험하고 HTML, CSS, JavaScript, React로 화면이 실제 서비스에서 동작하는 과정을 배우고 있습니다.' },
-      { title: '경험의 기록', items: ['나사렛대학교 IT인공지능학부 재학 · 2020.03–2026.09 이력서 기재 기준', '하나시스주식회사 · 제조 및 기계관리 · 2022.04–2024.06', '이젠아카데미DX교육센터 · AI 활용 UXUI 디자인 & 웹기획 프론트엔드 부트캠프 · 2026.04–2026.10', '이젠아카데미DX교육센터 우수상 · 2026년', '일본어 일상회화 가능'] },
-      { title: '함께 일하는 태도', body: '사용자 흐름을 따라가며 개선할 부분을 먼저 찾으려 노력합니다. 결과물을 만든 뒤 피드백을 받아 가독성, 정보의 우선순위와 화면 구조를 반복해서 개선합니다.' },
+      { title: '지금 하고 있는 작업', body: '팀 프로젝트로 국순당 웹사이트와 왈가왈BOT에 참여했습니다. 개인 작업은 코레일 홈페이지 리디자인과 반려식물 관리 웹앱입니다. 두 개인 프로젝트는 아직 작업 중입니다.' },
+      { title: '교육', items: ['나사렛대학교 IT인공지능학부 · 2020.03 입학', '이젠아카데미DX교육센터 · AI 활용 UXUI 디자인 & 웹기획 프론트엔드 과정 · 2026.04–2026.10'] },
+      { title: '이전 경험', body: '하나시스주식회사에서 제조 및 기계관리 업무를 담당했습니다. (2022.04–2024.06)' },
+      { title: '그 외', items: ['이젠아카데미DX교육센터 우수상 · 2026', '일본어 일상회화 가능'] },
     ],
   },
   { id: 'team', number: '02', title: 'TEAM PLAY', subtitle: 'Better together.', tint: 88, winding: .62, x: 825, y: 130, rotate: 10,
-    eyebrow: 'PROJECT / TEAM', heading: '함께 설계하고, 구현하고, 개선한 경험',
-    summary: '국순당에서는 서브팀장으로, 왈가왈BOT에서는 개발 팀장으로 참여했습니다. 두 프로젝트에서 팀이 만든 경험과 제가 담당한 작업을 구분해 소개합니다.',
-    tags: ['국순당', '왈가왈BOT', '협업과 구현'],
+    eyebrow: '02 / TEAM PLAY', heading: '팀 프로젝트',
+    summary: '국순당 웹사이트 리디자인에는 서브팀장으로, 왈가왈BOT 신규 웹사이트 제작에는 개발 팀장으로 참여했습니다.',
     projects,
-    sections: [
-      { title: '협업에서 쌓은 기준', body: '작업의 어려움을 일찍 공유하고, 화면을 합친 뒤에도 사용자 흐름과 반응형을 다시 확인하는 것이 중요하다는 것을 배웠습니다.' },
-    ],
   },
   { id: 'design', number: '03', title: 'DESIGN', subtitle: 'Ideas into experience.', tint: -65, winding: .4, x: 1120, y: 390, rotate: 16,
-    eyebrow: 'PERSONAL / IN PROGRESS', heading: '다음 화면을 만들고 있습니다.',
-    summary: '코레일 홈페이지 리디자인과 반려식물 관리 모바일 웹앱을 작업하고 있습니다. 문제를 발견하고 설계한 과정을 함께 정리합니다.',
-    tags: ['코레일 리디자인', '반려식물 웹앱', '작업 중'],
+    eyebrow: '03 / DESIGN', heading: '개인 프로젝트',
+    summary: '코레일 홈페이지를 리디자인하고, 반려식물 관리 모바일 웹앱을 새롭게 만들고 있습니다.',
     projects: personalProjects,
-    sections: [
-      { title: '진행 중인 작업', body: '두 프로젝트 모두 작업 중입니다. 실제 설계 자료와 직접 만든 화면을 확인하며 내용을 보완하고 있습니다.' },
-    ],
   },
   { id: 'branding', number: '04', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, winding: .76, x: 520, y: 690, rotate: 8,
-    eyebrow: 'PERSONAL / BRANDING', heading: '경험을 재생하는 나의 책상',
-    summary: '서로 다른 경험을 담은 테이프를 골라 재생하면, 지금의 나를 만나는 개인 브랜딩 포트폴리오입니다.',
-    tags: ['개인 브랜딩', '인터랙션 설계', 'React'],
+    eyebrow: '04 / BRANDING', heading: '이 포트폴리오를 만든 과정',
+    summary: '카세트에 프로젝트를 담고, 플레이어로 선택해 보는 개인 웹사이트입니다.',
+    facts: [{ label: '작업', value: '개인 포트폴리오 · 제작 중' }, { label: '구현', value: 'Vite · React · JavaScript · CSS' }],
     sections: [
-      { title: '하나의 비유, 다섯 가지 이야기', body: '소개, 협업, 디자인, 브랜딩, 앞으로의 목표를 다섯 개의 카세트에 담았습니다. 테이프를 고르고 플레이어에 넣는 동작이 콘텐츠 선택과 연결됩니다.' },
-      { title: '사물에서 인터페이스로', body: '파스텔 톤의 책상과 흰 플레이어를 바탕으로 경험별 색을 부여했습니다. 읽을 수 있는 실제 글자와 분리된 카세트 부품을 사용해 선택과 재생 상태를 표현합니다.' },
-      { title: '만드는 과정', body: 'Figma로 화면과 인터랙션을 설계하고, AI 보조 렌더 에셋의 구조와 디테일을 검토했습니다. React, JavaScript와 CSS로 선택·이동·삽입 동작을 구현하며 디자인을 보완하고 있습니다.' },
+      { title: '카세트를 고른 이유', body: '소개와 작업을 다섯 개의 테이프로 나눴습니다. 테이프를 끌어 넣거나 클릭해 선택한 뒤 재생하면 해당 내용을 볼 수 있습니다.' },
+      { title: '수정한 부분', items: ['사물마다 달랐던 시점을 플레이어 기준으로 맞췄습니다.', '테이프 크기와 삽입 위치를 같은 기준으로 계산했습니다.', '릴과 테이프 띠를 분리해 재생·빨리 감기·되감기 상태를 표현했습니다.', '보관함에 놓을 칸을 미리 보여 주고, 꺼낸 뒤에는 빈 케이스가 남도록 했습니다.'] },
+      { title: '이미지와 직접 구현한 부분', body: '사물 이미지를 만드는 데 AI를 사용했습니다. 콘텐츠 구성, 배치, 문구를 정리하고 React와 CSS로 드래그, 보관, 재생 상태와 상세 화면을 구현하고 있습니다. 이미지의 원근과 카세트 구조는 여러 차례 수정했습니다.' },
+      { title: '남은 작업', body: '프로젝트별 실제 화면과 전후 비교를 추가하고, 모바일에서 콘텐츠를 읽고 이동하는 흐름을 더 다듬을 예정입니다.' },
     ],
   },
   { id: 'next', number: '05', title: 'NEXT TRACK', subtitle: 'Still writing.', tint: 185, winding: .18, x: 870, y: 715, rotate: -10,
-    eyebrow: 'NEXT / CONTACT', heading: '디자인과 개발 사이를 연결하며',
-    summary: '사용자의 문제를 발견하고 화면을 설계하는 일에서, 실제 구현 과정까지 이해하는 디자이너로 성장하고 싶습니다.',
-    tags: ['꾸준한 개선', '구현 이해', '함께 성장'],
-    sections: [
-      { title: '다음에 쌓을 경험', body: '사용자 중심의 UI 설계 능력을 발전시키고, 프론트엔드 기술에 대한 이해를 꾸준히 높이겠습니다. 개발자와 원활하게 소통하며 실제 서비스에서도 안정적으로 동작하는 결과물을 만드는 것이 목표입니다.' },
-      { title: '계속 배우는 도구', items: profile.tools },
-      { title: '연락하기', body: '함께 이야기하고 작업할 기회를 기다립니다.', email: profile.email },
+    eyebrow: '05 / NEXT TRACK', heading: '다음 작업',
+    summary: '진행 중인 개인 작업과 이 포트폴리오를 마무리하고 있습니다.',
+    checklist: [
+      { label: '코레일 리디자인', detail: '조사에서 찾은 문제와 바뀐 예매 화면을 함께 정리하기', state: '작업 중' },
+      { label: '반려식물 웹앱', detail: '상태 확인부터 결과 기록까지 핵심 화면 연결하기', state: '작업 중' },
+      { label: '포트폴리오', detail: '프로젝트 화면, 담당 작업, 수정 과정을 추가하기', state: '작업 중' },
     ],
+    contact: true,
   },
 ]
 
 export const notes = {
-  title: '작업 노트', eyebrow: 'DESIGN NOTES',
-  summary: '화면보다 먼저 사용자의 흐름을 살펴봅니다.',
-  sections: [
-    { title: '01 · 관찰', body: '설문조사와 인터뷰로 실제 불편을 확인합니다.' },
-    { title: '02 · 정의', body: '페르소나와 사용자 여정으로 문제와 우선순위를 정리합니다.' },
-    { title: '03 · 설계', body: '와이어프레임에서 UI와 인터랙션으로 구체화합니다.' },
-    { title: '04 · 개선', body: '팀원의 의견과 피드백을 바탕으로 화면을 수정하고, 구현하며 다시 확인합니다.' },
+  id: 'notes', kind: 'notes', eyebrow: 'WORK NOTES', heading: '작업 기록',
+  summary: '각 프로젝트에서 다뤘던 문제와 수정할 부분을 모았습니다.',
+  entries: [
+    { project: '코레일', label: '예매 흐름', body: '설문과 인터뷰에서 매진 정보, 비회원 예매 진입, 좌석 선택의 불편을 찾았습니다. 이 문제들을 예매 화면과 연결해 정리하고 있습니다.', target: personalProjects[0] },
+    { project: '반려식물 웹앱', label: '기획 방향', body: '초기의 게임형 아이디어에서 식물 상태와 관리 경험을 기록하는 방향으로 바뀌었습니다. 상태 확인 → 행동 선택 → 결과 기록이 핵심 흐름입니다.', target: personalProjects[1] },
+    { project: '왈가왈BOT', label: '발표 피드백', body: '서비스를 언제 쓰는지와 차별점이 잘 전달되지 않는다는 피드백을 받았습니다. 서로 다른 판단의 이유를 비교하는 경험을 중심으로 내용을 정리했습니다.', target: projects[1] },
+    { project: '국순당', label: '협업', body: '초반에는 소통이 늦어 진행에 어려움이 있었습니다. 후반에 소통이 활발해지면서 작업 속도가 붙었습니다. 모바일과 페이지 간 디자인 통일은 보완할 부분입니다.', target: projects[0] },
   ],
 }
 
-// Additional, finished project stories go here. The five category tapes stay separate.
+export const memo = {
+  id: 'memo', kind: 'memo', eyebrow: 'TO DO', heading: '남은 작업',
+  summary: '지금 작업 중인 것들입니다.',
+  checklist: tracks[4].checklist,
+}
+
 export const archiveTracks = []

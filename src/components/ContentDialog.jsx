@@ -1,27 +1,24 @@
 import { useEffect, useRef } from 'react'
+import ContentBody from './ContentBody'
+import ContactForm from './ContactForm'
 
-export default function ContentDialog({ content, onClose, onTrack, onProject, onStore }) {
+export default function ContentDialog({ content, onClose, onBack, onProject, onContact }) {
   const dialog = useRef(null)
+  const previousFocus = useRef(null)
   useEffect(() => {
     const element = dialog.current
-    const previous = document.activeElement
+    previousFocus.current = document.activeElement
     element.showModal()
-    return () => { element.close(); previous?.focus() }
+    return () => { element.close(); previousFocus.current?.focus() }
   }, [])
-  return <dialog className="content-dialog" ref={dialog} aria-labelledby="dialog-title" onCancel={onClose} onClick={e => { if (e.target === e.currentTarget) onClose() }}>
-    <div className="dialog-top"><span>{content.eyebrow || 'MY COLLECTION'}</span><button onClick={onClose} aria-label="닫기">닫기 <span aria-hidden="true">×</span></button></div>
-    <h2 id="dialog-title">{content.heading || content.title}</h2>
-    {content.role && <p className="project-role">{content.role}</p>}
-    {content.summary && <p className="dialog-summary">{content.summary}</p>}
-    {content.tags && <div className="tags">{content.tags.map(t => <span key={t}>{t}</span>)}</div>}
-    <div className="dialog-sections">{content.sections?.map(s => <section key={s.title}>
-      <h3>{s.title}</h3>{s.body && <p>{s.body}</p>}
-      {s.items && <ul>{s.items.map(i => <li key={i}>{i}</li>)}</ul>}
-      {s.email && <a className="email-link" href={`mailto:${s.email}`}>{s.email} ↗</a>}
-      {s.link && <a className="source-link" href={s.link} target="_blank" rel="noreferrer">{s.linkLabel} ↗</a>}
-    </section>)}</div>
-    {content.collection && <section className="storage-section"><h3>보관 중인 테이프</h3>{content.collection.length ? <div className="collection">{content.collection.map(t => <button key={t.id} aria-label={`${t.number} ${t.title} 테이프 꺼내기`} onClick={() => onTrack(t.id)}><span>{t.number}</span><strong>{t.title}</strong><span>꺼내기 ↗</span></button>)}</div> : <p>{content.emptyCaseCount ? '테이프는 모두 꺼냈어요. 보관함에는 빈 케이스만 남아 있어요.' : '보관 중인 테이프가 없어요.'}</p>}</section>}
-    {content.storeCollection && <section className="storage-section"><h3>보관함에 넣기</h3>{content.storeCollection.length ? <div className="collection">{content.storeCollection.map(t => <button key={t.id} disabled={content.storageFull} aria-label={`${t.number} ${t.title} 보관함에 넣기`} onClick={() => onStore(t.id)}><span>{t.number}</span><strong>{t.title}</strong><span>보관 ↓</span></button>)}</div> : <p>모든 테이프가 보관되어 있어요.</p>}</section>}
-    {content.projects && <div className="project-grid">{content.projects.map(p => <button key={p.id} onClick={() => onProject(p)}><span>{p.eyebrow}</span><h3>{p.heading}</h3><p>{p.role}</p><p>{p.summary}</p><strong>프로젝트 보기 ↗</strong></button>)}</div>}
+  const close = () => { dialog.current.close(); onClose() }
+  return <dialog className={`content-dialog content-${content.kind || 'story'}`} ref={dialog} aria-labelledby="dialog-title" onCancel={event => { event.preventDefault(); close() }} onClick={event => { if (event.target === event.currentTarget) close() }}>
+    <div className="dialog-top">
+      {content.parent ? <button className="dialog-back" onClick={onBack}>← {content.parent.heading || content.parent.title}</button> : <span>{content.eyebrow || 'MY TAPES'}</span>}
+      <button className="dialog-close" onClick={close} aria-label="닫기">닫기 <span aria-hidden="true">×</span></button>
+    </div>
+    <div className="dialog-body">
+      {content.kind === 'contact' ? <ContactForm /> : <ContentBody content={content} onProject={onProject} onContact={onContact} />}
+    </div>
   </dialog>
 }

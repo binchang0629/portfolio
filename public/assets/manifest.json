@@ -1,5 +1,5 @@
 {
-  "version": 48,
+  "version": 51,
   "referenceCanvas": {
     "width": 1536,
     "height": 1024
@@ -73,12 +73,12 @@
       "purpose": "V29 공통 탑뷰 카메라의 카세트·빈 내부·책상·독립 보관함 재질. SVG 마스크로 표시."
     },
     {
-      "path": "/assets/background/desk-player-camera-v2.png",
+      "path": "/assets/background/desk-objects-transparent-v3.png",
       "type": "png",
       "width": 1536,
       "height": 1024,
-      "sha256": "15cefdd5d91c9e5f3cb78ab9f972087f5bd792e001f1a6b1a6c0d4c3d52ed223",
-      "purpose": "V48 플레이어의 앞쪽 두께가 보이는 근접 탑뷰에 맞춘 책·메모지·펜 배경. 이전 배경은 보존."
+      "sha256": "6d65aad467aec0dedb76bc41b1766ac874ccbd7ab2960bd64655443cac5f27e8",
+      "purpose": "V51 책·메모·펜을 투명 레이어로 분리. 책상 배경은 CSS #F9FBFF. 이전 배경 보존."
     },
     {
       "path": "/assets/archive/topview-v1.png",
@@ -95,6 +95,38 @@
       "height": 1254,
       "sha256": "9739f9ee940d159aa33c0c99442d182802a15cb4dc16ac564965b5fece9bce1e",
       "purpose": "생성한 플라스틱 원본의 평평한 표면 패치만 SVG pattern으로 샘플링. 릴의 형태와 조명은 TopViewHub에서 별도 구현."
+    },
+    {
+      "path": "/assets/background/desk-memo-clean-edge-v4.png",
+      "type": "png",
+      "width": 1536,
+      "height": 1024,
+      "purpose": "메모 왼쪽 가장자리의 불규칙한 제본 흔적을 제거한 투명 이미지. 메모·펜 레이어에서만 사용하고 책은 기존 이미지를 유지.",
+      "sha256": "cfbcd90e50f6968ad27d4304815ab382552b8cb90c3d85b281a49059cfb574aa"
+    },
+    {
+      "path": "/assets/background/desk-memo-clean-pen-v5.png",
+      "type": "png",
+      "width": 1536,
+      "height": 1024,
+      "purpose": "펜 몸통의 사선 자국과 각진 그림자 얼룩을 정리한 투명 이미지. 메모·펜 레이어 전용.",
+      "sha256": "dac0efe4404674adafae0b062024a4a9d4c5a8244a9f11cfac39714d85dd7153"
+    },
+    {
+      "path": "/assets/background/desk-memo-without-pen-v7.png",
+      "type": "png",
+      "width": 1536,
+      "height": 1024,
+      "purpose": "펜 드래그를 위한 독립 투명 에셋. 메모의 펜·그림자 흔적 제거 및 펜 자체 분리.",
+      "sha256": "78874908d2269e1bbc4419cea073a949a419225f83275ed77a734a9f531c1fda"
+    },
+    {
+      "path": "/assets/desk/pen-isolated-v1.png",
+      "type": "png",
+      "width": 1024,
+      "height": 1536,
+      "purpose": "펜 드래그를 위한 독립 투명 에셋. 메모의 펜·그림자 흔적 제거 및 펜 자체 분리.",
+      "sha256": "d86971438972118fd1bcce2c11423d4b3d3d9589bc4cd334b168609ccee7deac"
     }
   ]
 }

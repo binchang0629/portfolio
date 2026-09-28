@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "track": 1,
+      "dimensions": {
+        "scroll": 886,
+        "client": 886,
+        "article": 886,
+        "top": 0
+      }
+    },
+    {
+      "track": 2,
+      "dimensions": {
+        "scroll": 886,
+        "client": 886,
+        "article": 886,
+        "top": 0
+      }
+    },
+    {
+      "track": 3,
+      "dimensions": {
+        "scroll": 886,
+        "client": 886,
+        "article": 886,
+        "top": 0
+      }
+    },
+    {
+      "track": 4,
+      "dimensions": {
+        "scroll": 886,
+        "client": 886,
+        "article": 886,
+        "top": 0
+      }
+    },
+    {
+      "track": 5,
+      "dimensions": {
+        "scroll": 886,
+        "client": 886,
+        "article": 886,
+        "top": 0
+      }
+    }
+  ],
+  "physics": "Length conserved; reverse seek restores angle and travel; reduced motion preserves angle.",
+  "touch": "Native touch drag swapped to 04; 01 returned to its own case; shelf closed."
+}

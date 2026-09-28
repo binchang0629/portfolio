@@ -1,0 +1,38 @@
+/* The printed grid follows the existing paper plane instead of the desk axes. */
+.desk-object.memo{left:81.9%;top:61%;width:13.3%;height:29%;padding:0;display:block;transform:scaleY(var(--desk-plane-y,.96)) rotate(-17deg);text-align:left;color:#446582}
+.memo-binding{position:absolute;left:12%;right:12%;top:7%;height:7%;border-bottom:1px solid #bac8d448;pointer-events:none}
+.memo-content{position:absolute;left:12%;right:12%;top:22%;bottom:12%;display:flex;flex-direction:column;gap:0}
+.memo-heading{display:flex;align-items:baseline;justify-content:space-between;gap:6px;padding-bottom:12%;border-bottom:1px solid #a5b9cc70}
+.memo-heading strong{font-size:clamp(11px,1.05cqw,17px);font-weight:600;line-height:1.4;letter-spacing:-.3px;white-space:nowrap}
+.memo-heading>span{font-size:clamp(6px,.52cqw,9px);letter-spacing:1px;color:#8195a7;white-space:nowrap}
+.memo .memo-task-list{display:grid;gap:0;flex:1;align-content:start;margin-top:8%;font-size:clamp(9px,.82cqw,14px);line-height:1.5;word-spacing:0}
+.memo-task-list>span{min-height:2.5em;display:flex;align-items:center;gap:7px;white-space:nowrap;border-bottom:1px solid #aec0d047}
+.memo-task-list>span::before{width:8px;height:8px;border-color:#7d98b0;border-radius:1px}
+.memo .object-link{display:flex;justify-content:flex-start;align-items:center;gap:8px;margin-top:10%;font-size:clamp(8px,.65cqw,11px);line-height:1.5;color:#6a849c}
+.memo:hover .object-link{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){
+ .desk-object.memo{position:relative;inset:auto;width:min(100%,280px);height:340px;align-self:center;padding:0;margin:12px 0 28px;transform:rotate(-3deg);background:linear-gradient(135deg,#fffefa,#fcfcfa);border:1px solid #dce3e9;border-radius:2px;box-shadow:0 3px 0 -1px #f8fafc,0 4px 0 #d7e0e8,3px 9px 10px #536d9217}
+ .memo-binding{top:7%;height:6%}.memo-content{top:21%;bottom:11%}
+ .memo-heading strong{font-size:18px}.memo-heading>span{font-size:9px}
+ .memo .memo-task-list{font-size:14px}.memo-task-list>span{min-height:2.65em}.memo-task-list>span::before{width:10px;height:10px}
+ .memo .object-link{font-size:12px}
+}
+
+/* Keep the original book intact while moving the paper and pen together. */
+.desk-book-art,.desk-memo-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none;user-select:none;z-index:0}
+.desk-book-art{clip-path:inset(0 0 50% 0)}
+.desk-memo-art{clip-path:inset(40% 0 0 0);transform:translate(1%,8.75%)}
+@media(max-width:760px){.desk-book-art,.desk-memo-art{display:none}}
+
+/* V65: the pen-free paper is 64px above the original source; compensate in layout. */
+
+.memo-scene{display:contents}
+.desk-pen{position:absolute;left:91.4%;top:62.8%;width:6.72%;aspect-ratio:431/1437;padding:0;background:transparent;z-index:4;cursor:grab;touch-action:none;user-select:none}
+.desk-pen:active{cursor:grabbing}
+.desk-pen-art{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(1px 2px 1px #35425130) drop-shadow(2px 4px 3px #536d9214);transition:filter 120ms ease-out}
+.desk-pen:active .desk-pen-art{filter:drop-shadow(2px 4px 2px #35425125) drop-shadow(4px 7px 5px #536d9219)}
+@media(max-width:760px){
+ .memo-scene{position:relative;display:grid;place-items:center;order:5;width:100%;margin:12px 0 28px}
+ .memo-scene .memo{margin:0}
+ .desk-pen{left:77%;top:16%;width:24%;max-width:82px}
+}

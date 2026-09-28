@@ -1,0 +1,59 @@
+[
+  {
+    "name": "desktop",
+    "size": {
+      "x": 43.1875,
+      "y": 604.555908203125,
+      "width": 388.8125,
+      "height": 287.68505859375
+    },
+    "columns": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "clickSwap": true,
+    "dragSwap": true,
+    "errors": []
+  },
+  {
+    "name": "laptop",
+    "size": {
+      "x": 38.390625,
+      "y": 430.2493896484375,
+      "width": 345.609375,
+      "height": 255.719970703125
+    },
+    "columns": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "clickSwap": true,
+    "dragSwap": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "size": {
+      "x": 35,
+      "y": 181.9324951171875,
+      "width": 320,
+      "height": 236.760009765625
+    },
+    "columns": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "clickSwap": true,
+    "dragSwap": false,
+    "errors": []
+  }
+]

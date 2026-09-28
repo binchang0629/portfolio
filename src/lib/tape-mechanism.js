@@ -30,3 +30,15 @@ export function advanceMechanism(previous, elapsed, transport, reducedMotion = f
     right: previous.angles.right + (after.right - before.right) * angularScale,
   } }
 }
+
+// Seeking follows the same conserved tape length and independent reel radii as timed transport.
+export function seekMechanism(previous, target, reducedMotion = false) {
+  const progress = Math.max(TAPE_START, Math.min(TAPE_END, target))
+  if (progress === previous.progress) return previous
+  const before = reelRadii(previous.progress), after = reelRadii(progress)
+  const angularScale = 2 * .045 * 150 / (.000008 * capacity)
+  return { progress, travel: reducedMotion ? previous.travel : previous.travel + (progress - previous.progress) * travelPerProgress, angles: reducedMotion ? previous.angles : {
+    left: previous.angles.left + (before.left - after.left) * angularScale,
+    right: previous.angles.right + (after.right - before.right) * angularScale,
+  } }
+}

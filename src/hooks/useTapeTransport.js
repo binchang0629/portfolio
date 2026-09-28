@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { advanceMechanism, initialMechanism } from '../lib/tape-mechanism'
+import { advanceMechanism, initialMechanism, seekMechanism } from '../lib/tape-mechanism'
 
-export default function useTapeTransport(reducedMotion) {
+export default function useTapeTransport(reducedMotion, reading = false) {
   const [transport, setTransport] = useState('stopped')
   const [mechanism, setMechanism] = useState(() => initialMechanism())
   const current = useRef(mechanism)
@@ -13,7 +13,7 @@ export default function useTapeTransport(reducedMotion) {
   }
 
   useEffect(() => {
-    if (transport === 'stopped') return
+    if (transport === 'stopped' || reading) return
     let frame, last = null
     const tick = time => {
       // Repeated timestamps are a skipped frame, not the end of the tape.
@@ -29,7 +29,13 @@ export default function useTapeTransport(reducedMotion) {
     }
     frame = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frame)
-  }, [transport, reducedMotion])
+  }, [transport, reducedMotion, reading])
 
-  return { mechanism, transport, setTransport, resetMechanism }
+  const seek = progress => {
+    const next = seekMechanism(current.current, progress, reducedMotion)
+    if (next === current.current) return
+    current.current = next
+    setMechanism(next)
+  }
+  return { mechanism, transport, setTransport, resetMechanism, seek }
 }

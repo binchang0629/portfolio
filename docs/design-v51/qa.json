@@ -1,0 +1,20 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 960
+    },
+    "root": "rgb(249, 251, 255)",
+    "desk": "rgb(249, 251, 255)",
+    "overflow": false
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "root": "rgb(249, 251, 255)",
+    "desk": "rgb(249, 251, 255)",
+    "overflow": false
+  }
+]
