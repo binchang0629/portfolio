@@ -2,7 +2,7 @@ import { personalProjects, projects } from './projects'
 
 export const profile = {
   name: '정창빈', englishName: 'CHANG BIN', role: 'UI/UX DESIGNER',
-  intro: '화면을 디자인하고 직접 구현합니다.',
+  intro: '화면을 디자인하고, 직접 구현하며 다듬고 있습니다.',
   tools: ['Figma', 'Photoshop', 'HTML', 'CSS', 'JavaScript', 'React'],
 }
 
