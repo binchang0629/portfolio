@@ -1,12 +1,10 @@
-import { lazy, Suspense, useId, useRef } from 'react'
+import { useId, useRef } from 'react'
 import { motion as Motion, useAnimationFrame, useMotionValue } from 'framer-motion'
 import { assets } from '../assets'
 
-const Pen3D = lazy(() => import('./Pen3D'))
-
 export default function DeskPen({ stageRef, reducedMotion }) {
   const penRef = useRef(null), rolling = useRef(null)
-  const x = useMotionValue(0), y = useMotionValue(0), rotate = useMotionValue(0), roll = useMotionValue(0)
+  const x = useMotionValue(0), y = useMotionValue(0), rotate = useMotionValue(0)
   const instructions = useId()
   const stopRolling = () => { rolling.current = null; x.stop(); y.stop(); rotate.stop() }
   const release = (_event, info) => {
@@ -17,7 +15,7 @@ export default function DeskPen({ stageRef, reducedMotion }) {
     rolling.current = {
       vx: Math.max(-1800, Math.min(1800, info.velocity.x)),
       vy: Math.max(-1800, Math.min(1800, info.velocity.y)),
-      spin: Math.max(-140, Math.min(140, (info.velocity.x * .97 + info.velocity.y * .24) * .012)),
+      spin: Math.max(-140, Math.min(140, (info.velocity.x * .97 + info.velocity.y * .24) * .09)),
       width: pen.offsetWidth, height: pen.offsetHeight,
       centerX: bounds.left + bounds.width / 2 - x.get() - desk.left,
       centerY: bounds.top + bounds.height / 2 - y.get() - desk.top,
@@ -28,9 +26,8 @@ export default function DeskPen({ stageRef, reducedMotion }) {
     if (!current || !stageRef.current) return
     if (reducedMotion) { stopRolling(); return }
     const dt = Math.min(delta, 40) / 1000, friction = Math.exp(-5 * dt), spinFriction = Math.exp(-6 * dt)
-    const previousX = x.get(), previousY = y.get()
-    let nextX = previousX + current.vx * (1 - friction) / 5
-    let nextY = previousY + current.vy * (1 - friction) / 5
+    let nextX = x.get() + current.vx * (1 - friction) / 5
+    let nextY = y.get() + current.vy * (1 - friction) / 5
     const angle = rotate.get() + current.spin * (1 - spinFriction) / 6
     const radians = angle * Math.PI / 180
     const halfWidth = (current.width * Math.abs(Math.cos(radians)) + current.height * Math.abs(Math.sin(radians))) / 2
@@ -40,10 +37,6 @@ export default function DeskPen({ stageRef, reducedMotion }) {
     const minY = halfHeight - current.centerY, maxY = desk.height - halfHeight - current.centerY
     if (nextX < minX || nextX > maxX) { nextX = Math.max(minX, Math.min(maxX, nextX)); current.vx *= -.12; current.spin *= .65 }
     if (nextY < minY || nextY > maxY) { nextY = Math.max(minY, Math.min(maxY, nextY)); current.vy *= -.12; current.spin *= .65 }
-    const across = (14 + angle) * Math.PI / 180
-    const rollingDistance = (nextX - previousX) * Math.cos(across) + (nextY - previousY) * Math.sin(across)
-    // No-slip rolling: distance = radius × angle, independent of frame rate.
-    roll.set(roll.get() + rollingDistance / (current.height * .075 / 2.8))
     x.set(nextX); y.set(nextY); rotate.set(angle)
     current.vx *= friction; current.vy *= friction; current.spin *= spinFriction
     if (Math.hypot(current.vx, current.vy) < 5 && Math.abs(current.spin) < .5) rolling.current = null
@@ -60,7 +53,7 @@ export default function DeskPen({ stageRef, reducedMotion }) {
   }
   return <>
     <Motion.button ref={penRef} className="desk-pen" type="button" style={{ x, y, rotate }} drag dragConstraints={stageRef} dragMomentum={false} dragElastic={0} onDragStart={stopRolling} onDragEnd={release} whileDrag={{ zIndex: 9 }} onKeyDown={moveWithKeys} aria-label="펜 · 끌어서 이동" aria-describedby={instructions} title="잡아서 옮기거나 가볍게 던져보세요">
-      <span className="desk-pen-art"><Suspense fallback={<svg viewBox="354 49 431 1437" aria-hidden="true"><image href={assets.pen} width="1024" height="1536" /></svg>}><Pen3D roll={roll} turn={rotate} /></Suspense></span>
+      <svg className="desk-pen-art" viewBox="354 49 431 1437" aria-hidden="true"><image href={assets.pen} width="1024" height="1536" /></svg>
     </Motion.button>
     <span className="sr-only" id={instructions}>펜을 잡아끌고 놓으면 살짝 회전하며 미끄러지다 멈춥니다. 키보드 방향키로도 옮길 수 있습니다. 배치 초기화를 누르면 제자리로 돌아갑니다.</span>
   </>
