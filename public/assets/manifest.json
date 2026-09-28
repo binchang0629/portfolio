@@ -1,18 +1,10 @@
 {
-  "version": 1,
+  "version": 48,
   "referenceCanvas": {
     "width": 1536,
     "height": 1024
   },
   "assets": [
-    {
-      "path": "/assets/background/desk.png",
-      "type": "png",
-      "purpose": "책상과 정적 소품 재질. 노트·메모·보관함의 클릭 영역은 React로 별도 배치.",
-      "sha256": "d507f58e3c0ce998d3e44a2413e8b961a144e8e3aa9e0b3fdd7760b028127a46",
-      "width": 1536,
-      "height": 1024
-    },
     {
       "path": "/assets/cassette/stickers/about.svg",
       "type": "svg",
@@ -65,12 +57,44 @@
       "sha256": "10c1d8642cc9691f8fc9b8b8d929d4d1156a2be41c02241137c363897670e87b"
     },
     {
-      "path": "/assets/player/coherent/clean-interior-v1.png",
+      "path": "/assets/cassette/topview/render-v1.png",
       "type": "png",
       "width": 1536,
       "height": 1024,
-      "purpose": "동일한 플레이어 렌더에서 파생된 본체·빈 수납부·코일 분리용 재질.",
-      "sha256": "526c847f309809b6fad3bb2b862b363c37c2b7e4ecd631d9f20ecd140fbe9976"
+      "sha256": "cf7cb456952c239c49701a464468ab3f429d94ece87f50462b2c7e253b6241b7",
+      "purpose": "V29 공통 탑뷰 카메라의 카세트·빈 내부·책상·독립 보관함 재질. SVG 마스크로 표시."
+    },
+    {
+      "path": "/assets/cassette/topview/clean-v1.png",
+      "type": "png",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "98e335b8700d25b33e444102089c068037f9b9ec1afeab07c875a4a78491d4a1",
+      "purpose": "V29 공통 탑뷰 카메라의 카세트·빈 내부·책상·독립 보관함 재질. SVG 마스크로 표시."
+    },
+    {
+      "path": "/assets/background/desk-player-camera-v2.png",
+      "type": "png",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "15cefdd5d91c9e5f3cb78ab9f972087f5bd792e001f1a6b1a6c0d4c3d52ed223",
+      "purpose": "V48 플레이어의 앞쪽 두께가 보이는 근접 탑뷰에 맞춘 책·메모지·펜 배경. 이전 배경은 보존."
+    },
+    {
+      "path": "/assets/archive/topview-v1.png",
+      "type": "png",
+      "width": 1440,
+      "height": 1092,
+      "sha256": "04f249c0fd3af0859fb1f95d2e908b83ac39e1395b099edc51a7e158b3501943",
+      "purpose": "V29 공통 탑뷰 카메라의 카세트·빈 내부·책상·독립 보관함 재질. SVG 마스크로 표시."
+    },
+    {
+      "path": "/assets/cassette/topview/polymer-sample-v1.png",
+      "type": "png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9739f9ee940d159aa33c0c99442d182802a15cb4dc16ac564965b5fece9bce1e",
+      "purpose": "생성한 플라스틱 원본의 평평한 표면 패치만 SVG pattern으로 샘플링. 릴의 형태와 조명은 TopViewHub에서 별도 구현."
     }
   ]
 }

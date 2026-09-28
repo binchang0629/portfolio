@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "capacity": 7,
+  "checks": [
+    "seven cells and six physical dividers",
+    "five tapes dragged into selected rotated slots",
+    "no duplicate tape locations",
+    "two empty cells remain",
+    "direct slot takeout",
+    "takeout then drag to player and play",
+    "eject then return to storage",
+    "reset restores desk tapes",
+    "occupied-slot drop uses free cell without overwriting",
+    "mobile menu stores all five without closing repeatedly",
+    "default play takes a stored tape",
+    "loaded tape can return directly to storage",
+    "mobile takeout and playback",
+    "no mobile horizontal overflow"
+  ],
+  "chosenSlots": [
+    0,
+    2,
+    3,
+    4,
+    6
+  ],
+  "errors": []
+}

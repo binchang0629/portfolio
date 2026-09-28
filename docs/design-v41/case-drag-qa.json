@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checks": [
+    "case stays while dragged tape follows pointer above player",
+    "direct storage-to-player drop",
+    "empty-case click returns loaded tape to original case",
+    "desk drop stays at pointer location, leaves empty case",
+    "drag to another free cell moves case without duplication",
+    "cancelled drag restores original case",
+    "click and menu paths preserve original case",
+    "mobile tap takeout and return; no horizontal overflow",
+    "reset restores original desk and empty tray"
+  ],
+  "errors": []
+}

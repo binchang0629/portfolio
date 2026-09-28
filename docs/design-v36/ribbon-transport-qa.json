@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "flushContactSamples": 101,
+  "checks": [
+    "ribbon stroke edge flush with coil",
+    "cut ends inside winding",
+    "same transport clock for ribbon and reels",
+    "repeated animation timestamp does not stop playback",
+    "forward speed 3x, rewind reverses",
+    "stop freezes grain and reels",
+    "case reflections and guides fixed",
+    "mobile play",
+    "reduced motion honored"
+  ],
+  "travel": {
+    "playing": 12.514398482919109,
+    "stopped": 20.028748478667886,
+    "rewinding": 5.015077187162265,
+    "forwarding": 20.028748478667886
+  },
+  "errors": []
+}

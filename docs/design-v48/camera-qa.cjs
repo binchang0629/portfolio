@@ -1,0 +1,118 @@
+const {chromium}=require('C:/Users/EZEN/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const out='C:/bin/portfolio/docs/design-v48/';
+(async()=>{
+ const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+ const errors=[],checks=[];
+ const slotPoint=(page,slot)=>page.locator('.archive-art').evaluate((svg,i)=>{
+  const p=svg.createSVGPoint();p.x=155+(i+.5)*1131/7;p.y=540;
+  const q=p.matrixTransform(svg.getScreenCTM());return{x:q.x,y:q.y};
+ },slot);
+ const moveSlot=async(page,slot)=>{const p=await slotPoint(page,slot);await page.mouse.move(p.x,p.y,{steps:15})};
+ const startDesk=async(page,id)=>{
+  const b=await page.locator(`.tape-${id}`).boundingBox();await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.mouse.down();
+ };
+ const preview=async(page,hovered,destination)=>{
+  assert.equal(await page.locator('.archive').getAttribute('data-hovered-slot'),String(hovered));
+  assert.equal(await page.locator('.archive').getAttribute('data-preview-slot'),String(destination));
+  assert.equal(await page.locator('[data-part="storage-silhouette"]').getAttribute('data-slot'),String(destination));
+  assert.equal(await page.locator('[data-slot-highlight="destination"]').count(),1);
+  assert.equal(await page.locator('.archive-drop-hint').count(),1);
+ };
+ const inspect=async(page,name)=>{
+  await page.screenshot({path:out+name+'-desk.png'});
+  await page.locator('.archive-art').evaluate(svg=>{
+   const p=document.createElement('div');p.id='preview-inspect';
+   Object.assign(p.style,{position:'fixed',left:'0',top:'0',width:'850px',height:'655px',zIndex:'10000',background:'#f7f3ee'});
+   p.appendChild(svg.cloneNode(true));document.body.appendChild(p);
+  });
+  await page.locator('#preview-inspect').screenshot({path:out+name+'-tray.png'});
+  await page.locator('#preview-inspect').evaluate(p=>p.remove());
+ };
+ try{
+  const page=await browser.newPage({viewport:{width:1440,height:960},reducedMotion:'reduce'});
+  page.setDefaultTimeout(6000);page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://127.0.0.1:5173/',{waitUntil:'networkidle'});
+  await page.screenshot({path:out+'desktop-camera-empty.png'});
+  await startDesk(page,'about');
+  for(let i=0;i<7;i++){await moveSlot(page,i);await preview(page,i,i)}
+  assert.equal(await page.locator('.tape-about .tape-orientation').evaluate(e=>getComputedStyle(e).opacity),'0');
+  await inspect(page,'empty-cell-preview');
+  await page.mouse.move(650,150,{steps:15});
+  assert.equal(await page.locator('[data-part="storage-silhouette"]').count(),0);
+  assert.equal(await page.locator('.tape-about .tape-orientation').evaluate(e=>getComputedStyle(e).opacity),'1');
+  await moveSlot(page,3);await preview(page,3,3);await page.mouse.up();
+  assert.equal(await page.locator('[data-stored-id="about"]').getAttribute('data-slot'),'3');
+  assert.equal(await page.locator('.archive-drop-hint').count(),0);
+  checks.push('all seven rotated cells preview correctly','opaque tape hidden over tray and restored outside','release commits displayed slot and clears preview');
+  await startDesk(page,'team');await moveSlot(page,3);await preview(page,3,0);
+  assert.match(await page.locator('.archive-drop-hint').textContent(),/4번 칸 사용 중 → 1번 칸에 보관/);
+  assert.equal(await page.locator('[data-slot-highlight="hovered-occupied"]').count(),1);
+  await inspect(page,'occupied-cell-fallback');await page.mouse.up();
+  assert.equal(await page.locator('[data-stored-id="team"]').getAttribute('data-slot'),'0');
+  assert.equal(await page.locator('[data-stored-id="about"]').getAttribute('data-slot'),'3');
+  checks.push('occupied hovered cell and fallback destination distinguished; no overwrite');
+  const origin=await slotPoint(page,3);await page.mouse.move(origin.x,origin.y);await page.mouse.down();
+  await moveSlot(page,5);await preview(page,5,5);
+  assert.equal(await page.locator('.archive-held-tape').evaluate(e=>getComputedStyle(e).opacity),'0');
+  await page.mouse.up();
+  assert.equal(await page.locator('[data-stored-id="about"]').getAttribute('data-slot'),'5');
+  checks.push('case-extracted tape uses same silhouette and commit logic');
+  const next=await slotPoint(page,5);await page.mouse.move(next.x,next.y);await page.mouse.down();
+  await moveSlot(page,4);await preview(page,4,4);
+  await page.locator('.archive-slot[data-slot="5"]').dispatchEvent('pointercancel',{pointerId:1});await page.mouse.up();
+  assert.equal(await page.locator('[data-stored-id="about"]').getAttribute('data-slot'),'5');
+  assert.equal(await page.locator('[data-part="storage-silhouette"]').count(),0);
+  assert.equal(await page.locator('.archive-held-tape').count(),0);
+  checks.push('cancel clears preview and restores original storage');
+  await page.getByRole('button',{name:'02 TEAM PLAY 테이프 꺼내기',exact:true}).click();
+  await startDesk(page,'team');await moveSlot(page,0);await preview(page,0,0);await page.mouse.up();
+  assert.equal(await page.locator('[data-case-id="team"]').count(),1);
+  checks.push('return to empty case previews without duplicate cases');
+  await page.getByRole('button',{name:'배치 초기화 ↺',exact:true}).click();
+  assert.equal(await page.locator('[data-case-id]').count(),0);assert.equal(await page.locator('.tape').count(),5);
+  await startDesk(page,'about');const b=await page.locator('.player').boundingBox();
+  await page.mouse.move(b.x+b.width*.5,b.y+b.height*.5,{steps:20});
+  assert.equal(await page.locator('.player.is-drop-target').count(),1);
+  assert.equal(await page.locator('.tape-about .tape-orientation').evaluate(e=>getComputedStyle(e).opacity),'1');
+  await page.mouse.up();assert.equal(await page.locator('.player [data-part="cassette-surface"]').count(),1);
+  checks.push('player drop remains visible and loads correctly');
+  const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
+  mobile.setDefaultTimeout(6000);mobile.on('pageerror',e=>errors.push(e.message));
+  await mobile.goto('http://127.0.0.1:5173/',{waitUntil:'networkidle'});
+  await mobile.getByRole('button',{name:'보관함 목록 열기',exact:true}).tap();
+  await mobile.getByRole('button',{name:'01 ABOUT ME 보관함에 넣기',exact:true}).tap();
+  await mobile.getByRole('button',{name:'닫기',exact:true}).tap();
+  await mobile.locator('.archive').scrollIntoViewIfNeeded();
+  const touch=await mobile.context().newCDPSession(mobile);
+  const from=await slotPoint(mobile,0),to=await slotPoint(mobile,1);
+  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[from]});
+  await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[to]});
+  await preview(mobile,1,1);
+  assert.equal(await mobile.locator('.archive-held-tape').evaluate(e=>getComputedStyle(e).opacity),'0');
+  await mobile.locator('.archive').screenshot({path:out+'mobile-storage-preview.png'});
+  await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  assert.equal(await mobile.locator('[data-stored-id="about"]').getAttribute('data-slot'),'1');
+  checks.push('mobile touch drag previews and commits the same destination');
+  await page.getByRole('button',{name:'배치 초기화 ↺',exact:true}).click();
+  await page.getByRole('button',{name:'보관함 목록 열기',exact:true}).click();
+  for(const name of ['01 ABOUT ME','02 TEAM PLAY','03 DESIGN','04 BRANDING','05 NEXT TRACK'])await page.getByRole('button',{name:`${name} 보관함에 넣기`,exact:true}).click();
+  await page.getByRole('button',{name:'닫기',exact:true}).click();
+  await page.screenshot({path:out+'desktop-camera-stored.png'});
+  for(let slot=0;slot<5;slot++){
+   const point=await slotPoint(page,slot);await page.mouse.click(point.x,point.y);
+   assert.equal(await page.locator('[data-stored-id]').count(),4-slot);
+  }
+  assert.equal(await page.locator('.tape').count(),5);
+  checks.push('all five projected slot buttons line up with the rendered cases');
+  await page.getByRole('button',{name:'배치 초기화 ↺',exact:true}).click();
+  await page.setViewportSize({width:1366,height:768});await page.screenshot({path:out+'laptop-camera.png'});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight));
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  checks.push('desktop and laptop composition fits one viewport');
+  assert.deepEqual(errors,[]);
+  fs.writeFileSync(out+'preview-qa.json',JSON.stringify({passed:true,checks,errors},null,2));
+  console.log(JSON.stringify({passed:true,checks,errors}));
+ }finally{await browser.close()}
+})().catch(e=>{console.error(e);process.exit(1)});

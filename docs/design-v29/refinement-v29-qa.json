@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "desktopGeometry": {
+    "tape": {
+      "x": 379.6875,
+      "y": 135.9375,
+      "width": 288,
+      "height": 173.890625,
+      "top": 135.9375,
+      "right": 667.6875,
+      "bottom": 309.828125,
+      "left": 379.6875
+    },
+    "player": {
+      "x": 521.265625,
+      "y": 326.390625,
+      "width": 413.265625,
+      "height": 263.53125,
+      "top": 326.390625,
+      "right": 934.53125,
+      "bottom": 589.921875,
+      "left": 521.265625
+    },
+    "width": 1440
+  },
+  "spindleOffsets": [
+    {
+      "x": 0.00013802652108552138,
+      "y": 0.000013119488244228705
+    },
+    {
+      "x": 0.00004742247222111473,
+      "y": 0.000013119488244228705
+    }
+  ],
+  "commonCamera": [
+    {
+      "camera": "orthographic-topview-v1",
+      "viewBox": "36 48 1464 884",
+      "source": "/assets/cassette/topview/clean-v1.png",
+      "hubSources": [
+        "/assets/cassette/topview/render-v1.png",
+        "/assets/cassette/topview/render-v1.png"
+      ],
+      "hubRadius": "109"
+    },
+    {
+      "camera": "orthographic-topview-v1",
+      "viewBox": "36 48 1464 884",
+      "source": "/assets/cassette/topview/clean-v1.png",
+      "hubSources": [
+        "/assets/cassette/topview/render-v1.png",
+        "/assets/cassette/topview/render-v1.png"
+      ],
+      "hubRadius": "109"
+    },
+    {
+      "camera": "orthographic-topview-v1",
+      "viewBox": "36 48 1464 884",
+      "source": "/assets/cassette/topview/clean-v1.png",
+      "hubSources": [
+        "/assets/cassette/topview/render-v1.png",
+        "/assets/cassette/topview/render-v1.png"
+      ],
+      "hubRadius": "109"
+    },
+    {
+      "camera": "orthographic-topview-v1",
+      "viewBox": "36 48 1464 884",
+      "source": "/assets/cassette/topview/clean-v1.png",
+      "hubSources": [
+        "/assets/cassette/topview/render-v1.png",
+        "/assets/cassette/topview/render-v1.png"
+      ],
+      "hubRadius": "109"
+    },
+    {
+      "camera": "orthographic-topview-v1",
+      "viewBox": "36 48 1464 884",
+      "source": "/assets/cassette/topview/clean-v1.png",
+      "hubSources": [
+        "/assets/cassette/topview/render-v1.png",
+        "/assets/cassette/topview/render-v1.png"
+      ],
+      "hubRadius": "109"
+    }
+  ],
+  "matchedScale": {
+    "ratio": 0.9962878898049671,
+    "insideAnisotropy": 1,
+    "deskAnisotropy": 1
+  },
+  "checks": [
+    "shared orthographic tape camera",
+    "uniform scale in player",
+    "no stretched hubs",
+    "source hub excluded from winding texture",
+    "independent tray layers",
+    "top-rim label",
+    "notebook/contact separation",
+    "free drag",
+    "player drop",
+    "inserted tape removed",
+    "coherent product render",
+    "photographic hubs",
+    "rendered spindle alignment",
+    "no warped cassette",
+    "transparent mechanical-key hit areas",
+    "play story",
+    "escape dialog",
+    "stop",
+    "rewind",
+    "forward",
+    "eject",
+    "team project roles",
+    "archive empty state",
+    "archive take and load",
+    "archive replacement and return",
+    "archive eject and return",
+    "automatic stop at end",
+    "reset",
+    "mobile no overflow",
+    "personal project content"
+  ],
+  "errors": [],
+  "failed": []
+}

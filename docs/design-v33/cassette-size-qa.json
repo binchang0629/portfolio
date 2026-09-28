@@ -1,0 +1,398 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "comparison": [
+        {
+          "id": "about",
+          "before": {
+            "hubDistance": 132.05824024321265,
+            "hubRadius": 24.030631363122172,
+            "sourceScale": 0.22046450791855204
+          },
+          "inside": {
+            "hubDistance": 132.06337060630108,
+            "hubRadius": 24.031564935036428,
+            "sourceScale": 0.22047307279849934
+          },
+          "after": {
+            "hubDistance": 132.05824024321265,
+            "hubRadius": 24.030631363122172,
+            "sourceScale": 0.22046450791855204
+          }
+        },
+        {
+          "id": "team",
+          "before": {
+            "hubDistance": 132.0582402432126,
+            "hubRadius": 24.03063136312217,
+            "sourceScale": 0.22046450791855202
+          },
+          "inside": {
+            "hubDistance": 132.06337060630108,
+            "hubRadius": 24.031564935036428,
+            "sourceScale": 0.22047307279849934
+          },
+          "after": {
+            "hubDistance": 132.0582402432126,
+            "hubRadius": 24.03063136312217,
+            "sourceScale": 0.22046450791855202
+          }
+        },
+        {
+          "id": "design",
+          "before": {
+            "hubDistance": 132.05824024321277,
+            "hubRadius": 24.030631363122172,
+            "sourceScale": 0.22046450791855204
+          },
+          "inside": {
+            "hubDistance": 132.06337060630108,
+            "hubRadius": 24.031564935036428,
+            "sourceScale": 0.22047307279849934
+          },
+          "after": {
+            "hubDistance": 132.05824024321277,
+            "hubRadius": 24.030631363122172,
+            "sourceScale": 0.22046450791855204
+          }
+        },
+        {
+          "id": "branding",
+          "before": {
+            "hubDistance": 132.05824024321262,
+            "hubRadius": 24.030631363122176,
+            "sourceScale": 0.22046450791855207
+          },
+          "inside": {
+            "hubDistance": 132.06337060630108,
+            "hubRadius": 24.031564935036428,
+            "sourceScale": 0.22047307279849934
+          },
+          "after": {
+            "hubDistance": 132.05824024321262,
+            "hubRadius": 24.030631363122176,
+            "sourceScale": 0.22046450791855207
+          }
+        },
+        {
+          "id": "next",
+          "before": {
+            "hubDistance": 132.05824024321282,
+            "hubRadius": 24.03063136312217,
+            "sourceScale": 0.22046450791855202
+          },
+          "inside": {
+            "hubDistance": 132.06337060630108,
+            "hubRadius": 24.031564935036428,
+            "sourceScale": 0.22047307279849934
+          },
+          "after": {
+            "hubDistance": 132.05824024321282,
+            "hubRadius": 24.03063136312217,
+            "sourceScale": 0.22046450791855202
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "comparison": [
+        {
+          "id": "about",
+          "before": {
+            "hubDistance": 93.91137584841628,
+            "hubRadius": 17.08904835972851,
+            "sourceScale": 0.15678026018099547
+          },
+          "inside": {
+            "hubDistance": 93.90739940024321,
+            "hubRadius": 17.088324765653603,
+            "sourceScale": 0.15677362170324408
+          },
+          "after": {
+            "hubDistance": 93.91137584841628,
+            "hubRadius": 17.08904835972851,
+            "sourceScale": 0.15678026018099547
+          }
+        },
+        {
+          "id": "team",
+          "before": {
+            "hubDistance": 93.91137584841628,
+            "hubRadius": 17.089048359728505,
+            "sourceScale": 0.15678026018099545
+          },
+          "inside": {
+            "hubDistance": 93.90739940024321,
+            "hubRadius": 17.088324765653603,
+            "sourceScale": 0.15677362170324408
+          },
+          "after": {
+            "hubDistance": 93.91137584841628,
+            "hubRadius": 17.089048359728505,
+            "sourceScale": 0.15678026018099545
+          }
+        },
+        {
+          "id": "design",
+          "before": {
+            "hubDistance": 93.91137584841624,
+            "hubRadius": 17.08904835972851,
+            "sourceScale": 0.15678026018099547
+          },
+          "inside": {
+            "hubDistance": 93.90739940024321,
+            "hubRadius": 17.088324765653603,
+            "sourceScale": 0.15677362170324408
+          },
+          "after": {
+            "hubDistance": 93.91137584841624,
+            "hubRadius": 17.08904835972851,
+            "sourceScale": 0.15678026018099547
+          }
+        },
+        {
+          "id": "branding",
+          "before": {
+            "hubDistance": 93.91137584841624,
+            "hubRadius": 17.08904835972851,
+            "sourceScale": 0.1567802601809955
+          },
+          "inside": {
+            "hubDistance": 93.90739940024321,
+            "hubRadius": 17.088324765653603,
+            "sourceScale": 0.15677362170324408
+          },
+          "after": {
+            "hubDistance": 93.91137584841624,
+            "hubRadius": 17.08904835972851,
+            "sourceScale": 0.1567802601809955
+          }
+        },
+        {
+          "id": "next",
+          "before": {
+            "hubDistance": 93.91137584841626,
+            "hubRadius": 17.089048359728505,
+            "sourceScale": 0.15678026018099545
+          },
+          "inside": {
+            "hubDistance": 93.90739940024321,
+            "hubRadius": 17.088324765653603,
+            "sourceScale": 0.15677362170324408
+          },
+          "after": {
+            "hubDistance": 93.91137584841626,
+            "hubRadius": 17.089048359728505,
+            "sourceScale": 0.15678026018099545
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 600
+      },
+      "comparison": [
+        {
+          "id": "about",
+          "before": {
+            "hubDistance": 73.36098345588235,
+            "hubRadius": 13.349494485294118,
+            "sourceScale": 0.12247242647058823
+          },
+          "inside": {
+            "hubDistance": 73.36776586702968,
+            "hubRadius": 13.350728680310898,
+            "sourceScale": 0.12248374936065044
+          },
+          "after": {
+            "hubDistance": 73.36098345588235,
+            "hubRadius": 13.349494485294118,
+            "sourceScale": 0.12247242647058823
+          }
+        },
+        {
+          "id": "team",
+          "before": {
+            "hubDistance": 73.36098345588233,
+            "hubRadius": 13.349494485294116,
+            "sourceScale": 0.12247242647058822
+          },
+          "inside": {
+            "hubDistance": 73.36776586702968,
+            "hubRadius": 13.350728680310898,
+            "sourceScale": 0.12248374936065044
+          },
+          "after": {
+            "hubDistance": 73.36098345588233,
+            "hubRadius": 13.349494485294116,
+            "sourceScale": 0.12247242647058822
+          }
+        },
+        {
+          "id": "design",
+          "before": {
+            "hubDistance": 73.36098345588226,
+            "hubRadius": 13.349494485294118,
+            "sourceScale": 0.12247242647058823
+          },
+          "inside": {
+            "hubDistance": 73.36776586702968,
+            "hubRadius": 13.350728680310898,
+            "sourceScale": 0.12248374936065044
+          },
+          "after": {
+            "hubDistance": 73.36098345588226,
+            "hubRadius": 13.349494485294118,
+            "sourceScale": 0.12247242647058823
+          }
+        },
+        {
+          "id": "branding",
+          "before": {
+            "hubDistance": 73.3609834558823,
+            "hubRadius": 13.349494485294118,
+            "sourceScale": 0.12247242647058823
+          },
+          "inside": {
+            "hubDistance": 73.36776586702968,
+            "hubRadius": 13.350728680310898,
+            "sourceScale": 0.12248374936065044
+          },
+          "after": {
+            "hubDistance": 73.3609834558823,
+            "hubRadius": 13.349494485294118,
+            "sourceScale": 0.12247242647058823
+          }
+        },
+        {
+          "id": "next",
+          "before": {
+            "hubDistance": 73.36098345588245,
+            "hubRadius": 13.349494485294116,
+            "sourceScale": 0.12247242647058822
+          },
+          "inside": {
+            "hubDistance": 73.36776586702968,
+            "hubRadius": 13.350728680310898,
+            "sourceScale": 0.12248374936065044
+          },
+          "after": {
+            "hubDistance": 73.36098345588245,
+            "hubRadius": 13.349494485294116,
+            "sourceScale": 0.12247242647058822
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "comparison": [
+        {
+          "id": "about",
+          "before": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          },
+          "inside": {
+            "hubDistance": 97.14390553136633,
+            "hubRadius": 17.67727162423861,
+            "sourceScale": 0.16217680389209735
+          },
+          "after": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          }
+        },
+        {
+          "id": "team",
+          "before": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          },
+          "inside": {
+            "hubDistance": 97.14390553136633,
+            "hubRadius": 17.67727162423861,
+            "sourceScale": 0.16217680389209735
+          },
+          "after": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          }
+        },
+        {
+          "id": "design",
+          "before": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          },
+          "inside": {
+            "hubDistance": 97.14390553136633,
+            "hubRadius": 17.67727162423861,
+            "sourceScale": 0.16217680389209735
+          },
+          "after": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          }
+        },
+        {
+          "id": "branding",
+          "before": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          },
+          "inside": {
+            "hubDistance": 97.14390553136633,
+            "hubRadius": 17.67727162423861,
+            "sourceScale": 0.16217680389209735
+          },
+          "after": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          }
+        },
+        {
+          "id": "next",
+          "before": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          },
+          "inside": {
+            "hubDistance": 97.14390553136633,
+            "hubRadius": 17.67727162423861,
+            "sourceScale": 0.16217680389209735
+          },
+          "after": {
+            "hubDistance": 97.14057197398188,
+            "hubRadius": 17.676665016968325,
+            "sourceScale": 0.1621712386877828
+          }
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "dragged tape removed from storage count; delayed click does not re-store it",
+    "empty case visually distinct from occupied cases",
+    "storage list excludes retrieved tape; explicit click still returns it",
+    "click takeout and keyboard return update counts",
+    "storage-to-player drag leaves empty case and excludes loaded tape",
+    "mobile takeout shows zero stored tapes and empty-case message"
+  ],
+  "errors": []
+}

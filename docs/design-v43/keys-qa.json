@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "play key stays visibly recessed after story closes",
+    "fast-forward and rewind release the previous key",
+    "stop depresses while held, then releases all keys",
+    "keyboard activation and eject release",
+    "mobile tap play and stop"
+  ],
+  "errors": []
+}

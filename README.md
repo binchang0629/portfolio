@@ -34,5 +34,7 @@ npm run dev
 
 현재 사용 에셋은 public/assets의 background·cassette·player 폴더에 정리했습니다. 코드에서 쓰는 경로는 src/assets/index.js, 마스크는 src/assets의 사물별 폴더에서 관리합니다. 이전 원본과 시안은 docs/asset-history에 보존합니다.
 
-플레이어는 IntegratedPlayer.jsx에서 하나의 일관된 렌더 재질을 사용합니다. 본체·테이프·물리 버튼·유리 문틀의 시점을 공유하고, 같은 렌더의 흰 허브를 분리해서 회전합니다. 버튼은 실제 렌더의 키 위치에 놓인 투명 클릭 영역입니다. 에셋은 public/assets/player/coherent, 좌표는 src/assets/player/coherent-geometry.js에서 관리합니다.
+V29에서는 CassetteSurface.jsx와 public/assets/cassette/topview의 공통 탑뷰 카세트를 책상 및 삽입 상태에 함께 사용합니다. 삽입은 두 릴 축에 맞춘 균일 배율만 적용하고, 늘리거나 별도 원근을 주지 않습니다. 흰 플레이어 본체와 기계식 버튼은 기존 공통 렌더를 유지하며 버튼 위에는 투명 클릭 영역을 놓습니다. ArchiveTray.jsx는 보관함의 바닥·추가 작업의 얇은 등 부분·안쪽 그림자·윗테두리·칸막이를 분리합니다. 새 에셋은 public/assets/cassette/topview, archive, background에 있고 좌표는 src/assets/cassette/topview-geometry.js와 player/coherent-geometry.js에서 관리합니다.
 
+
+V31의 릴은 TopViewHub.jsx에서 동심원·회전 톱니와 고정 표면 조명을 분리합니다. 이전처럼 입체 허브 사진과 반사 전체를 회전하지 않습니다. 동작 검수와 제작 기록은 docs/design-v31에 있습니다.

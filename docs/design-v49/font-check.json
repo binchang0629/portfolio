@@ -1,0 +1,34 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 960
+    },
+    "main": {
+      "fontLoaded": true,
+      "otherFonts": [],
+      "horizontalOverflow": false
+    },
+    "dialog": {
+      "fontLoaded": true,
+      "otherFonts": [],
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "main": {
+      "fontLoaded": true,
+      "otherFonts": [],
+      "horizontalOverflow": false
+    },
+    "dialog": {
+      "fontLoaded": true,
+      "otherFonts": [],
+      "horizontalOverflow": false
+    }
+  }
+]

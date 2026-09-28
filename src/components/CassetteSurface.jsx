@@ -1,57 +1,59 @@
 import { useId } from 'react'
 import { assets } from '../assets'
-import { coherentPlayer as geometry } from '../assets/player/coherent-geometry'
+import { topviewCassette as geometry } from '../assets/cassette/topview-geometry'
 import { reelRadii } from '../lib/tape-mechanism'
+import TopViewHub from './TopViewHub'
+import TapeRibbon from './TapeRibbon'
+import CassetteCover from './CassetteCover'
 
-function PhotographicReel({ reel, radius, angle, prefix }) {
+function TapeReel({ reel, radius, angle, prefix }) {
   const scale = radius / geometry.texturePackRadius
   return <g transform={`translate(${reel.x} ${reel.y})`} data-part={`reel-${reel.name}`}>
-    <defs><clipPath id={`${prefix}-${reel.name}-pack`}><circle r={radius} /></clipPath><clipPath id={`${prefix}-${reel.name}-hub`}><circle r={geometry.hubRadius} /></clipPath></defs>
+    <defs><clipPath id={`${prefix}-${reel.name}-pack`}><circle r={radius} /></clipPath></defs>
     <circle r={radius} fill={`url(#${prefix}-pack)`} data-part="pack-surface" />
-    {Array.from({ length: Math.floor((radius - 70) / 1.2) }, (_, i) => <circle key={i} r={70 + i * 1.2} fill="none" stroke={i % 3 === 0 ? '#4a4a4c' : '#161618'} strokeWidth=".5" opacity=".22" />)}
+    {Array.from({ length: Math.max(0, Math.floor((radius - geometry.hubRadius) / 1.3)) }, (_, i) => <circle key={i} r={geometry.hubRadius + i * 1.3} fill="none" stroke={i % 3 === 0 ? '#393939' : '#101011'} strokeWidth=".6" opacity=".25" />)}
     <g clipPath={`url(#${prefix}-${reel.name}-pack)`}>
-      <g transform={`scale(${scale})`} mask={`url(#${prefix}-texture-band)`}>
-        <image href={assets.player.render} x="-513" y="-520" width={geometry.width} height={geometry.height} />
+      <g transform={`scale(${scale})`} mask={`url(#${prefix}-pack-texture)`}>
+        <image href={assets.cassette.render} x="-469" y="-441" width={geometry.width} height={geometry.height} />
       </g>
     </g>
-    <g clipPath={`url(#${prefix}-${reel.name}-hub)`}>
-      <g transform={`rotate(${angle})`} data-part="hub" data-angle={angle}>
-        <image href={assets.player.render} x={-reel.x} y={-reel.y} width={geometry.width} height={geometry.height} />
-      </g>
-    </g>
+    <TopViewHub angle={angle} radius={geometry.hubRadius} id={`${prefix}-${reel.name}`} />
   </g>
 }
 
-// Both desk and compartment use these exact coordinates, photographs and parts.
-// Only a planar desk rotation is permitted; no per-track perspective transforms.
-export default function CassetteSurface({ track, angles = { left: 0, right: 0 }, progress = track.winding ?? .28, standalone = false }) {
+// Identical orthographic artwork is shared by the desk and the compartment.
+export default function CassetteSurface({ track, angles = { left: 0, right: 0 }, progress = track.winding ?? .28, travel = 0 }) {
   const prefix = useId().replaceAll(':', '')
-  const radii = reelRadii(progress)
-  const tint = { filter: `hue-rotate(${track.tint}deg) saturate(.7)` }
-  return <g data-camera="player-v1" data-part="cassette-surface">
+  const winding = reelRadii(progress)
+  const radii = { left: winding.left * geometry.texturePackRadius / 185, right: winding.right * geometry.texturePackRadius / 185 }
+  const tint = { filter: `hue-rotate(${track.tint}deg) saturate(.6)` }
+  return <g data-camera="orthographic-topview-v1" data-part="cassette-surface">
     <defs>
-      <clipPath id={`${prefix}-body`}><path d={geometry.cassetteOutline} /></clipPath>
+      <clipPath id={`${prefix}-body`}><path d={geometry.outline} /></clipPath>
       <clipPath id={`${prefix}-window`}><rect {...geometry.window} /></clipPath>
-      <clipPath id={`${prefix}-paper`}><rect x="318" y="339" width="763" height="85" rx="8" /><rect x="313" y="594" width="771" height="87" rx="8" /></clipPath>
-      <radialGradient id={`${prefix}-pack`}><stop stopColor="#414144" /><stop offset=".58" stopColor="#333335" /><stop offset=".9" stopColor="#2d2d2f" /><stop offset="1" stopColor="#202123" /></radialGradient>
-      <linearGradient id={`${prefix}-texture-fade`} x1="0" y1="-70" x2="0" y2="70" gradientUnits="userSpaceOnUse"><stop stopColor="black" /><stop offset=".17" stopColor="white" /><stop offset=".83" stopColor="white" /><stop offset="1" stopColor="black" /></linearGradient>
-      <mask id={`${prefix}-texture-band`} x="-154" y="-70" width="308" height="140" maskUnits="userSpaceOnUse"><rect x="-154" y="-70" width="308" height="140" fill={`url(#${prefix}-texture-fade)`} /></mask>
+      <clipPath id={`${prefix}-paper`}>{geometry.paper.map((rect,i) => <rect key={i} {...rect} rx="7" />)}</clipPath>
+      <radialGradient id={`${prefix}-pack`}><stop stopColor="#282829" /><stop offset=".7" stopColor="#222223" /><stop offset="1" stopColor="#111112" /></radialGradient>
+      <linearGradient id={`${prefix}-texture-fade`} x1="0" y1="-123" x2="0" y2="123" gradientUnits="userSpaceOnUse"><stop stopColor="black" /><stop offset=".12" stopColor="white" /><stop offset=".88" stopColor="white" /><stop offset="1" stopColor="black" /></linearGradient>
+      <mask id={`${prefix}-pack-texture`} x="-237" y="-123" width="474" height="246" maskUnits="userSpaceOnUse">
+        <rect x="-237" y="-123" width="474" height="246" fill={`url(#${prefix}-texture-fade)`} />
+        {/* The photographic hub is excluded; its shading must not enter the winding. */}
+        <circle r="128" fill="black" />
+      </mask>
     </defs>
     <g clipPath={`url(#${prefix}-body)`}>
-      <image href={assets.player.render} width={geometry.width} height={geometry.height} style={tint} data-part="shell" />
-      <image href={assets.player.render} width={geometry.width} height={geometry.height} clipPath={`url(#${prefix}-paper)`} data-part="labels" />
-      <image href={assets.player.clean} width={geometry.width} height={geometry.height} clipPath={`url(#${prefix}-window)`} style={tint} />
-      <g clipPath={`url(#${prefix}-window)`}>
-        <PhotographicReel reel={geometry.reels[0]} radius={radii.left * 153 / 185} angle={angles.left} prefix={prefix} />
-        <PhotographicReel reel={geometry.reels[1]} radius={radii.right * 153 / 185} angle={angles.right} prefix={prefix} />
-        <rect {...geometry.window} fill="#d9e3f0" opacity=".035" pointerEvents="none" />
+      <image href={assets.cassette.clean} width={geometry.width} height={geometry.height} style={tint} data-part="shell" />
+      <g data-part="internal-mechanism">
+        <TapeRibbon reels={geometry.reels} radii={radii} travel={travel * geometry.texturePackRadius / 185} />
+        <g clipPath={`url(#${prefix}-window)`}>
+          <TapeReel reel={geometry.reels[0]} radius={radii.left} angle={angles.left} prefix={prefix} />
+          <TapeReel reel={geometry.reels[1]} radius={radii.right} angle={angles.right} prefix={prefix} />
+        </g>
       </g>
-      {standalone && <svg x="681" y="310" width="60" height="30" viewBox="750 310 60 30" overflow="hidden" style={tint} aria-hidden="true">
-        <image href={assets.player.render} width={geometry.width} height={geometry.height} />
-      </svg>}
-      <text x="700" y="389" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="46" fontWeight="700" fill="#345477">{track.number}. {track.title}</text>
-      <text x="346" y="647" fontFamily="Arial,sans-serif" fontSize="29" fill="#425d78">{track.subtitle}</text>
-      <image href={assets.cassette.stickers[track.sticker || track.id] || assets.cassette.stickers.next} x="1008" y="612" width="43" height="43" />
+      <CassetteCover prefix={prefix} tint={tint} />
+      <image href={assets.cassette.clean} width={geometry.width} height={geometry.height} clipPath={`url(#${prefix}-paper)`} data-part="labels" />
+      <text x="768" y="225" textAnchor="middle" fontSize="71" fontWeight="700" fill="#345477">{track.number}. {track.title}</text>
+      <text x="210" y="660" fontSize="47" fill="#425d78">{track.subtitle}</text>
+      <image href={assets.cassette.stickers[track.sticker || track.id] || assets.cassette.stickers.next} x="1247" y="608" width="63" height="63" />
     </g>
   </g>
 }

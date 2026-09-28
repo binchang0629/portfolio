@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checks": [
+    "all seven rotated cells preview correctly",
+    "opaque tape hidden over tray and restored outside",
+    "release commits displayed slot and clears preview",
+    "occupied hovered cell and fallback destination distinguished; no overwrite",
+    "case-extracted tape uses same silhouette and commit logic",
+    "cancel clears preview and restores original storage",
+    "return to empty case previews without duplicate cases",
+    "player drop remains visible and loads correctly",
+    "mobile touch drag previews and commits the same destination"
+  ],
+  "errors": []
+}

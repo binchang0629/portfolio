@@ -16,7 +16,8 @@ export default function useTapeTransport(reducedMotion) {
     if (transport === 'stopped') return
     let frame, last = null
     const tick = time => {
-      if (last !== null) {
+      // Repeated timestamps are a skipped frame, not the end of the tape.
+      if (last !== null && time > last) {
         const previous = current.current
         const next = advanceMechanism(previous, time - last, transport, reducedMotion)
         if (next === previous) { setTransport('stopped'); return }

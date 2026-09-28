@@ -8,7 +8,7 @@ export const profile = {
 }
 
 export const tracks = [
-  { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, winding: .28, x: 410, y: 185, rotate: -12,
+  { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, winding: .28, x: 405, y: 145, rotate: -12,
     eyebrow: 'MY SIDE A', heading: '사용자 경험을 화면으로 구현하는 디자이너',
     summary: '안녕하세요, 정창빈입니다. 보기 좋은 화면을 넘어, 사용자가 어디에서 불편을 느끼는지 이해하고 해결하는 디자인을 지향합니다.',
     tags: ['사용자 중심', 'UI/UX 설계', '프론트엔드 이해'],
@@ -18,7 +18,7 @@ export const tracks = [
       { title: '함께 일하는 태도', body: '사용자 흐름을 따라가며 개선할 부분을 먼저 찾으려 노력합니다. 결과물을 만든 뒤 피드백을 받아 가독성, 정보의 우선순위와 화면 구조를 반복해서 개선합니다.' },
     ],
   },
-  { id: 'team', number: '02', title: 'TEAM PLAY', subtitle: 'Better together.', tint: 88, winding: .62, x: 830, y: 170, rotate: 10,
+  { id: 'team', number: '02', title: 'TEAM PLAY', subtitle: 'Better together.', tint: 88, winding: .62, x: 825, y: 130, rotate: 10,
     eyebrow: 'PROJECT / TEAM', heading: '함께 설계하고, 구현하고, 개선한 경험',
     summary: '국순당에서는 서브팀장으로, 왈가왈BOT에서는 개발 팀장으로 참여했습니다. 두 프로젝트에서 팀이 만든 경험과 제가 담당한 작업을 구분해 소개합니다.',
     tags: ['국순당', '왈가왈BOT', '협업과 구현'],
@@ -36,7 +36,7 @@ export const tracks = [
       { title: '진행 중인 작업', body: '두 프로젝트 모두 작업 중입니다. 실제 설계 자료와 직접 만든 화면을 확인하며 내용을 보완하고 있습니다.' },
     ],
   },
-  { id: 'branding', number: '04', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, winding: .76, x: 515, y: 700, rotate: 8,
+  { id: 'branding', number: '04', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, winding: .76, x: 520, y: 690, rotate: 8,
     eyebrow: 'PERSONAL / BRANDING', heading: '경험을 재생하는 나의 책상',
     summary: '서로 다른 경험을 담은 테이프를 골라 재생하면, 지금의 나를 만나는 개인 브랜딩 포트폴리오입니다.',
     tags: ['개인 브랜딩', '인터랙션 설계', 'React'],
@@ -46,7 +46,7 @@ export const tracks = [
       { title: '만드는 과정', body: 'Figma로 화면과 인터랙션을 설계하고, AI 보조 렌더 에셋의 구조와 디테일을 검토했습니다. React, JavaScript와 CSS로 선택·이동·삽입 동작을 구현하며 디자인을 보완하고 있습니다.' },
     ],
   },
-  { id: 'next', number: '05', title: 'NEXT TRACK', subtitle: 'Still writing.', tint: 185, winding: .18, x: 865, y: 675, rotate: 0,
+  { id: 'next', number: '05', title: 'NEXT TRACK', subtitle: 'Still writing.', tint: 185, winding: .18, x: 870, y: 715, rotate: -10,
     eyebrow: 'NEXT / CONTACT', heading: '디자인과 개발 사이를 연결하며',
     summary: '사용자의 문제를 발견하고 화면을 설계하는 일에서, 실제 구현 과정까지 이해하는 디자이너로 성장하고 싶습니다.',
     tags: ['꾸준한 개선', '구현 이해', '함께 성장'],

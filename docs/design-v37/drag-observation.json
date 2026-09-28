@@ -1,0 +1,12 @@
+{
+  "held": "tape tape-about",
+  "loaded": {
+    "tapes": 4,
+    "label": "01 / ABOUT ME"
+  },
+  "controlsReachable": 1,
+  "returned": 5,
+  "restingAbove": "tape tape-team",
+  "outsideDropTapes": 5,
+  "errors": []
+}

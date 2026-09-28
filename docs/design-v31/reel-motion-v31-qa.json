@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "checks": [
+    "same circular geometry at rest and during motion",
+    "spindle centers stationary",
+    "stationary surface light",
+    "independent angular speeds",
+    "stop freezes hub and winding",
+    "rewind reverses both hubs and winding",
+    "forward resumes winding in opposite direction",
+    "same top-view hubs on returned desk tapes",
+    "mobile tap/play and no horizontal overflow",
+    "reduced motion honored",
+    "100vh main retained"
+  ],
+  "axes": [
+    {
+      "x": 653.9300180084051,
+      "y": 459.6535997672155
+    },
+    {
+      "x": 771.321227486948,
+      "y": 459.6535997672155
+    }
+  ],
+  "idleAngles": [
+    0,
+    0
+  ],
+  "playAngles": [
+    26.74909214646158,
+    35.10681415970592
+  ],
+  "rewindAngles": [
+    -26.00399168324767,
+    -34.360146542035835
+  ],
+  "forwardAngles": [
+    29.527167186322647,
+    38.73919197307342
+  ],
+  "errors": [],
+  "failures": []
+}

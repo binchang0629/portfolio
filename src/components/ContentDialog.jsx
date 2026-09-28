@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export default function ContentDialog({ content, onClose, onTrack, onProject }) {
+export default function ContentDialog({ content, onClose, onTrack, onProject, onStore }) {
   const dialog = useRef(null)
   useEffect(() => {
     const element = dialog.current
@@ -20,7 +20,8 @@ export default function ContentDialog({ content, onClose, onTrack, onProject }) 
       {s.email && <a className="email-link" href={`mailto:${s.email}`}>{s.email} ↗</a>}
       {s.link && <a className="source-link" href={s.link} target="_blank" rel="noreferrer">{s.linkLabel} ↗</a>}
     </section>)}</div>
-    {content.collection && <div className="collection">{content.collection.map(t => <button key={t.id} onClick={() => onTrack(t.id)}><span>{t.number}</span><strong>{t.title}</strong><span>↗</span></button>)}</div>}
+    {content.collection && <section className="storage-section"><h3>보관 중인 테이프</h3>{content.collection.length ? <div className="collection">{content.collection.map(t => <button key={t.id} aria-label={`${t.number} ${t.title} 테이프 꺼내기`} onClick={() => onTrack(t.id)}><span>{t.number}</span><strong>{t.title}</strong><span>꺼내기 ↗</span></button>)}</div> : <p>{content.emptyCaseCount ? '테이프는 모두 꺼냈어요. 보관함에는 빈 케이스만 남아 있어요.' : '보관 중인 테이프가 없어요.'}</p>}</section>}
+    {content.storeCollection && <section className="storage-section"><h3>보관함에 넣기</h3>{content.storeCollection.length ? <div className="collection">{content.storeCollection.map(t => <button key={t.id} disabled={content.storageFull} aria-label={`${t.number} ${t.title} 보관함에 넣기`} onClick={() => onStore(t.id)}><span>{t.number}</span><strong>{t.title}</strong><span>보관 ↓</span></button>)}</div> : <p>모든 테이프가 보관되어 있어요.</p>}</section>}
     {content.projects && <div className="project-grid">{content.projects.map(p => <button key={p.id} onClick={() => onProject(p)}><span>{p.eyebrow}</span><h3>{p.heading}</h3><p>{p.role}</p><p>{p.summary}</p><strong>프로젝트 보기 ↗</strong></button>)}</div>}
   </dialog>
 }
