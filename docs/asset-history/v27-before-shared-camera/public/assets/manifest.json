@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "referenceCanvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "assets": [
+    {
+      "path": "/assets/background/desk.png",
+      "type": "png",
+      "purpose": "책상과 정적 소품 재질. 노트·메모·보관함의 클릭 영역은 React로 별도 배치.",
+      "sha256": "d507f58e3c0ce998d3e44a2413e8b961a144e8e3aa9e0b3fdd7760b028127a46",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "/assets/cassette/body.png",
+      "type": "png",
+      "purpose": "투명 카세트 외피 재질. 흰 종이와 내부 창은 마스크로 제외.",
+      "sha256": "fb1591ecb705128a55a03e85239697f8bb7d2d9b03b72ec6f028239d80497129",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "/assets/cassette/hubs.png",
+      "type": "png",
+      "purpose": "흰 릴 중심 재질. 좌우 마스크로 각각 분리해서 회전.",
+      "sha256": "8ff05a9e4d0f9648d3641a492efce14b54df7fed7f3b60b7835a414d81cd0fe2",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "/assets/cassette/labels.png",
+      "type": "png",
+      "purpose": "문자가 없는 종이 라벨 재질. 실제 문자는 SVG text로 배치.",
+      "sha256": "3aa82c83f26c02731fe0106970f1693af3ff46615742977abea23256a80e3c82",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "/assets/cassette/stickers/about.svg",
+      "type": "svg",
+      "purpose": "섹션별 카세트 꾸밈 요소. 독립 편집 가능한 벡터 SVG.",
+      "sha256": "4bfc5c12931e71edbb108723bd68db7e3eee6f6bd1f6d46cdd274104c6d8e2b0",
+      "viewBox": "-50 -50 100 100"
+    },
+    {
+      "path": "/assets/cassette/stickers/branding.svg",
+      "type": "svg",
+      "purpose": "섹션별 카세트 꾸밈 요소. 독립 편집 가능한 벡터 SVG.",
+      "sha256": "eb3ae5b45ef298a47ecb2a5653a1daccdab9f49e8872a5bd452d24e1d6ffbea4",
+      "viewBox": "-50 -50 100 100"
+    },
+    {
+      "path": "/assets/cassette/stickers/design.svg",
+      "type": "svg",
+      "purpose": "섹션별 카세트 꾸밈 요소. 독립 편집 가능한 벡터 SVG.",
+      "sha256": "52f6ce0c8391618ff8b481d3d44cac74a542fee4a7a30200245c74d8105ae7f9",
+      "viewBox": "-50 -50 100 100"
+    },
+    {
+      "path": "/assets/cassette/stickers/next.svg",
+      "type": "svg",
+      "purpose": "섹션별 카세트 꾸밈 요소. 독립 편집 가능한 벡터 SVG.",
+      "sha256": "b24ca54e25bba64a1612c027f6f787a8368a6d3015b7c0921c769de73cd17313",
+      "viewBox": "-50 -50 100 100"
+    },
+    {
+      "path": "/assets/cassette/stickers/team.svg",
+      "type": "svg",
+      "purpose": "섹션별 카세트 꾸밈 요소. 독립 편집 가능한 벡터 SVG.",
+      "sha256": "e2b93257c3f580458d3871fb9efb2aca6f38192eabb7e02f455fe7b1890782a3",
+      "viewBox": "-50 -50 100 100"
+    },
+    {
+      "path": "/assets/cassette/window.png",
+      "type": "png",
+      "purpose": "코일을 제거한 내부 창 재질. 검정 코일은 벡터로 별도 구현.",
+      "sha256": "38e1a2f673182cf80a95f97c510d5e155d19aee4fd812dd7f78b2a89b7fe85fb",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "/assets/player/coherent/render-v1.png",
+      "type": "png",
+      "width": 1536,
+      "height": 1024,
+      "purpose": "동일한 플레이어 렌더에서 파생된 본체·빈 수납부·코일 분리용 재질.",
+      "sha256": "e84cd8fede4e34cc1c68aab609406bfe0438656ffd6a7f68202813dc45337186"
+    },
+    {
+      "path": "/assets/player/coherent/empty-interior-v1.png",
+      "type": "png",
+      "width": 1536,
+      "height": 1024,
+      "purpose": "동일한 플레이어 렌더에서 파생된 본체·빈 수납부·코일 분리용 재질.",
+      "sha256": "10c1d8642cc9691f8fc9b8b8d929d4d1156a2be41c02241137c363897670e87b"
+    },
+    {
+      "path": "/assets/player/coherent/clean-interior-v1.png",
+      "type": "png",
+      "width": 1536,
+      "height": 1024,
+      "purpose": "동일한 플레이어 렌더에서 파생된 본체·빈 수납부·코일 분리용 재질.",
+      "sha256": "526c847f309809b6fad3bb2b862b363c37c2b7e4ecd631d9f20ecd140fbe9976"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "desktopGeometry": {
+    "tape": {
+      "x": 384.375,
+      "y": 140.625,
+      "width": 302.390625,
+      "height": 219.703125,
+      "top": 140.625,
+      "right": 686.765625,
+      "bottom": 360.328125,
+      "left": 384.375
+    },
+    "player": {
+      "x": 521.265625,
+      "y": 326.390625,
+      "width": 413.265625,
+      "height": 287.265625,
+      "top": 326.390625,
+      "right": 934.53125,
+      "bottom": 613.65625,
+      "left": 521.265625
+    },
+    "width": 1440
+  },
+  "checks": [
+    "free drag",
+    "player drop",
+    "inserted tape removed",
+    "play story",
+    "escape dialog",
+    "stop",
+    "rewind",
+    "forward",
+    "eject",
+    "team project roles",
+    "archive empty state",
+    "reset",
+    "mobile no overflow",
+    "personal project content"
+  ],
+  "errors": [],
+  "failed": []
+}
