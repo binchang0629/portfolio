@@ -15,6 +15,7 @@ import { topviewCassette } from './assets/cassette/topview-geometry'
 import { storageSlot } from './lib/storage-slot'
 import useTapeTransport from './hooks/useTapeTransport'
 import useTapeSwap from './hooks/useTapeSwap'
+import useMagneticTapes from './hooks/useMagneticTapes'
 import { archiveTracks, memo, notes, profile, tracks } from './data/portfolio'
 
 // Match the same source-art scale on the desk and inside the player.
@@ -41,6 +42,7 @@ export default function App() {
   const isMobile = useSyncExternalStore(subscribeScreen, mobileSnapshot, () => false)
   const [loadedId, setLoadedId] = useState(null)
   const [reading, setReading] = useState(null)
+  useMagneticTapes(stageRef, !reducedMotion && !isMobile && !reading)
   const [readerContent, setReaderContent] = useState(null)
   const [tapeChanging, setTapeChanging] = useState(false)
   const [deskTapeChanging, setDeskTapeChanging] = useState(false)
@@ -241,7 +243,7 @@ export default function App() {
         <section className="hero" aria-label="소개"><h1>Press Play to Meet Me.</h1><p>{profile.intro}</p></section>
         <div className="tape-stage" aria-label="포트폴리오 테이프 선택" inert={arriving || undefined}>
           {availableDeskTracks.map(track => <Motion.button key={`${track.id}-${cycle}`} className={`tape tape-${track.id} ${archivePreview && draggedId === track.id ? 'is-storage-preview' : ''}`} aria-label={`${track.number} ${track.title} 테이프 넣기`} style={{ '--left': `${deskPositions[track.id]?.left ?? track.x / 1536 * 100}%`, '--top': `${deskPositions[track.id]?.top ?? track.y / 1024 * 100}%`, '--rotation': `${deskPositions[track.id] ? 0 : track.rotate}deg` }} drag={!isMobile && !deskSwap.busy} disabled={deskSwap.busy} dragConstraints={stageRef} dragMomentum={false} onDragStart={() => { dragging.current = true; setDraggedId(track.id) }} onDrag={(_e, info) => setDropTarget(previewDrop(info, track.id))} onDragEnd={(_e, info) => onDragEnd(info, track)} onClick={() => { if (!dragging.current) insertTrack(track.id) }} whileHover={reducedMotion ? undefined : { scale: 1.025 }} whileTap={{ scale: 1.01 }}>
-            <div className="tape-orientation"><Cassette track={track} {...tapePositions[track.id]} /></div>
+            <div className="tape-magnet"><div className="tape-orientation"><Cassette track={track} {...tapePositions[track.id]} /></div></div>
           </Motion.button>)}
         </div>
         {arriving && <DeskArrival stageRef={stageRef} archiveRef={archiveRef} tracks={tracks} onRelease={releaseArrivalTape} onFinish={finishArrival} />}
