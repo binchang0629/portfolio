@@ -20,7 +20,7 @@ export const tracks = [
   },
   { id: 'team', number: '02', title: 'TEAM PLAY', subtitle: 'Better together.', tint: 88, x: 709, y: 129, rotate: 10,
     eyebrow: '02 / TEAM PLAY', heading: '팀 프로젝트',
-    summary: '국순당 웹사이트 리디자인에는 서브팀장으로, 왈가왈BOT 신규 웹사이트 제작에는 개발 팀장으로 참여했습니다.',
+    summary: '국순당 웹사이트 리디자인에는 서브팀장으로, 왈가왈BOT 신규 웹앱 제작에는 개발 팀장으로 참여했습니다.',
     projects,
   },
   { id: 'design', number: '03', title: 'DESIGN', subtitle: 'Ideas into experience.', tint: -65, x: 1077, y: 360, rotate: 16,

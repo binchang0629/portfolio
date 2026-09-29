@@ -34,10 +34,10 @@ export const projects = [
       { title: '자료', link: 'https://www.figma.com/slides/9TAEi7HeQYv6TCNPN3TenX', linkLabel: '발표 자료 보기' },
     ],
   },
-  { id: 'walgawalbot', site: 'https://walgawal-bot.vercel.app/onboarding', kind: 'project', eyebrow: 'TEAM / 02', heading: '왈가왈BOT', role: '팀 프로젝트 · 신규 웹사이트 제작 · 개발 팀장',
+  { id: 'walgawalbot', site: 'https://walgawal-bot.vercel.app/onboarding', kind: 'project', eyebrow: 'TEAM / 02', heading: '왈가왈BOT', role: '팀 프로젝트 · 신규 웹앱 제작 · 개발 팀장',
     preview: { kind: 'mobile', video: '/projects/walgawalbot/preview.mp4', poster: '/projects/walgawalbot/poster.webp', caption: '스플래시 → 온보딩 → 홈 → 밸런스 게임 → 막상막하 → 후일담 편지' },
-    summary: '새롭게 기획하고 제작한 커뮤니티 웹사이트입니다. 일상 갈등에 대한 AI의 참고 의견과 사람들의 판단을 비교하고, 이후 이야기를 기록합니다.',
-    facts: [{ label: '프로젝트', value: '신규 커뮤니티 웹사이트 제작' }, { label: '내 역할', value: '개발 팀장' }, { label: '담당 화면', value: '홈 · 배심원 광장 · 후일담' }, { label: '구현 범위', value: '준비된 시나리오로 동작하는 발표용 UI' }],
+    summary: '새롭게 기획하고 제작한 커뮤니티 웹앱입니다. 일상 갈등에 대한 AI의 참고 의견과 사람들의 판단을 비교하고, 이후 이야기를 기록합니다.',
+    facts: [{ label: '프로젝트', value: '신규 커뮤니티 웹앱 제작' }, { label: '내 역할', value: '개발 팀장' }, { label: '담당 화면', value: '홈 · 배심원 광장 · 후일담' }, { label: '구현 범위', value: '준비된 시나리오로 동작하는 발표용 UI' }],
     sections: [
       { title: '서비스 흐름', flow: ['사건 작성', 'AI 참고 의견', '사람들의 판단', '후일담 기록'] },
       { title: '내가 맡은 작업', items: ['홈·배심원 광장·후일담 화면 개발', '밸런스게임, 카테고리, 정렬, 페이지네이션 수정', '브랜치 병합과 기능 통합', '반응형 화면과 디자인 확인'] },
