@@ -7,7 +7,7 @@ export const profile = {
 }
 
 export const tracks = [
-  { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, winding: .28, x: 405, y: 145, rotate: -12,
+  { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, x: 218, y: 288, rotate: -12,
     eyebrow: '01 / ABOUT ME', heading: '정창빈',
     summary: 'UI/UX 디자인을 공부하고 있습니다. Figma로 설계한 화면을 HTML, CSS, JavaScript, React로 구현하는 작업도 함께 하고 있습니다.',
     facts: [{ label: '분야', value: 'UI/UX 디자인 · 웹 화면 구현' }, { label: '사용 도구', value: profile.tools.join(', ') }],
@@ -18,17 +18,17 @@ export const tracks = [
       { title: '그 외', items: ['이젠아카데미DX교육센터 우수상 · 2026', '일본어 일상회화 가능'] },
     ],
   },
-  { id: 'team', number: '02', title: 'TEAM PLAY', subtitle: 'Better together.', tint: 88, winding: .62, x: 825, y: 130, rotate: 10,
+  { id: 'team', number: '02', title: 'TEAM PLAY', subtitle: 'Better together.', tint: 88, x: 709, y: 129, rotate: 10,
     eyebrow: '02 / TEAM PLAY', heading: '팀 프로젝트',
     summary: '국순당 웹사이트 리디자인에는 서브팀장으로, 왈가왈BOT 신규 웹사이트 제작에는 개발 팀장으로 참여했습니다.',
     projects,
   },
-  { id: 'design', number: '03', title: 'DESIGN', subtitle: 'Ideas into experience.', tint: -65, winding: .4, x: 1120, y: 390, rotate: 16,
+  { id: 'design', number: '03', title: 'DESIGN', subtitle: 'Ideas into experience.', tint: -65, x: 1077, y: 360, rotate: 16,
     eyebrow: '03 / DESIGN', heading: '개인 프로젝트',
     summary: '코레일 홈페이지를 리디자인하고, 반려식물 관리 모바일 웹앱을 새롭게 만들고 있습니다.',
     projects: personalProjects,
   },
-  { id: 'branding', number: '04', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, winding: .76, x: 520, y: 690, rotate: 8,
+  { id: 'branding', number: '04', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, x: 425, y: 695, rotate: 8,
     eyebrow: '04 / BRANDING', heading: '이 포트폴리오를 만든 과정',
     summary: '카세트에 프로젝트를 담고, 플레이어로 선택해 보는 개인 웹사이트입니다.',
     facts: [{ label: '작업', value: '개인 포트폴리오 · 제작 중' }, { label: '구현', value: 'Vite · React · JavaScript · CSS' }],
@@ -39,7 +39,7 @@ export const tracks = [
       { title: '남은 작업', body: '프로젝트별 실제 화면과 전후 비교를 추가하고, 모바일에서 콘텐츠를 읽고 이동하는 흐름을 더 다듬을 예정입니다.' },
     ],
   },
-  { id: 'next', number: '05', title: 'NEXT TRACK', subtitle: 'Still writing.', tint: 185, winding: .18, x: 870, y: 715, rotate: -10,
+  { id: 'next', number: '05', title: 'NEXT TRACK', subtitle: 'Still writing.', tint: 185, x: 853, y: 694, rotate: -10,
     eyebrow: '05 / NEXT TRACK', heading: '다음 작업',
     summary: '진행 중인 개인 작업과 이 포트폴리오를 마무리하고 있습니다.',
     checklist: [

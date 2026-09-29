@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import { assets } from '../assets'
 import { topviewCassette as geometry } from '../assets/cassette/topview-geometry'
-import { reelRadii } from '../lib/tape-mechanism'
+import { reelRadii, TAPE_START } from '../lib/tape-mechanism'
 import TopViewHub from './TopViewHub'
 import TapeRibbon from './TapeRibbon'
 import CassetteCover from './CassetteCover'
@@ -22,7 +22,7 @@ function TapeReel({ reel, radius, angle, prefix }) {
 }
 
 // Identical orthographic artwork is shared by the desk and the compartment.
-export default function CassetteSurface({ track, angles = { left: 0, right: 0 }, progress = track.winding ?? .28, travel = 0 }) {
+export default function CassetteSurface({ track, angles = { left: 0, right: 0 }, progress = TAPE_START, travel = 0 }) {
   const prefix = useId().replaceAll(':', '')
   const winding = reelRadii(progress)
   const radii = { left: winding.left * geometry.texturePackRadius / 185, right: winding.right * geometry.texturePackRadius / 185 }

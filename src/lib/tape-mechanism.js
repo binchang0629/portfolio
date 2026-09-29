@@ -12,7 +12,7 @@ export function reelRadii(progress) {
   }
 }
 
-export function initialMechanism(progress = .28) {
+export function initialMechanism(progress = TAPE_START) {
   return { progress: Math.max(TAPE_START, Math.min(TAPE_END, progress)), travel: 0, angles: { left: 0, right: 0 } }
 }
 
