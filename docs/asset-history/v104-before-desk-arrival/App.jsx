@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { AnimatePresence, LayoutGroup, motion as Motion, useReducedMotion } from 'framer-motion'
 import Cassette from './components/Cassette'
-import DeskArrival from './components/DeskArrival'
 import BrandMark from './components/BrandMark'
 import ArchiveTray from './components/ArchiveTray'
 import DeskPen from './components/DeskPen'
@@ -54,15 +53,6 @@ export default function App() {
   const [draggedId, setDraggedId] = useState(null)
   const [heldTape, setHeldTape] = useState(null)
   const [deskPositions, setDeskPositions] = useState({})
-  // This belongs to the first visit, not to the desk's mount/reset cycle.
-  const [arrivalSlots, setArrivalSlots] = useState(() =>
-    window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 760px)').matches
-      ? null : Array.from({ length: archiveTray.capacity }, (_, index) => tracks[index] ?? null))
-  const finishArrival = useCallback(() => setArrivalSlots(null), [])
-  const releaseArrivalTape = useCallback(index => {
-    setArrivalSlots(slots => slots?.map((track, slot) => slot === index ? null : track) ?? null)
-  }, [])
-  const arriving = arrivalSlots !== null
   useEffect(() => {
     if (!reading && returnFocus.current) {
       returnFocus.current = false
@@ -117,7 +107,6 @@ export default function App() {
     deskSwap.changeTrack(next)
   }
   const reset = () => {
-    finishArrival()
     deskSwap.cancel()
     setDeskPositions({}); setHeldTape(null); setDraggedId(null); archiveDrag.current = null
     eject(); setStoredSlots(initialStoredSlots()); setCaseSlots(initialStoredSlots()); setDropTarget(null); setCycle(c => c + 1)
@@ -236,15 +225,14 @@ export default function App() {
   return <>
     <LayoutGroup><AnimatePresence initial={false}>
     {!reading && <Motion.main key="desk" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reducedMotion ? 0 : .2 }} onAnimationComplete={() => { if (!reading && returnFocus.current) { returnFocus.current = false; playerRef.current?.querySelector("button")?.focus({ preventScroll: true }) } }} className="portfolio" aria-label="정창빈 포트폴리오">
-      <div className="desk" ref={stageRef} data-arriving={arriving || undefined} onPointerDownCapture={arriving ? finishArrival : undefined} onKeyDownCapture={arriving ? finishArrival : undefined} style={{ '--tape-player-ratio': tapeToPlayerRatio }}>
+      <div className="desk" ref={stageRef} style={{ '--tape-player-ratio': tapeToPlayerRatio }}>
         <header className="site-header"><BrandMark onHome={() => { setDialog(null); reset() }} /></header>
         <section className="hero" aria-label="소개"><h1>Press Play to Meet Me.</h1><p>{profile.intro}</p></section>
-        <div className="tape-stage" aria-label="포트폴리오 테이프 선택" inert={arriving || undefined}>
+        <div className="tape-stage" aria-label="포트폴리오 테이프 선택">
           {availableDeskTracks.map(track => <Motion.button key={`${track.id}-${cycle}`} className={`tape tape-${track.id} ${archivePreview && draggedId === track.id ? 'is-storage-preview' : ''}`} aria-label={`${track.number} ${track.title} 테이프 넣기`} style={{ '--left': `${deskPositions[track.id]?.left ?? track.x / 1536 * 100}%`, '--top': `${deskPositions[track.id]?.top ?? track.y / 1024 * 100}%`, '--rotation': `${deskPositions[track.id] ? 0 : track.rotate}deg` }} drag={!isMobile && !deskSwap.busy} disabled={deskSwap.busy} dragConstraints={stageRef} dragMomentum={false} onDragStart={() => { dragging.current = true; setDraggedId(track.id) }} onDrag={(_e, info) => setDropTarget(previewDrop(info, track.id))} onDragEnd={(_e, info) => onDragEnd(info, track)} onClick={() => { if (!dragging.current) insertTrack(track.id) }} whileHover={reducedMotion ? undefined : { scale: 1.025 }} whileTap={{ scale: 1.01 }}>
             <div className="tape-orientation"><Cassette track={track} {...tapePositions[track.id]} /></div>
           </Motion.button>)}
         </div>
-        {arriving && <DeskArrival stageRef={stageRef} archiveRef={archiveRef} tracks={tracks} onRelease={releaseArrivalTape} onFinish={finishArrival} />}
         <Motion.section layoutId="portfolio-player" transition={reducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 240, damping: 30 }} className={`player ${loaded ? 'is-loaded' : ''} ${dropTarget?.kind === 'player' ? 'is-drop-target' : ''}`} ref={playerRef} aria-label="카세트 플레이어" data-state={deskSwap.busy ? 'stopped' : transport} data-tape-phase={deskSwap.phase} aria-busy={deskSwap.busy}>
           <IntegratedPlayer track={loaded} angles={deskSwap.mechanism.angles} progress={deskSwap.mechanism.progress} travel={deskSwap.mechanism.travel} transport={deskSwap.busy ? 'stopped' : transport} tapePhase={deskSwap.phase} onTapeMotionComplete={deskSwap.finishStage} />
           <span className="player-label">CHANG BIN · PORTFOLIO</span>
@@ -268,11 +256,11 @@ export default function App() {
         <DeskPen key={`pen-${cycle}`} stageRef={stageRef} reducedMotion={reducedMotion} />
         <section className={`desk-object archive ${dropTarget?.kind === 'archive' ? 'is-drop-target' : ''}`} ref={archiveRef} aria-label="카세트 보관함" data-hovered-slot={archivePreview?.hoveredSlot} data-preview-slot={archivePreview?.slot}>
           <div className="archive-orientation">
-            <div className="archive-display"><ArchiveTray slots={arrivalSlots ?? storedTracks} cases={arrivalSlots ?? caseTracks} preview={archivePreview} previewTrack={previewTrack} /></div>
+            <div className="archive-display"><ArchiveTray slots={storedTracks} cases={caseTracks} preview={archivePreview} previewTrack={previewTrack} /></div>
             {caseTracks.map((track, i) => track && <button key={track.id} className="archive-slot" data-slot={i} disabled={deskSwap.busy} aria-label={`${track.number} ${track.title} ${storedTracks[i] ? '테이프 꺼내기' : '빈 케이스에 넣기'}`} title={`${track.title} ${storedTracks[i] ? '끌어 꺼내기 · 클릭해서 꺼내기' : '빈 케이스 · 클릭하면 테이프 다시 보관'}`} onPointerDown={event => startArchiveDrag(event, track, i)} onPointerMove={moveArchiveDrag} onPointerUp={event => finishArchiveDrag(event)} onPointerCancel={event => finishArchiveDrag(event, true)} onClick={event => clickArchiveCase(event, track, i)} style={{ left: `${(archiveCaseTargets[i].x - archiveTray.viewport.x) / archiveTray.viewport.width * 100}%`, top: `${(archiveCaseTargets[i].y - archiveTray.viewport.y) / archiveTray.viewport.height * 100}%`, width: `${archiveCaseTargets[i].width / archiveTray.viewport.width * 100}%`, height: `${archiveCaseTargets[i].height / archiveTray.viewport.height * 100}%` }} />)}
           </div>
           {storageHint && <span className="archive-drop-hint" role="status">{storageHint}</span>}
-          <p className="archive-caption">테이프 {arrivalSlots ? arrivalSlots.filter(Boolean).length : storedCount}개 보관 · {archiveTray.capacity}칸</p>
+          <p className="archive-caption">테이프 {storedCount}개 보관 · {archiveTray.capacity}칸</p>
         </section>
         <div className="desk-help"><span aria-hidden="true">↔</span><span className="desktop-help">테이프를 플레이어나 보관함에 끌어 넣으세요.</span><span className="mobile-help">테이프를 누르고, 재생 버튼으로 이야기를 만나세요.</span><button onClick={reset}>배치 초기화 ↺</button></div>
         <footer className="site-footer"><span>© {new Date().getFullYear()} CHANG BIN</span><span>UI/UX · PERSONAL PORTFOLIO</span></footer>

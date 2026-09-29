@@ -16,12 +16,12 @@ function PortraitArchiveTray({ slots, cases, preview, previewTrack }) {
   // Depth and lighting stay toward the screen bottom; they must not rotate with the old photograph.
   const frontWall = 'M95 1278Q95 1338 155 1338H935Q995 1338 995 1278V1326Q995 1386 935 1386H155Q95 1386 95 1326Z'
   const caseTransform = cell => `translate(${spine.y} ${cell.y + cell.height / 2 + spine.width / 2}) rotate(-90)`
-  return <svg className="archive-art" viewBox={geometry.viewBox} preserveAspectRatio="none" aria-hidden="true" data-camera="player-matched-portrait-v6" data-capacity={geometry.capacity}>
+  return <svg className="archive-art" viewBox={geometry.viewBox} preserveAspectRatio="none" aria-hidden="true" data-camera="player-matched-portrait-v5" data-capacity={geometry.capacity}>
     <defs>
       <clipPath id={`${prefix}-front-wall`}><path d={frontWall} /></clipPath>
       <linearGradient id={`${prefix}-wall-depth`} x2="0" y2="1"><stop stopColor="#d6e6ef" stopOpacity=".3"/><stop offset=".55" stopColor="#91aec0" stopOpacity=".34"/><stop offset="1" stopColor="#617e95" stopOpacity=".42"/></linearGradient>
       <clipPath id={`${prefix}-floor`}><rect {...geometry.floor} rx="23" /></clipPath>
-      <clipPath id={`${prefix}-source-rim`}><path d="M161 95H1281Q1341 95 1341 155V935Q1341 995 1281 995H161Q101 995 101 935V155Q101 95 161 95ZM179 131H1262Q1286 131 1286 155V933Q1286 957 1262 957H179Q155 957 155 933V155Q155 131 179 131Z" clipRule="evenodd" /></clipPath>
+      <clipPath id={`${prefix}-source-rim`}><path d="M161 95H1281Q1341 95 1341 155V935Q1341 995 1281 995H161Q101 995 101 935V155Q101 95 161 95ZM179 161H1262Q1286 161 1286 185V903Q1286 927 1262 927H179Q155 927 155 903V185Q155 161 179 161Z" clipRule="evenodd" /></clipPath>
       <linearGradient id={`${prefix}-left-shadow`}><stop stopColor="#344d69" stopOpacity=".08"/><stop offset=".08" stopColor="#344d69" stopOpacity="0"/></linearGradient>
       <linearGradient id={`${prefix}-top-shadow`} x2="0" y2="1"><stop stopColor="#344d69" stopOpacity=".065"/><stop offset=".24" stopColor="#344d69" stopOpacity="0"/></linearGradient>
       <linearGradient id={`${prefix}-floor-light`} x2="1" y2="1"><stop stopColor="#f2f8ff" stopOpacity=".24"/><stop offset="1" stopColor="#dbe7f2" stopOpacity=".12"/></linearGradient>
@@ -49,16 +49,16 @@ function PortraitArchiveTray({ slots, cases, preview, previewTrack }) {
     <g data-layer="rim">
       <g transform="matrix(0 -1 1 0 0 1439)">
         <image href={assets.archive} width="1440" height="1092" clipPath={`url(#${prefix}-source-rim)`}/>
-        <svg x="179" y="95" width="1083" height="36" viewBox="400 95 175 36" preserveAspectRatio="none"><image href={assets.archive} width="1440" height="1092"/></svg>
+        <svg x="179" y="95" width="1083" height="66" viewBox="400 95 175 66" preserveAspectRatio="none"><image href={assets.archive} width="1440" height="1092"/></svg>
         {/* Reuse a clean rim strip so the old label does not become a second, sideways label. */}
-        <svg x="179" y="957" width="1083" height="38" viewBox="400 957 120 38" preserveAspectRatio="none"><image href={assets.archive} width="1440" height="1092"/></svg>
+        <svg x="179" y="927" width="1083" height="68" viewBox="400 927 120 68" preserveAspectRatio="none"><image href={assets.archive} width="1440" height="1092"/></svg>
       </g>
       <path d="M109 1268V158Q109 112 155 112H925" fill="none" stroke="#f8fcff" strokeWidth="3" strokeOpacity=".55"/>
     </g>
     <g data-layer="dividers">{archiveCells.slice(1).map((cell, i) => <g key={i} data-divider={i}>
-      <path d={`M137 ${cell.y + 9}H951`} stroke="#344d69" strokeWidth="5" strokeOpacity=".12" strokeLinecap="round"/>
-      <rect x="134" y={cell.y - 7} width="820" height="14" rx="3" fill={`url(#${prefix}-divider)`} stroke="#8eafc8" strokeOpacity=".6" strokeWidth="1"/>
-      <path d={`M138 ${cell.y - 5}H950`} stroke="#ffffff" strokeWidth="2" strokeOpacity=".8" strokeLinecap="round"/>
+      <path d={`M154 ${cell.y + 9}H934`} stroke="#344d69" strokeWidth="5" strokeOpacity=".12" strokeLinecap="round"/>
+      <rect x="143" y={cell.y - 7} width="802" height="14" rx="3" fill={`url(#${prefix}-divider)`} stroke="#8eafc8" strokeOpacity=".6" strokeWidth="1"/>
+      <path d={`M151 ${cell.y - 5}H936`} stroke="#ffffff" strokeWidth="2" strokeOpacity=".8" strokeLinecap="round"/>
     </g>)}</g>
     {preview && <g data-layer="slot-numbers" pointerEvents="none">{archiveCells.map((cell, i) => <g key={i}>
       <circle cx="127" cy={cell.y + cell.height / 2} r="24" fill={i === preview.slot ? '#386b98' : '#f8fbfc'} fillOpacity={i === preview.slot ? 1 : .8}/><text x="127" y={cell.y + cell.height / 2 + 10} textAnchor="middle" fontSize="29" fontWeight="600" fill={i === preview.slot ? '#fff' : '#506b83'}>{i + 1}</text>

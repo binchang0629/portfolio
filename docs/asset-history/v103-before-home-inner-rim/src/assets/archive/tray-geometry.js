@@ -6,7 +6,7 @@ export const archiveTray = {
   rotation: -90,
   frontDepth: 48,
   body: { x: 95, y: 98, width: 900, height: 1240 },
-  floor: { x: 131, y: 153, width: 826, height: 1131 },
+  floor: { x: 161, y: 153, width: 766, height: 1131 },
 }
 
 // Shared row geometry drives the drawing, pointer targets, preview and committed storage.

@@ -157,8 +157,3 @@
 @media(min-width:761px){
  .hero{position:fixed;left:var(--brand-inline-offset);top:calc((100vh - min(100vw,150vh,1840px) / 1.5) / 2 + max(min(100vw,150vh,1840px) / 12,110px));width:calc(min(100vw,150vh,1840px) * .237)}
 }
-/* First entry: tapes spill onto the desk, then hand over to the existing drag targets. */
-.desk[data-arriving] .tape-stage{visibility:hidden}
-.desk-arrival{position:absolute;inset:0;z-index:8;pointer-events:none}
-.desk-arrival-tape{position:absolute;left:0;top:0;opacity:0;transform-origin:center;will-change:transform,opacity}
-@media(prefers-reduced-motion:reduce){.desk-arrival{display:none}.desk[data-arriving] .tape-stage{visibility:visible}}
