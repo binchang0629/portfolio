@@ -242,7 +242,7 @@ export default function App() {
           <p className="intro-kicker"><button className="intro-name" onClick={() => { setDialog(null); reset() }} aria-label="CHANG BIN · 책상 홈으로 돌아가기">{profile.englishName}</button><span className="intro-slash" aria-hidden="true">/</span><span>{profile.role}</span></p>
           <p className="intro-focus">{profile.focus.join(' · ')}</p>
           <h1 className="intro-title">{profile.headline.map((line, i) => i === profile.headline.length - 1 ? <em key={line}>{line}</em> : <span key={line}>{line}</span>)}</h1>
-          <p className="intro-copy">{profile.intro}<br />{profile.guide}</p>
+          <p className="intro-copy">{profile.intro}<span className="intro-guide"><br />{profile.guide}</span></p>
         </header>
         <div className="tape-stage" aria-label="포트폴리오 테이프 선택" inert={arriving || undefined}>
           {availableDeskTracks.map(track => <Motion.button key={`${track.id}-${cycle}`} className={`tape tape-${track.id} ${archivePreview && draggedId === track.id ? 'is-storage-preview' : ''}`} aria-label={`${track.number} ${track.title} 테이프 넣기`} style={{ '--left': `${deskPositions[track.id]?.left ?? track.x / 1536 * 100}%`, '--top': `${deskPositions[track.id]?.top ?? track.y / 1024 * 100}%`, '--rotation': `${deskPositions[track.id] ? 0 : track.rotate}deg` }} drag={!isMobile && !deskSwap.busy} disabled={deskSwap.busy} dragConstraints={stageRef} dragMomentum={false} onDragStart={() => { dragging.current = true; setDraggedId(track.id) }} onDrag={(_e, info) => setDropTarget(previewDrop(info, track.id))} onDragEnd={(_e, info) => onDragEnd(info, track)} onClick={() => { if (!dragging.current) insertTrack(track.id) }} whileHover={reducedMotion ? undefined : { scale: 1.025 }} whileTap={{ scale: 1.01 }}>
