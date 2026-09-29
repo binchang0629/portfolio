@@ -162,3 +162,16 @@
 .desk-arrival{position:absolute;inset:0;z-index:8;pointer-events:none}
 .desk-arrival-tape{position:absolute;left:0;top:0;opacity:0;transform-origin:center;will-change:transform,opacity}
 @media(prefers-reduced-motion:reduce){.desk-arrival{display:none}.desk[data-arriving] .tape-stage{visibility:visible}}
+
+/* Tapes hover just above the desk so they read as objects you can pick up. Starts after the arrival, one after another. */
+@media(min-width:761px){
+ .desk:not([data-arriving]) .tape{animation:tape-float-shadow 3.8s ease-in-out var(--float-delay,0s) infinite}
+ .desk:not([data-arriving]) .tape-orientation{animation:tape-float 3.8s ease-in-out var(--float-delay,0s) infinite}
+ .tape-team{--float-delay:.35s}.tape-design{--float-delay:.7s}.tape-branding{--float-delay:1.05s}.tape-next{--float-delay:1.4s}
+ .tape:hover,.tape:hover .tape-orientation,.tape:active,.tape:active .tape-orientation{animation-play-state:paused}
+}
+@keyframes tape-float{0%,100%{translate:0 0}50%{translate:0 -3.5%}}
+@keyframes tape-float-shadow{
+ 0%,100%{filter:drop-shadow(1px 2px 1px #38445632) drop-shadow(4px 9px 6px #675f601f)}
+ 50%{filter:drop-shadow(1px 7px 3px #38445622) drop-shadow(5px 17px 11px #675f6017)}
+}
