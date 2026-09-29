@@ -11,8 +11,6 @@
 
 /* The shared brand anchor and name size remain unchanged. */
 .brand-role{font-size:11px;letter-spacing:1.6px}
-.hero h1{font-size:clamp(24px,2.2vw,36px);font-weight:600;line-height:1.25;letter-spacing:-.7px;margin-bottom:16px}
-.hero p{font-size:var(--text-body);line-height:1.7;color:var(--text-secondary)}
 .desk-help{font-size:var(--text-ui);line-height:1.6;gap:8px 12px}
 .desk-help button{font-size:var(--text-ui);color:var(--text-secondary)}
 .player-under,.player-under button,.archive-caption,.archive-drop-hint{font-size:var(--text-caption);line-height:1.5;color:var(--text-secondary)}
@@ -63,8 +61,6 @@
 @media(max-width:760px){
  :root{--text-title:28px;--text-section:20px}
  .brand-role{font-size:10px;letter-spacing:1.4px}
- .hero h1{font-size:clamp(22px,6.2vw,30px);letter-spacing:-.6px;margin-bottom:14px}
- .hero p{font-size:14px;white-space:normal;word-break:keep-all}
  .notebook .object-eyebrow,.notebook .object-link,.memo .object-link{font-size:var(--text-caption)}
  .notebook strong{font-size:var(--text-body)}
  .reader-caption{font-size:var(--text-caption);letter-spacing:.3px}

@@ -3,11 +3,15 @@ import { personalProjects, projects } from './projects'
 export const profile = {
   name: '정창빈', englishName: 'CHANG BIN', role: 'UI/UX DESIGNER',
   intro: '화면을 디자인하고 직접 구현합니다.',
+  guide: '테이프를 골라 재생하면 제 이야기가 시작됩니다.',
+  focus: ['UI/UX DESIGN', 'WEB PUBLISHING', 'REACT', 'INTERACTION'],
+  // The last line is set in the accent italic.
+  headline: ['Design it.', 'Build it.', 'Press play.'],
   tools: ['Figma', 'Photoshop', 'HTML', 'CSS', 'JavaScript', 'React'],
 }
 
 export const tracks = [
-  { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, x: 218, y: 288, rotate: -12,
+  { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, x: 244, y: 360, rotate: -12,
     eyebrow: '01 / ABOUT ME', heading: '정창빈',
     summary: 'UI/UX 디자인을 공부하고 있습니다. Figma로 설계한 화면을 HTML, CSS, JavaScript, React로 구현하는 작업도 함께 하고 있습니다.',
     facts: [{ label: '분야', value: 'UI/UX 디자인 · 웹 화면 구현' }, { label: '사용 도구', value: profile.tools.join(', ') }],

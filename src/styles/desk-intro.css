@@ -1,0 +1,32 @@
+/* Desk intro: small tracked labels, a soft retro display face, and one warm "play" accent. */
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;src:url('/fonts/fraunces/fraunces-latin-full-normal.woff2') format('woff2')}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:100 900;font-display:swap;src:url('/fonts/fraunces/fraunces-latin-full-italic.woff2') format('woff2')}
+
+:root{--intro-ink:#2c4a70;--intro-accent:#c0652a;--intro-accent-text:#a4521a;--desk-w:min(100vw,150vh,1840px)}
+
+.desk-intro{width:calc(var(--desk-w) * .3)}
+.intro-kicker,.intro-focus{display:flex;flex-wrap:wrap;align-items:center;margin:0;font-size:12px;font-weight:600;line-height:1.5;letter-spacing:.16em;text-transform:uppercase}
+.intro-kicker{gap:10px;color:var(--intro-ink)}
+.intro-name{min-height:32px;padding:4px 0;background:transparent;font:inherit;letter-spacing:inherit;color:inherit}
+.intro-name:hover{color:#1f3a5c}
+.intro-slash{color:var(--intro-accent)}
+.intro-focus{margin-top:2px;column-gap:.5em;font-size:11px;color:var(--intro-accent-text)}
+
+.intro-title{margin:22px 0 0;font-family:'Fraunces',Georgia,serif;font-size:clamp(36px,calc(var(--desk-w) * .036),64px);font-weight:520;line-height:1.02;letter-spacing:-.008em;color:var(--intro-ink);font-variation-settings:'SOFT' 100,'WONK' 0,'opsz' 144}
+.intro-title span,.intro-title em{display:block}
+.intro-title em{margin-top:.04em;font-weight:480;color:var(--intro-accent);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144}
+.intro-copy{margin:20px 0 0;font-size:15px;line-height:1.75;color:#4f6a86;word-break:keep-all}
+
+@media(min-width:761px) and (max-height:800px){
+ .desk-intro{width:calc(var(--desk-w) * .37)}
+ .intro-focus{letter-spacing:.12em}
+ .intro-title{margin-top:12px}
+ .intro-copy{margin-top:10px;font-size:13px;line-height:1.6}
+}
+@media(max-width:760px){
+ .desk-intro{width:100%;margin-bottom:28px}
+ .intro-kicker{font-size:11px;gap:8px}
+ .intro-focus{font-size:10px}
+ .intro-title{margin-top:18px;font-size:clamp(40px,12.5vw,56px)}
+ .intro-copy{margin-top:16px;font-size:14px}
+}
