@@ -59,8 +59,7 @@ export default function IntegratedPlayer({ track, angles, progress, travel, tran
     <g mask={`url(#${prefix}-spindle-tray)`} data-part="empty-spindles" data-shaft-transform={geometry.spindleTrayTransform}>
       <g transform={geometry.spindleTrayTransform}><image href={assets.player.empty} width={geometry.width} height={geometry.height} /></g>
     </g>
-    {/* A moving tape can lift above the housing, but always passes beneath the hinged lid. */}
-    {changing ? [shellLayer, tapeLayer, doorLayer] : [tapeLayer, shellLayer, doorLayer]}
+    {changing ? [shellLayer, doorLayer, tapeLayer] : [tapeLayer, shellLayer, doorLayer]}
     <MechanicalKeys transport={transport} />
   </svg>
 }

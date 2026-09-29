@@ -37,16 +37,15 @@ async function readBody(req) {
 
 function validate(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return null
-  const { name = '', email, topic = '', message, consent, requestId, token, website } = body
+  const { name, email, topic, message, consent, requestId, token, website } = body
   if (![name, email, topic, message, requestId, token].every(value => typeof value === 'string')) return null
   if (typeof website !== 'string' || website.trim() || consent !== true) return null
-  if (name.length > 80 || controls.test(name)) return null
+  if (!name.trim() || name.length > 80 || controls.test(name)) return null
   if (email.length > 254 || controls.test(email) || !emailPattern.test(email.trim())) return null
-  const selectedTopic = topic || 'other'
   // eslint-disable-next-line no-control-regex
-  if (!Object.hasOwn(topics, selectedTopic) || message.trim().length < 10 || message.length > 5000 || /[\u0000\u007f]/.test(message)) return null
+  if (!Object.hasOwn(topics, topic) || message.trim().length < 10 || message.length > 5000 || /[\u0000\u007f]/.test(message)) return null
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId) || !token || token.length > 2048) return null
-  return { name: name.trim(), email: email.trim(), topic: selectedTopic, message: message.trim(), requestId, token }
+  return { name: name.trim(), email: email.trim(), topic, message: message.trim(), requestId, token }
 }
 
 export function createContactHandler(env, fetcher = fetch) {
@@ -72,7 +71,7 @@ export function createContactHandler(env, fetcher = fetch) {
       return reply(error.message === 'size' ? 413 : 400, { error: '입력 내용을 확인해 주세요.' })
     }
     const input = validate(body)
-    if (!input) return reply(400, { error: '필수 항목과 입력 형식을 확인해 주세요.' })
+    if (!input) return reply(400, { error: '이름, 이메일, 내용과 전송 동의를 확인해 주세요.' })
     let verification
     try {
       const response = await fetcher('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
@@ -91,8 +90,8 @@ export function createContactHandler(env, fetcher = fetch) {
         headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json', 'Idempotency-Key': `contact-${input.requestId}` },
         body: JSON.stringify({
           from: env.CONTACT_FROM_EMAIL, to: [env.CONTACT_TO_EMAIL], reply_to: input.email,
-          subject: `[포트폴리오 · ${topics[input.topic]}] ${input.name || '새로운 문의'}`,
-          text: `보낸 사람: ${input.name || '미입력'}\n답장 주소: ${input.email}\n문의 유형: ${topics[input.topic]}\n\n${input.message}`,
+          subject: `[포트폴리오 · ${topics[input.topic]}] ${input.name}`,
+          text: `보낸 사람: ${input.name}\n답장 주소: ${input.email}\n문의 유형: ${topics[input.topic]}\n\n${input.message}`,
         }),
       })
       if (!response.ok) throw new Error('email')

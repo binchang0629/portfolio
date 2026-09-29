@@ -9,7 +9,3 @@
 .letter-field-label small,.letter-consent small{font-size:11px;line-height:1.5;font-weight:400;color:#78899b}
 .letter-field-label .letter-required,.letter-consent .letter-required{color:#436a94;font-weight:500}
 .letter-message-label>.letter-field-label{float:none;font-size:inherit;font-weight:inherit;color:inherit}
-
-/* Required markers are distinct from length guidance and optional labels. */
-.letter-required-note{display:flex;align-items:baseline;justify-content:flex-end;gap:5px;margin:0 0 14px;color:#60748b;font-size:12px;line-height:1.5}
-.letter .letter-required-star{color:#bd3c44;font-size:15px;font-weight:600;line-height:1}

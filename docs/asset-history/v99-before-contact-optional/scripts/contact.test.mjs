@@ -52,7 +52,7 @@ test('malformed JSON, arrays and oversized parsed body are rejected', async () =
 })
 test('required fields, bounds, consent, header injection, UUID and honeypot are validated before any provider call', async () => {
   const patches = [
-    { name: 'x'.repeat(81) }, { name: 'Name\r\nBcc: attacker@example.com' },
+    { name: '' }, { name: 'x'.repeat(81) }, { name: 'Name\r\nBcc: attacker@example.com' },
     { email: 'invalid' }, { email: 'visitor@example.com\n' }, { message: 'short' }, { message: 'x'.repeat(5001) },
     { message: '\u0000 ten characters' }, { consent: false }, { topic: 'constructor' }, { website: 'spam' },
     { token: '' }, { token: 'x'.repeat(2049) }, { requestId: 'not-a-uuid' }, { name: 2 }, { website: undefined },
@@ -60,21 +60,6 @@ test('required fields, bounds, consent, header injection, UUID and honeypot are 
   for (const patch of patches) {
     const res = await invoke({ body: { ...valid, ...patch }, fetcher: () => { assert.fail('provider must not be called') } })
     assert.equal(res.statusCode, 400, JSON.stringify(patch).slice(0, 80))
-  }
-})
-test('name and topic may be omitted while reply address, message and consent remain required', async () => {
-  for (const optional of [{ name: '', topic: '' }, { name: '   ', topic: '' }, { name: undefined, topic: undefined }]) {
-    const calls = []
-    const res = await invoke({ body: { ...valid, ...optional }, fetcher: async (url, options) => { calls.push({ url, options }); return successful(url) } })
-    assert.equal(res.statusCode, 200)
-    const email = JSON.parse(calls[1].options.body)
-    assert.equal(email.reply_to, valid.email)
-    assert.equal(email.subject, '[포트폴리오 · 기타 문의] 새로운 문의')
-    assert.ok(email.text.startsWith('보낸 사람: 미입력\n'))
-  }
-  for (const missing of [{ email: '' }, { email: undefined }, { message: '' }, { message: undefined }, { consent: false }]) {
-    const res = await invoke({ body: { ...valid, name: '', topic: '', ...missing }, fetcher: () => { assert.fail('provider must not be called') } })
-    assert.equal(res.statusCode, 400)
   }
 })
 test('Turnstile rejects false verification, wrong action and wrong hostname without sending', async () => {

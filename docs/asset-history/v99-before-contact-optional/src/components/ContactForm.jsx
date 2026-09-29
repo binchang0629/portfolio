@@ -75,7 +75,7 @@ export default function ContactForm() {
     if (!config?.enabled || !token || submission.current) return
     const form = new FormData(event.currentTarget)
     const payload = {
-      name: form.get('name').trim(), email: form.get('email').trim(), topic: form.get('topic') || 'other',
+      name: form.get('name').trim(), email: form.get('email').trim(), topic: form.get('topic'),
       message: form.get('message').trim(), website: form.get('website'), consent: form.get('consent') === 'on',
     }
     if (payload.message.length < 10) { setError('내용을 10자 이상 입력해 주세요.'); return }
@@ -107,16 +107,13 @@ export default function ContactForm() {
     {status === 'success' ? <div className="letter-success" role="status"><span aria-hidden="true">✓</span><h3 ref={successHeading} tabIndex={-1}>편지가 접수됐어요.</h3><p>입력한 답장 주소와 함께 발송 요청이 접수되었습니다.<br/>보내주셔서 감사합니다.</p></div> : <form onSubmit={send} aria-busy={status === 'sending'}>
       <fieldset disabled={status === 'sending'}>
         <legend className="sr-only">문의 내용 작성</legend>
-        <p className="letter-required-note"><span className="letter-required-star" aria-hidden="true">*</span> 필수 입력</p>
-        <div className="letter-sender">
-          <label htmlFor="letter-name"><span className="letter-field-label">보내는 사람 <small>선택</small></span><input id="letter-name" name="name" autoComplete="name" maxLength={80} placeholder="이름 또는 소속"/></label>
-          <label htmlFor="letter-email"><span className="letter-field-label">답장 받을 이메일 <span className="letter-required-star" aria-hidden="true">*</span></span><input id="letter-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@example.com"/></label>
-        </div>
-        <label className="letter-message-label" htmlFor="letter-message"><span className="letter-field-label">내용 <span className="letter-required-star" aria-hidden="true">*</span></span><span id="letter-message-hint" className="letter-message-hint">10자 이상 입력</span><textarea id="letter-message" name="message" aria-describedby="letter-message-hint" required minLength={10} maxLength={5000} rows={5} placeholder="함께하고 싶은 작업이나 궁금한 점을 적어주세요." onChange={event => setLength(event.target.value.length)} /></label>
+        <div className="letter-sender"><label htmlFor="letter-name">보내는 사람<input id="letter-name" name="name" autoComplete="name" required maxLength={80} placeholder="이름 또는 소속"/></label><label htmlFor="letter-email">답장 받을 이메일<input id="letter-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@example.com"/></label></div>
+        <label className="letter-topic" htmlFor="letter-topic">어떤 이야기인가요?<select id="letter-topic" name="topic"><option value="project">프로젝트 문의</option><option value="hiring">채용 문의</option><option value="other">기타 문의</option></select></label>
+        <label className="letter-message-label" htmlFor="letter-message">내용 <span>10자 이상</span><textarea id="letter-message" name="message" required minLength={10} maxLength={5000} rows={5} placeholder="함께하고 싶은 작업이나 궁금한 점을 적어주세요." onChange={event => setLength(event.target.value.length)} /></label>
         <div className="letter-count" aria-hidden="true">{length.toLocaleString()} / 5,000</div>
         <div className="letter-honeypot" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-        <label className="letter-consent"><input name="consent" type="checkbox" required/><span>입력한 정보를 문의 확인과 답장에 사용하는 데 동의합니다. <small className="letter-required">필수</small></span></label>
-        <details className="letter-privacy"><summary>입력한 정보는 어떻게 사용되나요?</summary><p>입력한 이름(선택), 답장 주소와 문의 내용은 문의 확인·회신을 위해 정창빈에게 전달됩니다. 발송에는 Resend, 자동 전송 확인에는 Cloudflare Turnstile을 사용합니다. 입력 내용은 이 사이트의 별도 데이터베이스에 저장하지 않습니다. 동의하지 않으면 전송할 수 없습니다.</p></details>
+        <label className="letter-consent"><input name="consent" type="checkbox" required/><span>문의 응대 목적으로 이름, 이메일, 내용을 전달하는 데 동의합니다.</span></label>
+        <details className="letter-privacy"><summary>입력한 정보는 어떻게 사용되나요?</summary><p>이름, 답장 주소와 문의 내용은 문의 확인·회신을 위해 정창빈에게 전달됩니다. 발송에는 Resend, 자동 전송 확인에는 Cloudflare Turnstile을 사용합니다. 입력 내용은 이 사이트의 별도 데이터베이스에 저장하지 않습니다. 동의하지 않으면 전송할 수 없습니다.</p></details>
       </fieldset>
       <div className="letter-verification" ref={container}/>
       {captchaError && <p className="letter-error" role="alert">{captchaError}<button type="button" onClick={() => { setToken(''); setCaptchaError(''); setRetry(value => value + 1) }}>확인 기능 다시 불러오기</button></p>}
