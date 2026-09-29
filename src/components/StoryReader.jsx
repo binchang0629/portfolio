@@ -5,7 +5,6 @@ import BrandMark from './BrandMark'
 import ContentBody from './ContentBody'
 import ReaderShelf from './ReaderShelf'
 import useTapeSwap from '../hooks/useTapeSwap'
-import { TAPE_START, TAPE_END } from '../lib/tape-mechanism'
 import { coherentPlayer } from '../assets/player/coherent-geometry'
 
 export default function StoryReader({ track, content, tracks, cases, tapePositions, mechanism, transport, reducedMotion, mobile, onPlay, onStop, onWind, onChange, onDesk, onProject, onBack, onTapeBusyChange, onContact }) {
@@ -16,7 +15,6 @@ export default function StoryReader({ track, content, tracks, cases, tapePositio
   const swap = useTapeSwap({ track, mechanism, reducedMotion, onChange, onBusyChange: onTapeBusyChange })
   const leaveReader = () => { swap.cancel(); onDesk() }
   const contentKey = content.id || track.id
-  const ratio = Math.max(0, Math.min(1, (swap.mechanism.progress - TAPE_START) / (TAPE_END - TAPE_START)))
   const index = tracks.findIndex(item => item.id === track.id)
   // Content scroll stays independent from the physical tape transport.
   useLayoutEffect(() => {
@@ -45,7 +43,6 @@ export default function StoryReader({ track, content, tracks, cases, tapePositio
           return <button key={control.name} onClick={actions[i]} aria-label={labels[i]} title={labels[i]} aria-pressed={i !== 1 ? !swap.busy && pressed : undefined} disabled={swap.busy} style={{ left: `${(x - 70) / 1380 * 100}%`, top: `${(y - 75) / 880 * 100}%`, width: `${width / 1380 * 100}%`, height: `${height / 880 * 100}%` }} />
         })}</div>}
       </Motion.section>
-      <div className="reader-position"><div><span>재생 위치</span><span>{Math.round(ratio * 100)}%</span></div><div className="reader-progress" role="progressbar" aria-label="테이프 재생 위치" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(ratio * 100)}><span style={{ transform: `scaleX(${ratio})` }} /></div></div>
       {mobile && <div className="reader-mobile-controls" aria-label="카세트 플레이어 조작">
         {['재생', '정지', '빨리 감기', '되감기'].map((label, i) => <button key={label} onClick={[onPlay, onStop, () => onWind('forwarding'), () => onWind('rewinding')][i]} disabled={swap.busy} aria-label={label} aria-pressed={i !== 1 ? !swap.busy && [transport === 'playing', false, transport === 'forwarding', transport === 'rewinding'][i] : undefined}>{label}</button>)}
       </div>}

@@ -19,11 +19,7 @@
 .reader-player .player-label{font-size:clamp(7px,.6vw,10px);letter-spacing:1.1px}
 .reader-player .transport-controls{inset:0;width:100%;height:100%;display:block}
 .reader-player.is-drop-target{outline:2px solid #7296bf;outline-offset:5px;border-radius:12px}
-.reader-position{margin-top:16px;flex-shrink:0}
-.reader-position>div:first-child{display:flex;align-items:center;justify-content:space-between;font-size:12px;line-height:1.5;color:#607891;font-variant-numeric:tabular-nums}
-.reader-progress{height:2px;background:#dce6f1;margin-top:8px;overflow:hidden;border-radius:2px}
-.reader-progress>span{display:block;width:100%;height:100%;background:#6289b4;transform-origin:left}
-.reader-transport{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:10px;padding-bottom:12px;border-bottom:1px solid #dce6f1;flex-shrink:0}
+.reader-transport{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px;padding-bottom:12px;border-bottom:1px solid #dce6f1;flex-shrink:0}
 .reader-transport button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 3px;background:transparent;color:#315a8c;font-size:14px;font-weight:550;line-height:1.5;white-space:nowrap}
 .reader-transport svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform 160ms ease-out}
 .reader-transport button:disabled{color:#a1b0c1;cursor:default}
@@ -96,15 +92,12 @@
  .reader-exit>span::after{content:'나가기';font-size:12px}
  .reader-workspace{display:flex;flex-direction:column;gap:0;width:100%;max-width:none;overflow:hidden}
  .reader-sidebar{position:relative;display:grid;grid-template-columns:112px minmax(0,1fr);gap:0 16px;flex-shrink:0;width:auto;max-width:none;margin:0 20px;padding:8px 0 0;overflow:visible;border-bottom:1px solid #dce6f1;z-index:2}
- .reader-current{grid-column:2;grid-row:1;align-self:end;margin:0}
+ .reader-current{grid-column:2;grid-row:1 / 3;align-self:center;margin:0}
  .reader-caption{font-size:11px;line-height:1.5}
  .reader-track-title{gap:7px;margin:4px 0 0;min-height:23px}
  .reader-track-title>span,.reader-track-title h1{font-size:16px;line-height:1.4}
  .reader-player{grid-column:1;grid-row:1 / 3;align-self:center}
  .reader-player .player-label{font-size:3px;letter-spacing:.35px}
- .reader-position{grid-column:2;grid-row:2;align-self:start;margin:6px 0 0}
- .reader-position>div:first-child{font-size:11px}
- .reader-progress{margin-top:5px}
  .reader-mobile-controls{grid-column:1 / 3;grid-row:3;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px}
  .reader-mobile-controls button{background:transparent;min-height:44px;font-size:12px;line-height:1.5;border:1px solid #dce6f1;border-radius:4px;color:#526b86}
  .reader-mobile-controls button[aria-pressed=true]{background:#eaf2ff;border-color:#9bb4d1;color:#315a8c;font-weight:600}

@@ -29,7 +29,7 @@
 .reader-track-title{gap:10px;min-height:28px}
 .reader-track-title>span{font-size:var(--text-section);line-height:1.4;font-weight:450;color:var(--text-muted)}
 .reader-track-title h1{font-size:var(--text-section);line-height:1.4;font-weight:600;letter-spacing:-.3px}
-.reader-position>div:first-child,.reader-shelf-toggle,.reader-shelf-content>p{font-size:var(--text-ui);line-height:1.6;color:var(--text-secondary)}
+.reader-shelf-toggle,.reader-shelf-content>p{font-size:var(--text-ui);line-height:1.6;color:var(--text-secondary)}
 .reader-transport button,.reader-return{font-size:var(--text-ui);line-height:1.5}
 .reader-toolbar{font-size:var(--text-caption);line-height:1.5;letter-spacing:.7px;color:var(--text-muted)}
 .reader-toolbar button,.reader-toolbar .reader-back,.reader-page-footer button{font-size:var(--text-ui);line-height:1.5}
@@ -70,7 +70,6 @@
  .reader-caption{font-size:var(--text-caption);letter-spacing:.3px}
  .reader-track-title{gap:7px;min-height:23px}
  .reader-track-title>span,.reader-track-title h1{font-size:16px;line-height:1.4}
- .reader-position>div:first-child{font-size:var(--text-caption)}
  .reader-transport{gap:10px}
  .reader-transport button{font-size:var(--text-caption);gap:4px}
  .reader-return{font-size:0}
