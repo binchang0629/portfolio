@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import './styles/typography.css'
 import './styles/reader.css'
+import './styles/project-cards.css'
 import './styles/work-notebook.css'
 
 createRoot(document.getElementById('root')).render(<StrictMode><App /></StrictMode>)

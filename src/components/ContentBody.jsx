@@ -1,4 +1,5 @@
 import { motion as Motion } from 'framer-motion'
+import { ProjectCards, ProjectPreviewFrame } from './ProjectCards'
 
 export default function ContentBody({ content, onProject, onContact, titleId = 'dialog-title', headingRef, motionEnabled = false }) {
   return <>
@@ -8,6 +9,7 @@ export default function ContentBody({ content, onProject, onContact, titleId = '
         {content.role && <p className="project-role">{content.role}{content.state && <span className="project-state">{content.state}</span>}</p>}
         {content.summary && <p className="dialog-summary">{content.summary}</p>}
       </header>
+      {content.preview && <ProjectPreviewFrame project={content} />}
       {content.site && <div className="project-actions"><a href={content.site} target="_blank" rel="noopener noreferrer">사이트 보기 <span aria-hidden="true">↗</span></a></div>}
       {content.facts && <dl className="project-facts">{content.facts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
       {content.entries && <div className="work-entries">{content.entries.map(entry => <article key={entry.project}>
@@ -15,9 +17,7 @@ export default function ContentBody({ content, onProject, onContact, titleId = '
         <button onClick={() => onProject(entry.target)}>프로젝트 보기 <span aria-hidden="true">↗</span></button>
       </article>)}</div>}
       {content.checklist && <ol className="work-checklist">{content.checklist.map(item => <li key={item.label}><span className="task-mark" aria-hidden="true"/><div><strong>{item.label}</strong><p>{item.detail}</p></div><span className="task-state">{item.state}</span></li>)}</ol>}
-      {content.projects && <div className="project-list">{content.projects.map((project, index) => <button key={project.id} onClick={() => onProject(project)}>
-        <span className="project-index">0{index + 1}</span><div><div className="project-list-title"><h3>{project.heading}</h3>{project.state && <span className="project-state">{project.state}</span>}</div><p className="list-role">{project.role}</p><p>{project.summary}</p></div><span className="project-arrow" aria-hidden="true">↗</span>
-      </button>)}</div>}
+      {content.projects && <ProjectCards projects={content.projects} onProject={onProject} />}
       {content.sections?.length > 0 && <div className="dialog-sections">{content.sections.map(section => <Motion.section key={section.title} initial={motionEnabled ? { opacity: .65, y: 8 } : false} whileInView={motionEnabled ? { opacity: 1, y: 0 } : undefined} viewport={{ once: true, amount: .1 }} transition={{ duration: .3 }}>
         <h3>{section.title}</h3><div className="section-content">
           {section.body && <p>{section.body}</p>}

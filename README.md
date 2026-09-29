@@ -20,6 +20,7 @@ npm run dev
 
 - `src/data/portfolio.js`: 다섯 카테고리와 작업 노트, 보관함 추가 작업.
 - `src/data/projects.js`: 팀·개인 프로젝트 소개.
+- 프로젝트 카드 미리보기: `public/projects/<id>`에 `preview.webm`(무음 녹화)과 `poster.webp`를 두고 projects.js 항목에 `preview`를 등록합니다. 카드에 마우스를 올리면 재생되고, 터치 화면에서는 보이는 카드가 재생됩니다. `preview`가 없으면 "작업 화면 준비 중" 자리를 표시합니다.
 - `docs/projects`: 개인 작업의 근거와 진행 기록.
 - `docs/에셋_가이드.md`: 실제 파일 목록, 편집 범위와 추가 작업 등록 방법.
 - `docs/디자인_정교화_기록.md`: 시각 변경과 에셋 구조, 남은 과제.

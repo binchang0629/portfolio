@@ -1,0 +1,52 @@
+/* Project cards: a recording of the real screen plays while the card is hovered, like a tape in the player. */
+.project-cards{margin-top:36px}
+.project-cards-hint{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:0 0 14px;font-size:var(--text-caption);line-height:1.5;color:var(--text-muted)}
+.project-cards-hint i{width:5px;height:5px;border-radius:50%;background:#6a967e;box-shadow:0 0 0 3px #6a967e1f}
+.hint-touch{display:none}
+.project-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 28px}
+.project-card{display:flex;flex-direction:column;min-width:0;padding:0;background:transparent;color:inherit;text-align:left;border-radius:12px}
+.project-card:focus-visible{outline:2px solid #8facce;outline-offset:6px}
+
+.project-media{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid #dce6f1;border-radius:10px;background:#eef3f9;box-shadow:0 1px 2px #3453710f,0 12px 24px -16px #3453712e;transition:transform 360ms cubic-bezier(.22,1,.36,1),box-shadow 360ms cubic-bezier(.22,1,.36,1)}
+.project-card:hover .project-media,.project-card:focus-visible .project-media{transform:translateY(-4px);box-shadow:0 2px 4px #34537112,0 24px 40px -20px #3453714d}
+.project-media video{display:block;width:100%;height:100%;object-fit:cover;background:#eef3f9}
+.project-media-badge{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:#f9fbffeb;box-shadow:0 1px 3px #3453711a;font-size:11px;line-height:1.6;color:#315a8c}
+.project-media[data-active=true] .project-media-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#6a967e}
+.project-media-progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:#3453711a;opacity:0;transition:opacity 200ms ease-out}
+.project-media[data-active=true] .project-media-progress{opacity:1}
+.project-media-progress i{display:block;height:100%;background:#6289b4;transform-origin:left;transition:transform 300ms linear}
+.project-media.is-empty{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:22px 24px;background:repeating-linear-gradient(135deg,#f1f5fa 0 12px,#ebf0f7 12px 24px)}
+.project-media-empty-title{font-size:20px;font-weight:600;line-height:1.4;letter-spacing:-.3px;color:#8196ad;word-break:keep-all}
+.project-media-empty-note{font-size:var(--text-caption);line-height:1.5;color:var(--text-muted)}
+
+.project-card-body{display:flex;flex-direction:column;padding:20px 2px 0}
+.project-card-title{display:flex;align-items:baseline;gap:6px 10px;flex-wrap:wrap}
+.project-card .project-index{padding:0;font-variant-numeric:tabular-nums}
+.project-card h3{margin:0;font-size:var(--text-section);font-weight:600;line-height:1.4;letter-spacing:-.3px;color:#315a8c;word-break:keep-all}
+.project-card .list-role{margin:6px 0 0;font-size:var(--text-caption);line-height:1.6;color:var(--text-muted)}
+.project-card-summary{margin:10px 0 0;font-size:15px;line-height:1.75;color:#526579;word-break:keep-all}
+.project-card-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:var(--text-ui);font-weight:550;line-height:1.5;color:#315a8c}
+.project-card-link span{transition:transform 160ms ease-out}
+.project-card:hover .project-card-link span{transform:translateX(3px)}
+
+.project-preview-frame{margin:30px 0 0;max-width:800px}
+.project-preview-frame figcaption{margin-top:10px;font-size:var(--text-caption);line-height:1.5;color:var(--text-muted)}
+
+@media(hover:none),(pointer:coarse){
+ .hint-hover{display:none}
+ .hint-touch{display:inline}
+}
+@media(max-width:1100px){
+ .project-card-grid{grid-template-columns:1fr;gap:36px}
+}
+@media(max-width:760px){
+ .project-cards{margin-top:26px}
+ .project-cards-hint{justify-content:flex-start}
+ .project-card-body{padding-top:16px}
+ .project-card-summary{font-size:var(--text-body)}
+ .project-preview-frame{margin-top:24px}
+}
+@media(prefers-reduced-motion:reduce){
+ .project-card:hover .project-media,.project-card:focus-visible .project-media{transform:none}
+ .project-card:hover .project-card-link span{transform:none}
+}
