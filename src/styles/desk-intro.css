@@ -24,10 +24,9 @@
  .intro-title{margin-top:12px}
  .intro-copy{margin-top:10px;font-size:13px;line-height:1.6}
 }
-/* Narrow desks: the About tape sits right beside the copy, so keep it to one line. */
+/* Narrow desks: the About tape sits right beside the copy, so let it wrap into a short column. */
 @media(min-width:761px) and (max-width:1180px){
- .intro-guide{display:none}
- .intro-copy{font-size:12.5px}
+ .intro-copy{max-width:13em;font-size:13px}
 }
 @media(max-width:760px){
  .desk-intro{width:100%;margin-bottom:28px}
