@@ -1,81 +1,90 @@
 // 왈가왈BOT 케이스 스터디 — 내용만 담는 파일입니다. 레이아웃은 src/components/CaseSection.jsx가 그립니다.
 // 규칙: docs/케이스스터디_작성_규칙.md
-// 출처: 팀 기획 문서(PROJECT_SPEC.md — 서비스·설문·퍼소나·제품 원칙·스타일 가이드), 팀 Figma(목업),
-//       배포된 웹앱 캡처, 포트폴리오에 정리했던 발표 피드백.
+// 출처: 팀 최종 발표 자료(Figma `0930` 페이지 — 일정·역할·설문 33명·퍼소나·피드백·AI 활용·기여도),
+//       팀 기획 문서(PROJECT_SPEC.md — 스타일 가이드), 팀 Figma 목업, 배포된 웹앱 캡처.
 const img = name => `/cases/walgawalbot/${name}.webp`
 const phone = (name, alt) => ({ src: img(name), w: 603, h: 1311, alt, device: 'phone' })
 
 export default {
-  // 기간은 아직 확인하지 못했습니다. 확인되면 period: '2026.00 – 2026.00'을 추가하세요.
-  // 앱 확정 스타일 가이드의 색: Primary blue(브랜드), 먹색, 연한 배경, Secondary orange(포인트).
+  period: '2026.08.24 – 2026.10.01',
+  // 앱 컬러 시스템: 판결 블루 #374BFF(브랜드), 먹색, 파일 블루 계열 배경, 행동 오렌지 #FF9524(포인트).
   // bright는 어두운 띠 위에서 쓰는 밝은 파랑(#649EFF, 스타일 가이드 blue-300)
   theme: { brand: '#374BFF', onBrand: '#FFFFFF', bright: '#649EFF', onBright: '#252525', dark: '#252525', light: '#F9FAFD', point: '#FF9524' },
   sides: {
     A: { name: '기획', note: '팀이 함께 조사하고 방향을 정한 과정' },
-    B: { name: '내가 만든 화면', note: '홈 · 배심원 광장 · 후일담', image: { src: img('mockup'), w: 1600, h: 743, alt: '배심원 광장, 홈, 투표 결과, AI 판멍이 챗봇 화면을 나란히 놓은 목업' } },
+    B: { name: '내가 만든 화면', note: '홈 · 배심원 광장 · 왈가왈후~', image: { src: img('mockup'), w: 1600, h: 743, alt: '배심원 광장, 홈, 투표 결과, AI 판멍이 챗봇 화면을 나란히 놓은 목업' } },
   },
   sections: [
     {
       side: 'A', type: 'cards', tone: 'light',
       label: '문제 발견', kicker: 'Problem',
-      title: '억울한데,\n누구에게 묻기는 부담스럽다',
-      body: '관계·금전·약속처럼 일상에서 생기는 갈등은 판단이 서지 않아도 주변에 털어놓기 어렵습니다. 왈가왈BOT은 AI의 참고 의견과 사람들의 판단을 함께 보고 다음 행동을 정하도록 돕는 커뮤니티 웹앱입니다.',
+      title: '판단을 구할 곳은 많은데,\n한 번에 비교할 곳은 없다',
+      body: '사람들은 갈등이 생기면 지인에게 묻고, 커뮤니티를 찾아보고, AI에게 설명합니다. 방법마다 한계가 있어서 한 사건 안에서 여러 판단을 비교하기는 어려웠습니다.',
       cards: [
-        { kicker: '관계', title: '친구 축의금 10만원, 적당한가?' },
-        { kicker: '금전', title: '친구에게 빌려준 300만원, 6개월째 미변제' },
-        { kicker: '직장', title: '상사가 제 아이디어를 자신의 공로로 발표했어요' },
+        { kicker: '지인', value: '57.6%', body: '개인적인 상황을 공유하기 부담스럽다' },
+        { kicker: '커뮤니티', title: '편향되거나 공격적인 반응', body: '반응을 예측하기 어렵다' },
+        { kicker: 'AI', value: '60.6%', body: 'AI 판단의 부정확성·편향이 걱정된다' },
       ],
-      source: '팀 IA에 정리한 사례',
+      source: '팀 설문 33명',
     },
     {
-      side: 'A', type: 'lead', tone: 'dark',
+      side: 'A', type: 'match', tone: 'dark',
+      label: '설문 설계', kicker: 'Survey',
+      title: '기능이 좋냐고 묻지 않고,\n무엇이 궁금한지 물었다',
+      body: '처음 만든 질문은 기능에 좋은 반응을 유도할 수 있었습니다. 기능 선호가 아니라, 결과가 다를 때 사용자가 실제로 찾는 정보를 묻도록 고쳤습니다.',
+      columns: ['처음 질문', '고친 질문'],
+      rows: [
+        { problem: '“AI는 60%, 배심원은 42%로 봤습니다. 이 차이를 보니 어떤가요?”', decision: '“AI와 여러 사람의 판단 결과가 다르게 나온다면, 어떤 점을 가장 확인하고 싶나요?”' },
+      ],
+    },
+    {
+      side: 'A', type: 'lead', tone: 'light',
       label: '근거', kicker: 'Research',
-      title: 'AI 판단은 궁금하지만,\n내 사연을 쓰긴 싫다',
-      body: 'AI 결과에 관심 있다는 응답이 84.6%였지만, 민감한 사연을 직접 쓰겠다는 응답은 없었습니다. 대신 71.4%가 다른 사람의 사례부터 구경하고 싶다고 답했습니다.',
+      title: '하나의 정답보다,\n다른 판단과 비교하고 싶다',
+      body: '최근 6개월 안에 제3자의 의견을 구한 사람이 87.9%였습니다. AI와 사람의 결과가 다를 때는 누가 맞는지보다 왜 판단이 달라졌는지를 궁금해했습니다.',
       chart: {
         groups: [
           { title: '설문 응답 비율', items: [
-            { label: 'AI 결과에 관심', values: [84.6], emphasis: true },
-            { label: '개인 상황을 말하기 부담', values: [83.3] },
-            { label: '심각하면 전문가가 필요', values: [78.6] },
-            { label: '사례부터 구경하고 싶음', values: [71.4], emphasis: true },
-            { label: 'AI 편향·부정확성 우려', values: [57.1] },
-            { label: '사연 노출 우려', values: [50] },
-            { label: '민감한 사연을 직접 작성', values: [0], emphasis: true },
+            { label: '최근 6개월 제3자 의견을 구함', values: [87.9], emphasis: true },
+            { label: '남의 사연에서도 AI 판단을 보고 싶음', values: [81.3] },
+            { label: '내 생각을 남의 판단과 비교하고 싶음', values: [63.6] },
+            { label: 'AI 판단을 정답처럼 믿기 어려움', values: [60.6] },
+            { label: '판단이 달라진 이유가 궁금함', values: [45.5], emphasis: true },
+            { label: '민감한 상황을 공개하기 부담', values: [42.2] },
           ] },
         ],
       },
-      source: '팀 설문(자료종합) — 개편 전 17명·개편 후 14명, 두 설문은 선택 방식이 달라 합산하지 않음',
+      source: '팀 설문 33명',
     },
     {
-      side: 'A', type: 'cards', tone: 'light',
+      side: 'A', type: 'cards', tone: 'dark',
       label: '사용자', kicker: 'Persona',
-      title: '쓰고 싶은 사람과,\n보기만 하고 싶은 사람',
-      body: '팀은 두 사용자의 여정으로 서비스를 설계했습니다. 한 명은 자기 사건을 올리고, 다른 한 명은 사연을 공개하지 않고 판단 근거만 모읍니다.',
+      title: '같은 고민이라도,\n필요한 도움은 달랐다',
+      body: '한 사람은 공개해서 비교하고 싶고, 다른 한 사람은 공개하지 않고 도움이 필요한지부터 알고 싶어 했습니다. 두 사람의 여정은 공개 범위와 추가 도움에서 갈립니다.',
       cards: [
-        { kicker: '신규 사용자', title: '윤서아', body: '자신의 상황을 정리해 사건을 접수하고, 다른 사람의 관점과 이후 이야기를 참고한다.' },
-        { kicker: '기존 사용자', title: '곽지훈', body: '민감한 사연을 공개하기보다 AI 의견, 챗봇, 비슷한 사례로 먼저 판단 근거를 모은다.', highlight: true },
+        { kicker: '윤서아 · 24세 · 공개 비교형', title: '“내 행동, 생각이 과한 걸까?”', body: '다른 사람의 판단과 비교한 뒤 관계를 망치지 않을 다음 행동을 정하고 싶다.' },
+        { kicker: '곽지훈 · 21세 · 비공개 도움형', title: '“어디까지 도움 받아야 할까?”', body: 'AI 판단을 확인하고, 전문가 도움이 필요한 수준인지 판단한 뒤 도움을 받고 싶다.', highlight: true },
       ],
+      source: '리서치 결과를 바탕으로 구성한 가상 퍼소나',
     },
     {
       side: 'A', type: 'match', tone: 'brand',
       label: '설계 판단', kicker: 'Direction',
-      title: '판결 대신,\n판단의 이유를 비교하게',
+      title: '정답 대신,\n판단을 돕는 과정을',
       status: 'intent',
-      columns: ['설문에서 본 것', '서비스에서'],
+      columns: ['리서치에서 본 것', '핵심 기능으로'],
       rows: [
-        { problem: '민감한 사연은 쓰기 싫다', decision: '로그인이나 작성보다 사례 둘러보기를 먼저 두고, 투표하려는 순간에 가입하게' },
-        { problem: 'AI 결과를 다 믿지는 않는다', decision: 'AI 의견에 근거와 양쪽 맥락을 함께 보여 주고, 배심원 결과와 달라도 숨기지 않게' },
-        { problem: '사연이 알려질까 걱정된다', decision: 'AI만 보는 흐름과 공개 범위를 나누고, 공개를 강제하지 않게' },
-        { problem: '심각한 상황은 전문가가 필요하다', decision: '챗봇과 전문가 도움 화면으로 이어지게' },
+        { problem: 'AI가 편향될까 걱정된다', decision: '판단 근거 — 결론만이 아니라 양측 관점과 판단 이유를 함께' },
+        { problem: '개인정보가 알려질까 걱정된다', decision: '공개 범위 선택 — AI 결과까지만 보거나, 공개 여부를 직접 결정' },
+        { problem: '판단이 달라진 이유가 궁금하다', decision: 'AI × 배심원 비교 — 두 결과가 어디서 갈렸는지 비교' },
+        { problem: '판정 이후에 뭘 해야 할지 막막하다', decision: '다음 행동과 후일담 — 실행할 행동을 제안하고 실제 결과를 기록' },
       ],
-      source: '팀 기획 문서의 제품·안전 원칙',
     },
     {
       side: 'A', type: 'screens', tone: 'light',
       label: '내 역할', kicker: 'My Role',
-      title: '개발 팀장으로,\n세 화면을 코드로',
-      body: '개발 팀장을 맡아 홈, 배심원 광장, 후일담 화면을 개발했습니다. 브랜치 병합과 기능 통합을 맡았고, 밸런스 게임과 카테고리·정렬·페이지네이션도 손봤습니다.',
+      title: '개발 팀장으로,\n홈부터 후일담까지',
+      body: '홈, 배심원 광장, 왈가왈후~, 온보딩 페이지를 개발했습니다. 왈가왈후~는 UX/UI 디자인도 맡았습니다. 브랜치 병합과 기능 통합, 전체 화면 디자인 QA와 반응형 보정을 담당했습니다. 팀 자체 평가 기여도는 기획 12% · 디자인 12% · 개발 38%입니다.',
       steps: [
         { label: '홈', image: phone('home', '왈가왈BOT 홈. 오늘의 사건 친구 축의금 10만원 적당한가와 투표하러 가기 버튼') },
         { label: '배심원 광장', image: phone('plaza', '배심원 광장. 이달의 명판관 랭킹 1~3위') },
@@ -116,14 +125,14 @@ export default {
       steps: [
         { label: '명판관 랭킹', image: phone('plaza', '이달의 명판관 배심원 랭킹 시상대'), caption: '판결 포인트와 참여 기록으로 뽑은 순위' },
         { label: '전체 사건', image: phone('plaza-list', '전체 사건 목록. 검색창, 카테고리 칩, 최신 사건 정렬, 투표 중 사건 카드'), caption: '카테고리 칩과 정렬, 검색' },
-        { label: '페이지', image: phone('plaza-pages', '사건 카드 목록 아래 페이지 번호'), caption: '페이지로 나눈 목록' },
+        { label: '페이지', image: phone('plaza-pages', '사건 카드 목록 아래 페이지 번호'), caption: '기본·선택·비활성 상태를 나눈 페이지 번호' },
       ],
     },
     {
       side: 'B', type: 'screens', tone: 'brand',
       label: '핵심 기능 4', kicker: 'Feature 04',
       title: '투표가 끝나도\n이야기는 이어지게',
-      body: '투표로 끝내지 않도록, 판결 뒤에 달라진 이야기를 남기고 읽는 공간을 만들었습니다.',
+      body: '왈가왈후~는 디자인부터 개발까지 맡은 페이지입니다. 판결 뒤에 달라진 이야기를 남기고 읽도록 메모지 카드와 편지형 상세로 구성했습니다.',
       status: 'intent',
       steps: [
         { label: '왈가왈후~', image: phone('afterstory', '왈가왈후 첫 화면'), caption: '내 이야기 남기기와 다른 후일담' },
@@ -134,23 +143,49 @@ export default {
     {
       side: 'B', type: 'match', tone: 'light',
       label: '피드백 반영', kicker: 'Feedback',
-      title: '‘왜 써야 하는지’가\n잘 보이지 않았다',
-      body: '발표에서 받은 피드백과, 그 뒤 팀이 정리한 방향입니다.',
-      columns: ['받은 피드백', '정리한 방향'],
+      title: 'UI보다 먼저,\n서비스가 이해되지 않았다',
+      body: '1차 발표 체크리스트 13명의 응답에서 사용 상황과 필요성, 차별점 점수가 UI 평가보다 낮았습니다. 그래서 UI를 더하기보다 서비스 정의와 핵심 흐름부터 고쳤습니다.',
+      chartFirst: true,
+      chart: {
+        unit: '점', max: 5,
+        groups: [
+          { title: '1차 발표 체크리스트 (5점 만점)', items: [
+            { label: '사용 상황 명확성', values: ['2.0'], emphasis: true },
+            { label: '서비스 필요성 이해', values: [2.31] },
+            { label: '차별화 인식', values: [2.31] },
+            { label: 'UI 전반 평가', values: [2.69] },
+          ] },
+        ],
+      },
+      columns: ['피드백', '수정 원칙'],
       rows: [
-        { problem: '서비스를 쓰는 상황과 차별점이 충분히 전달되지 않는다', decision: '승패를 가르기보다 서로 다른 판단의 이유를 비교하고 다음 행동을 정하는 경험으로' },
+        { problem: '서비스의 역할과 차별점이 흐리다', decision: 'AI 판정이 아니라, AI × 사람의 판단 비교 → 다음 행동 결정을 핵심 가치로' },
+        { problem: '핵심 경험이 한 흐름으로 보이지 않는다', decision: '사건 작성 → AI 1심 → 배심원 비교 → 공개 선택 → 다음 행동 중심으로 재구성' },
+        { problem: '캐릭터가 장식에 머문다', decision: '판멍이는 AI 기능 안내, 왈랑이·왈가닥이는 입장·반응 구분으로' },
+        { problem: '반복 UI의 상태가 제각각이다', decision: '버튼·페이지네이션·카드의 기본 / 선택 / 비활성 상태를 하나의 규칙으로' },
       ],
-      source: '발표 피드백',
+      source: '1차 발표 체크리스트 13명',
     },
     {
       side: 'B', type: 'cards', tone: 'dark',
       label: '결과와 한계', kicker: 'Result',
       title: '화면은 완성했지만,\nAI는 아직 연결 전',
-      body: '발표 버전은 준비된 시나리오로 화면과 인터랙션을 확인하는 단계입니다. 실제 AI 연동과 응답 품질, 실패 상태 검증은 다음 단계입니다.',
+      body: '26개 화면을 3개의 공통 레이아웃으로 만들어 배포했습니다. 발표 버전의 AI 의견은 준비된 시나리오 데이터라서, 실제 AI 연동과 응답 품질 검증은 다음 단계입니다.',
       cards: [
-        { kicker: '확인된 것', title: '두 사용자 시나리오 시연', body: '윤서아(신규)와 곽지훈(기존)의 흐름이 배포된 웹앱에서 동작합니다.' },
-        { kicker: '검증 전', title: 'AI 응답 품질과 실패 상태', body: '현재 AI 의견은 준비된 데이터입니다.' },
+        { kicker: '확인된 것', value: '26', body: '구현한 화면 수 (팀 전체)' },
+        { kicker: '확인된 것', value: '186', body: '커밋 — 5개 브랜치를 lint·typecheck·build 통과 후 main에 병합' },
         { kicker: '검증 전', title: '실제 사용자의 반응', body: '[사용성 테스트 결과 입력]' },
+      ],
+    },
+    {
+      side: 'B', type: 'cards', tone: 'light',
+      label: 'AI 활용', kicker: 'AI',
+      title: '반복 작업은 AI로,\n구조와 흐름은 팀이',
+      body: 'AI를 개발 보조 도구로 썼습니다. 기준 문서를 공유해 도구가 달라도 결과가 흔들리지 않게 했고, AI가 만든 코드도 같은 검사를 통과해야 병합했습니다.',
+      cards: [
+        { kicker: '01', title: '기준 문서 공유', body: 'CLAUDE.md · AGENTS.md · PROJECT_SPEC.md · PROJECT_CONTEXT.md' },
+        { kicker: '02', title: 'Figma 확정 시안 확인', body: 'MCP로 확정 화면을 읽어 토큰과 레이아웃을 반영' },
+        { kicker: '03', title: '결과 재검증', body: 'lint · typecheck · build 통과 후 실제 화면 흐름까지 확인' },
       ],
     },
     {
@@ -159,18 +194,12 @@ export default {
       body: '[회고 입력]',
     },
     {
-      side: 'B', type: 'cards', label: 'AI 활용', kicker: 'AI', hidden: true,
-      title: '[제목 입력]',
-      body: '[AI를 어느 단계에서 왜 썼는지 입력]',
-      cards: [{ title: '[사용한 도구]', body: '[프롬프트와 수정 과정 입력]' }],
-    },
-    {
-      side: 'B', type: 'links', tone: 'light',
+      side: 'B', type: 'links', tone: 'dark',
       label: '자료', kicker: 'Links',
       title: '직접 보기',
       links: [
         { href: 'https://walgawal-bot.vercel.app/onboarding', label: '웹앱' },
-        { href: 'https://www.figma.com/design/5msPuamjPpGJOUFl0OXBOX', label: 'Figma 화면' },
+        { href: 'https://www.figma.com/design/5msPuamjPpGJOUFl0OXBOX', label: 'Figma' },
       ],
     },
   ],
