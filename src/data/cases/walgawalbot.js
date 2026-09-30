@@ -174,7 +174,7 @@ export default {
       cards: [
         { kicker: '확인된 것', value: '26', body: '구현한 화면 수 (팀 전체)' },
         { kicker: '확인된 것', value: '186', body: '커밋 — 5개 브랜치를 lint·typecheck·build 통과 후 main에 병합' },
-        { kicker: '검증 전', title: '실제 사용자의 반응', body: '[사용성 테스트 결과 입력]' },
+        { kicker: '검증 전', title: '실제 사용자의 반응', body: '사용성 테스트는 하지 않았습니다.' },
       ],
     },
     {
