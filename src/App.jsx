@@ -244,7 +244,7 @@ export default function App() {
     {!reading && <Motion.main key="desk" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reducedMotion ? 0 : .2 }} onAnimationComplete={() => { if (!reading && returnFocus.current) { returnFocus.current = false; playerRef.current?.querySelector("button")?.focus({ preventScroll: true }) } }} className="portfolio" aria-label="정창빈 포트폴리오">
       <div className="desk" ref={stageRef} data-arriving={arriving || undefined} onPointerDownCapture={arriving ? finishArrival : undefined} onKeyDownCapture={arriving ? finishArrival : undefined} style={{ '--tape-player-ratio': tapeToPlayerRatio }}>
         <header className="site-header desk-intro">
-          <div className="label-top" aria-hidden="true"><span className="label-side">{profile.label.side}</span><span className="label-number">{profile.label.number}</span><span className="label-rule" /><span className="label-spec">{profile.label.spec}</span></div>
+          <div className="label-top" aria-hidden="true"><span className="label-play"><i /></span><span className="label-number">{profile.label.number}</span><span className="label-rule" /><span className="label-spec">{profile.label.spec}</span></div>
           <h1 className="label-name"><button className="intro-name" onClick={() => { setDialog(null); reset() }} aria-label="CHANG BIN · 책상 홈으로 돌아가기">{profile.englishName}</button></h1>
           <p className="label-tagline">{profile.label.tagline.split(' · ').map((part, i) => <span key={part}>{i > 0 && <b aria-hidden="true"> · </b>}{part}</span>)}</p>
           <p className="label-guide">{profile.label.guide}</p>

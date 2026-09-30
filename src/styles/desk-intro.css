@@ -1,4 +1,4 @@
-/* Desk intro, set like a blank cassette's printed label (TDK D-C90 style): side box, number, rule and spec,
+/* Desk intro, set like a blank cassette's printed label (TDK D-C90 style): play box, number, rule and spec,
    a condensed name, a ruled line of copy and one tape-coloured stripe. */
 @font-face{font-family:'Archivo Label';font-style:normal;font-weight:800;font-display:swap;src:url('/fonts/archivo/archivo-condensed-800.woff2') format('woff2')}
 @font-face{font-family:'JetBrains Mono Label';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/jetbrains-mono/jetbrains-mono-500.woff2') format('woff2')}
@@ -7,7 +7,8 @@
 
 .desk-intro{width:clamp(220px,calc(var(--desk-w) * .194),340px);color:var(--label-ink)}
 .label-top{display:flex;align-items:center;gap:8px}
-.label-side{display:grid;place-items:center;width:22px;height:22px;background:var(--label-ink);color:#fff;font:800 13px/1 'Archivo Label',sans-serif}
+.label-play{display:grid;place-items:center;flex-shrink:0;width:22px;height:22px;background:var(--label-ink)}
+.label-play i{width:0;height:0;margin-left:2px;border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent}
 .label-number{font:800 22px/1 'Archivo Label',sans-serif;letter-spacing:.02em}
 .label-rule{flex:1;height:1px;background:var(--label-hair)}
 .label-spec{font:500 10px/1 'JetBrains Mono Label',monospace;letter-spacing:.08em;color:var(--label-sub);white-space:nowrap}
