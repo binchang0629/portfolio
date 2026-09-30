@@ -1,37 +1,42 @@
-/* Desk intro: small tracked labels, a soft retro display face, and one warm "play" accent.
+/* Desk intro: the headline leads, and the name, role and focus sit quietly under a short rule.
    The Fraunces files are pre-set to opsz 144 and SOFT 100 (WONK off upright, on italic); only weight 400–600 varies. */
 @font-face{font-family:'Fraunces';font-style:normal;font-weight:400 600;font-display:swap;src:url('/fonts/fraunces/fraunces-normal.woff2') format('woff2')}
 @font-face{font-family:'Fraunces';font-style:italic;font-weight:400 600;font-display:swap;src:url('/fonts/fraunces/fraunces-italic.woff2') format('woff2')}
 
-:root{--intro-ink:#2c4a70;--intro-accent:#c0652a;--intro-accent-text:#a4521a;--desk-w:min(100vw,150vh,1840px)}
+:root{--intro-ink:#2c4a70;--intro-accent:#c0652a;--intro-muted:#56708b;--intro-rule:#c3d2e3;--desk-w:min(100vw,150vh,1840px)}
 
 .desk-intro{width:calc(var(--desk-w) * .3)}
-.intro-kicker,.intro-focus{display:flex;flex-wrap:wrap;align-items:center;margin:0;font-size:12px;font-weight:600;line-height:1.5;letter-spacing:.16em;text-transform:uppercase}
-.intro-kicker{gap:10px;color:var(--intro-ink)}
-.intro-name{min-height:32px;padding:4px 0;background:transparent;font:inherit;letter-spacing:inherit;color:inherit}
-.intro-name:hover{color:#1f3a5c}
-.intro-slash{color:var(--intro-accent)}
-.intro-focus{margin-top:2px;column-gap:.5em;font-size:11px;color:var(--intro-accent-text)}
-
-.intro-title{margin:22px 0 0;font-family:'Fraunces',Georgia,serif;font-size:clamp(36px,calc(var(--desk-w) * .036),64px);font-weight:520;line-height:1.02;letter-spacing:-.008em;color:var(--intro-ink)}
+.intro-title{margin:6px 0 0;font-family:'Fraunces',Georgia,serif;font-size:clamp(44px,calc(var(--desk-w) * .05),88px);font-weight:440;line-height:.96;letter-spacing:-.015em;color:var(--intro-ink)}
 .intro-title span,.intro-title em{display:block}
-.intro-title em{margin-top:.04em;font-weight:480;color:var(--intro-accent)}
-.intro-copy{margin:20px 0 0;font-size:15px;line-height:1.75;color:#4f6a86;word-break:keep-all}
+.intro-title em{margin-top:.04em;font-weight:420;color:var(--intro-accent)}
+
+.intro-meta{margin-top:22px}
+.intro-meta::before{content:'';display:block;width:clamp(120px,calc(var(--desk-w) * .12),200px);height:1px;margin-bottom:12px;background:var(--intro-rule)}
+.intro-kicker,.intro-focus{display:flex;flex-wrap:wrap;align-items:center;margin:0;font-weight:600;line-height:1.5;text-transform:uppercase}
+.intro-kicker{gap:8px;font-size:11px;letter-spacing:.14em;color:var(--intro-ink)}
+.intro-name{min-height:28px;padding:2px 0;background:transparent;font:inherit;letter-spacing:inherit;color:inherit}
+.intro-name:hover{color:#1f3a5c}
+.intro-dash{color:#9fb1c5}
+.intro-focus{margin-top:1px;font-size:10px;letter-spacing:.12em;color:var(--intro-muted)}
+.intro-copy{margin:14px 0 0;font-size:14px;line-height:1.7;color:#4f6a86;word-break:keep-all}
 
 @media(min-width:761px) and (max-height:800px){
- .desk-intro{width:calc(var(--desk-w) * .37)}
- .intro-focus{letter-spacing:.12em}
- .intro-title{margin-top:12px}
+ .intro-title{margin-top:2px;font-size:clamp(40px,calc(var(--desk-w) * .046),80px)}
+ .intro-meta{margin-top:16px}
  .intro-copy{margin-top:10px;font-size:13px;line-height:1.6}
 }
-/* Narrow desks: the About tape sits right beside the copy, so let it wrap into a short column. */
+/* Narrow desks: the About tape sits right beside the intro, so the headline and copy step down. */
 @media(min-width:761px) and (max-width:1180px){
+ .intro-title{font-size:clamp(38px,calc(var(--desk-w) * .042),60px)}
  .intro-copy{max-width:13em;font-size:13px}
+ .intro-kicker{flex-direction:column;align-items:flex-start;gap:0}
+ .intro-dash{display:none}
+ .intro-name{min-height:24px;padding:0}
+ .intro-focus{max-width:15em}
 }
 @media(max-width:760px){
  .desk-intro{width:100%;margin-bottom:28px}
- .intro-kicker{font-size:11px;gap:8px}
- .intro-focus{font-size:10px}
- .intro-title{margin-top:18px;font-size:clamp(40px,12.5vw,56px)}
- .intro-copy{margin-top:16px;font-size:14px}
+ .intro-title{margin-top:4px;font-size:clamp(44px,13vw,60px)}
+ .intro-meta{margin-top:18px}
+ .intro-copy{margin-top:12px;font-size:14px}
 }

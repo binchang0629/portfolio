@@ -244,9 +244,11 @@ export default function App() {
     {!reading && <Motion.main key="desk" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reducedMotion ? 0 : .2 }} onAnimationComplete={() => { if (!reading && returnFocus.current) { returnFocus.current = false; playerRef.current?.querySelector("button")?.focus({ preventScroll: true }) } }} className="portfolio" aria-label="정창빈 포트폴리오">
       <div className="desk" ref={stageRef} data-arriving={arriving || undefined} onPointerDownCapture={arriving ? finishArrival : undefined} onKeyDownCapture={arriving ? finishArrival : undefined} style={{ '--tape-player-ratio': tapeToPlayerRatio }}>
         <header className="site-header desk-intro">
-          <p className="intro-kicker"><button className="intro-name" onClick={() => { setDialog(null); reset() }} aria-label="CHANG BIN · 책상 홈으로 돌아가기">{profile.englishName}</button><span className="intro-slash" aria-hidden="true">/</span><span>{profile.role}</span></p>
-          <p className="intro-focus">{profile.focus.join(' · ')}</p>
           <h1 className="intro-title">{profile.headline.map((line, i) => i === profile.headline.length - 1 ? <em key={line}>{line}</em> : <span key={line}>{line}</span>)}</h1>
+          <div className="intro-meta">
+            <p className="intro-kicker"><button className="intro-name" onClick={() => { setDialog(null); reset() }} aria-label="CHANG BIN · 책상 홈으로 돌아가기">{profile.englishName}</button><span className="intro-dash" aria-hidden="true">—</span><span>{profile.role}</span></p>
+            <p className="intro-focus">{profile.focus.join(' · ')}</p>
+          </div>
           <p className="intro-copy">{profile.guide}</p>
         </header>
         <div className="tape-stage" aria-label="포트폴리오 테이프 선택" inert={arriving || undefined}>
