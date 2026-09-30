@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { ProjectPreviewFrame } from './ProjectCards'
-import CaseSection, { Copy } from './CaseSection'
+import CaseSection, { CaseSide } from './CaseSection'
 
 // Sections are laid out like a cassette's J-card. A section can name its own side ('A' or 'B');
 // otherwise the first half is side A and the rest side B.
@@ -18,6 +18,8 @@ const chapterIds = (track, sections) => sideCodes(sections).map(code => `${track
 // Case-study sections can be switched off with `hidden` instead of being deleted.
 const visibleSections = content => (content.sections ?? []).filter(section => !section.hidden)
 const chapterName = section => section.label ?? section.title
+// A case study brings its own palette (from the project's style guide) for the colour bands.
+const caseTheme = theme => ({ '--case-brand': theme.brand, '--case-dark': theme.dark, '--case-light': theme.light, '--case-point': theme.point })
 
 export default function TapeArticle({ track, content, number, total, nextTrack, nextLabel, busy, headingRef, scrollRoot, transport, reducedMotion, onNext, onContact, onChapter }) {
   const sections = visibleSections(content)
@@ -61,31 +63,33 @@ export default function TapeArticle({ track, content, number, total, nextTrack, 
     {content.summary && <p className="tape-lead">{content.summary}</p>}
     {content.preview && <ProjectPreviewFrame project={content} transport={transport} />}
 
-    {sections.length > 0 && <div className="tape-body">
+    {sections.length > 0 && (content.theme ? <div className="case-flow" style={caseTheme(content.theme)}>
+      {sections.map((section, i) => <Fragment key={chapterName(section)}>
+        {content.sides?.[section.side] && section.side !== sections[i - 1]?.side && <CaseSide letter={section.side} side={content.sides[section.side]} />}
+        <CaseSection section={section} id={ids[i]} code={codes[i]} />
+      </Fragment>)}
+    </div> : <div className="tape-body">
       <div className="tape-chapters">
         {sections.map((section, i) => <section key={chapterName(section)} id={ids[i]} className="tape-chapter" aria-labelledby={`${ids[i]}-title`}>
-          <header><span className="tape-code">{codes[i]}</span><div className="tape-chapter-head">
-            {section.type && section.label && <p className="tape-chapter-label">{section.label}</p>}
-            <Copy as="h3" id={`${ids[i]}-title`}>{section.title}</Copy>
-          </div></header>
-          {section.type ? <div className="tape-chapter-body is-case"><CaseSection section={section} /></div> : <div className="tape-chapter-body">
+          <header><span className="tape-code">{codes[i]}</span><h3 id={`${ids[i]}-title`}>{section.title}</h3></header>
+          <div className="tape-chapter-body">
             {section.body && <p>{section.body}</p>}
             {section.items && <ul>{section.items.map(item => <li key={item}>{item}</li>)}</ul>}
             {section.flow && <ol className="tape-flow">{section.flow.map((step, n) => <li key={step}><span>{String(n + 1).padStart(2, '0')}</span>{step}</li>)}</ol>}
             {section.link && <a className="tape-source" href={section.link} target="_blank" rel="noreferrer">{section.linkLabel} <span aria-hidden="true">↗</span></a>}
             {section.links && <p className="tape-links">{section.links.map(link => <a key={link.href} className="tape-source" href={link.href} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</p>}
-          </div>}
+          </div>
         </section>)}
       </div>
       <nav className="tape-tracklist" aria-label="트랙 목록">
         {['A', 'B'].map(side => codes.some(code => code.startsWith(side)) && <div key={side}>
-          <p className="tape-side">{content.sides?.[side] ? <><span className="tape-side-letter">{side}</span>{content.sides[side]}</> : `SIDE ${side}`}</p>
+          <p className="tape-side">SIDE {side}</p>
           <ol>{sections.map((section, i) => codes[i].startsWith(side) && <li key={chapterName(section)}>
             <button className={i === active ? 'is-active' : ''} aria-current={i === active ? 'true' : undefined} onClick={() => jump(i)}><span>{codes[i]}</span>{chapterName(section)}</button>
           </li>)}</ol>
         </div>)}
       </nav>
-    </div>}
+    </div>)}
 
     {content.contact && <div className="tape-contact"><button onClick={onContact}>편지 보내기 <span aria-hidden="true">↗</span></button></div>}
 

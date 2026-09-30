@@ -1,4 +1,5 @@
-// Case-study layouts A–E. Project files only supply words and images; this file decides how they sit.
+// Case-study sections drawn as full-width colour bands: short centred heading, large screen, little chrome.
+// Project files only supply words and images; this file decides how they sit.
 // Text written as "[...]" is an unfilled slot and shows as a dashed placeholder instead of real copy.
 const isSlot = text => typeof text === 'string' && /^\[.*\]$/.test(text.trim())
 const Copy = ({ as: Tag = 'span', className, children, ...rest }) => {
@@ -7,13 +8,15 @@ const Copy = ({ as: Tag = 'span', className, children, ...rest }) => {
     ? <Tag {...rest} className={`${className ?? ''} case-slot`.trim()}>{children.slice(1, -1)}</Tag>
     : <Tag {...rest} className={className}>{children}</Tag>
 }
+// Titles may break lines on purpose with "\n".
+const Lines = ({ text }) => text.split('\n').map((line, i) => <span key={i} className="case-line">{line}</span>)
 
 const statusLabel = { intent: '설계 의도', verified: '확인된 결과', unverified: '검증 전' }
 
-function CaseImage({ image, className = '' }) {
+function CaseImage({ image }) {
   if (!image) return null
-  if (!image.src) return <div className={`case-image case-image-empty ${className}`}><span>{(image.alt || '[이미지 입력]').replace(/^\[|\]$/g, '')}</span></div>
-  return <img className={`case-image ${className}`} src={image.src} width={image.w} height={image.h} alt={image.alt ?? ''} loading="lazy" decoding="async" />
+  if (!image.src) return <div className="case-image case-image-empty"><span>{(image.alt || '[이미지 입력]').replace(/^\[|\]$/g, '')}</span></div>
+  return <img className="case-image" src={image.src} width={image.w} height={image.h} alt={image.alt ?? ''} loading="lazy" decoding="async" />
 }
 
 function Figure({ image, children }) {
@@ -24,39 +27,38 @@ function Figure({ image, children }) {
   </figure>
 }
 
-// A — one representative image under the text
+// A — one large image
 const Lead = ({ section }) => <Figure image={section.image} />
 
-// B — evidence cards (figures, findings, personas), optionally followed by the source image
+// B — the screen first, then a row of short points, figures or quotes
 const Cards = ({ section }) => <>
-  <ul className="case-cards">
-    {section.cards?.map((card, i) => <li key={i} className={card.highlight ? 'is-highlight' : undefined}>
-      {card.kicker && <Copy className="case-card-kicker">{card.kicker}</Copy>}
-      {card.value && <Copy className="case-card-value">{card.value}</Copy>}
-      <Copy as="strong" className="case-card-title">{card.title}</Copy>
+  <Figure image={section.image} />
+  {section.cards?.length > 0 && <ul className="case-points" data-count={section.cards.length}>
+    {section.cards.map((card, i) => <li key={i} className={card.highlight ? 'is-highlight' : undefined}>
+      {card.kicker && <Copy className="case-point-kicker">{card.kicker}</Copy>}
+      {card.value && <Copy className="case-point-value">{card.value}</Copy>}
+      {card.title && <Copy as="strong" className="case-point-title">{card.title}</Copy>}
       <Copy as="p">{card.body}</Copy>
     </li>)}
-  </ul>
-  <Figure image={section.image} />
+  </ul>}
 </>
 
-// C — problem on the left, the decision it led to on the right
+// C — what was found on the left, what was done about it on the right
 const Match = ({ section }) => {
   const [from, to] = section.columns ?? ['발견한 문제', '설계 판단']
   return <>
     <div className="case-match" role="table" aria-label={section.label}>
       <div className="case-match-head" role="row"><span role="columnheader">{from}</span><span role="columnheader">{to}</span></div>
       {section.rows?.map((row, i) => <div key={i} className="case-match-row" role="row">
-        <Copy as="p" className="case-match-problem">{row.problem}</Copy>
-        <span className="case-match-arrow" aria-hidden="true" />
-        <Copy as="p" className="case-match-decision">{row.decision}</Copy>
+        <Copy as="p" className="case-match-problem" role="cell">{row.problem}</Copy>
+        <Copy as="p" className="case-match-decision" role="cell">{row.decision}</Copy>
       </div>)}
     </div>
     <Figure image={section.image} />
   </>
 }
 
-// D — numbered pins on a screen, explained in the list below it
+// D — numbered marks on a screen, named in one line underneath
 const Annotated = ({ section }) => <>
   <Figure image={section.image}>
     <div className="case-pins">
@@ -65,14 +67,11 @@ const Annotated = ({ section }) => <>
     </div>
   </Figure>
   {section.notes?.length > 0 && <ol className="case-notes">
-    {section.notes.map((note, i) => <li key={i}>
-      <span className="case-note-no" aria-hidden="true">{i + 1}</span>
-      <div><Copy as="strong">{note.title}</Copy><Copy as="p">{note.body}</Copy></div>
-    </li>)}
+    {section.notes.map((note, i) => <li key={i}><span className="case-note-no" aria-hidden="true">{i + 1}</span><Copy>{note.title}</Copy>{note.body && <Copy as="small">{note.body}</Copy>}</li>)}
   </ol>}
 </>
 
-// E — before/after or step-by-step images
+// E — screens one after another (side by side when the band is wide)
 const Compare = ({ section }) => <ol className={`case-steps${section.steps?.length === 1 ? ' is-single' : ''}`}>
   {section.steps?.map((step, i) => <li key={i}>
     <Copy className="case-step-label">{step.label}</Copy>
@@ -81,8 +80,11 @@ const Compare = ({ section }) => <ol className={`case-steps${section.steps?.leng
   </li>)}
 </ol>
 
-// Any layout can carry a small bar chart drawn from numbers, instead of a screenshot of one.
-// Horizontal bars keep grouped values apart and stay readable in a narrow column.
+const Links = ({ section }) => <p className="case-links">
+  {section.links?.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}<span aria-hidden="true">↗</span></a>)}
+</p>
+
+// Any section can carry a bar chart drawn from numbers instead of a screenshot of one.
 function CaseChart({ chart }) {
   const max = chart.max ?? 100
   const unit = chart.unit ?? '%'
@@ -95,7 +97,7 @@ function CaseChart({ chart }) {
         <dd>{item.values.map((value, s) => <span key={s} className="case-bar" data-series={s}>
           <i style={{ width: `${(value / max) * 100}%` }} aria-hidden="true" />
           <b>{chart.series?.[s] && <span className="sr-only">{chart.series[s]} </span>}{value}{unit}</b>
-          {s === 0 && item.note && <small className="case-bar-note">{item.note}</small>}
+          {s === 0 && item.note && <small>{item.note}</small>}
         </span>)}</dd>
       </div>)}</dl>
     </div>)}
@@ -103,19 +105,29 @@ function CaseChart({ chart }) {
   </figure>
 }
 
-const layouts = { lead: Lead, cards: Cards, match: Match, annotated: Annotated, compare: Compare }
+const layouts = { lead: Lead, cards: Cards, match: Match, annotated: Annotated, compare: Compare, links: Links }
 
-export default function CaseSection({ section }) {
+export default function CaseSection({ section, id, code }) {
   const Layout = layouts[section.type] ?? Lead
-  return <div className="case" data-layout={section.type}>
-    {(section.status || section.body) && <div className="case-intro">
-      {section.status && <span className="case-status" data-status={section.status}>{statusLabel[section.status]}</span>}
-      <Copy as="p">{section.body}</Copy>
-    </div>}
+  return <section className="case-band" id={id} data-tone={section.tone ?? 'light'} data-layout={section.type} aria-labelledby={`${id}-title`}>
+    <header className="case-head">
+      <p className="case-kicker"><span className="case-code">{code}</span>{section.kicker ?? section.label}{section.status && <span className="case-status">{statusLabel[section.status]}</span>}</p>
+      <h3 id={`${id}-title`}>{isSlot(section.title) ? <Copy>{section.title}</Copy> : <Lines text={section.title} />}</h3>
+      <Copy as="p" className="case-lead">{section.body}</Copy>
+    </header>
     <Layout section={section} />
     {section.chart && <CaseChart chart={section.chart} />}
     {section.source && <p className="case-source">출처 · <Copy>{section.source}</Copy></p>}
-  </div>
+  </section>
 }
 
-export { Copy }
+// Divider between the two sides of the tape, e.g. "SIDE A · 기획".
+export function CaseSide({ letter, side }) {
+  const { name, note, image } = typeof side === 'string' ? { name: side } : side
+  return <div className="case-side" role="presentation">
+    <p className="case-side-letter">SIDE {letter}</p>
+    <p className="case-side-name">{name}</p>
+    {note && <p className="case-side-note">{note}</p>}
+    {image && <CaseImage image={image} />}
+  </div>
+}

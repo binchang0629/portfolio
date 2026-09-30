@@ -2,11 +2,13 @@
 // 그다음 src/data/projects.js에서 불러와 프로젝트 항목에 펼쳐 넣습니다: { id: '...', ...newCase }
 //
 // 공통 필드 (모든 섹션)
-//   side    'A' | 'B' — 트랙 목록에서 어느 면에 둘지. 면 이름은 아래 sides에 적습니다
-//   type    'lead' | 'cards' | 'match' | 'annotated' | 'compare'  — 레이아웃 A~E
-//   label   트랙 목록에 보일 짧은 이름 (예: '문제 발견')
-//   title   결론 문장. 항목 이름('사용자 조사')이 아니라 알게 된 것('사람들은 맛으로 고릅니다')
-//   body    본문 한두 문단
+//   side    'A' | 'B' — 어느 면에 둘지. 면이 바뀌는 곳에 'SIDE A · 이름' 띠가 들어갑니다
+//   type    'lead' | 'cards' | 'match' | 'annotated' | 'compare' | 'links'  — 레이아웃 A~E와 링크
+//   tone    'light' | 'dark' | 'brand' — 띠 배경색. 번갈아 쓰면 리듬이 생깁니다
+//   kicker  제목 위 작은 영문 머리말 (예: 'Problem', 'Feature 01')
+//   label   재생 바에 보일 짧은 이름 (예: '문제 발견')
+//   title   짧은 결론 문장. '\n'으로 줄을 나눕니다 (예: '맛으로 고르는데,\n맛을 설명하는 말이 없다')
+//   body    본문 두세 문장. 길게 쓰지 말고 이미지가 말하게 합니다
 //   status  'intent'(설계 의도) | 'verified'(확인된 결과) | 'unverified'(검증 전) — 생략 가능
 //   source  근거의 출처 — 생략 가능
 //   hidden  true면 화면에서 숨김. 해당 과정이 없던 프로젝트는 지우지 말고 숨겨 두세요
@@ -20,7 +22,9 @@
 // 조사 수치·인터뷰·테스트 결과는 실제로 한 것만 적습니다.
 export default {
   period: '[기간 입력]',
-  sides: { A: '[A면 이름, 예: 기획]', B: '[B면 이름, 예: 담당 페이지]' },
+  // theme이 있으면 케이스가 색 띠 레이아웃으로 그려집니다. 프로젝트 스타일 가이드의 색을 넣으세요
+  theme: { brand: '#[브랜드색]', dark: '#[어두운 색]', light: '#[밝은 배경]', point: '#[포인트색]' },
+  sides: { A: { name: '[A면 이름, 예: 기획]', note: '[한 줄 설명]' }, B: { name: '[B면 이름, 예: 담당 페이지]', note: '[한 줄 설명]', image: { src: '', alt: '[대표 화면]' } } },
   sections: [
     // A 대표 이미지형 — 한 장의 이미지로 설명되는 섹션 (개요, 역할, 최종 화면, 회고)
     { type: 'lead', label: '[짧은 이름]', title: '[제목 입력]', body: '[본문 입력]', image: { src: '', alt: '[대표 이미지]', caption: '[주석 입력]' } },
