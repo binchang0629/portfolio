@@ -15,6 +15,9 @@
 //   chart   숫자로 그리는 막대 차트 — 그래프 캡처 대신 쓰세요. 어느 섹션에나 붙일 수 있습니다
 //           { groups: [{ title, items: [{ label, values: [75], note: '12명', emphasis }] }], caption, unit: '%', max: 100 }
 //           비교가 필요할 때만 series: ['A', 'B']와 values: [75, 50]처럼 두 값을 넣습니다
+//           값을 '2.0'처럼 문자열로 쓰면 적힌 그대로 표시됩니다. chartFirst: true면 차트가 레이아웃보다 먼저 나옵니다
+//   type 'screens'는 휴대폰 화면 여러 장을 나란히 보여줍니다: steps: [{ label, image, caption }]
+//   이미지에 device: 'phone'을 넣으면 휴대폰 크기로 보이고, 화면 주석형에서는 주석이 옆에 놓입니다
 //
 // 이미지: { src: '/cases/<id>/screen.webp', w: 1600, h: 900, alt, caption }  — 파일은 public/cases/<id>/에 둡니다.
 //   src가 비어 있으면 alt 문구가 들어간 자리 표시가 보입니다. w, h는 원본 크기(레이아웃 흔들림 방지).

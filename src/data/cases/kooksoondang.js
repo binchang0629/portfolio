@@ -133,7 +133,6 @@ export default {
       columns: ['받은 피드백', '반영한 것'],
       rows: [
         { problem: '체크를 확인하고 넘어갈 수 있게', decision: '답을 고르기 전엔 Next·View Result를 끄고, 고른 답을 색으로 표시' },
-        { problem: '칵테일 섹션 오른쪽 위 동그라미를 주황색으로', decision: '[반영 여부 확인 후 입력]' },
       ],
       image: { src: img('quiz-last'), w: 1600, h: 774, alt: 'Q4까지 답을 모두 고른 질문지. View Result 버튼이 켜져 있다', caption: '모든 답을 고르면 View Result가 켜집니다' },
       source: '팀 중간 피드백 (8/7)',
@@ -145,7 +144,7 @@ export default {
       body: '질문부터 레시피까지 이어지는 흐름을 구현해 배포했습니다. 사용자가 추천을 믿고 제품을 고르는지는 테스트하지 못했습니다.',
       cards: [
         { kicker: '확인된 것', title: '질문 → 결과 → 음식 → 레시피', body: '배포된 페이지에서 전체 흐름이 동작합니다.' },
-        { kicker: '검증 전', title: '추천 결과의 설득력', body: '[사용성 테스트 결과 입력]' },
+        { kicker: '검증 전', title: '추천 결과의 설득력', body: '사용성 테스트는 하지 않았습니다.' },
         { kicker: '남은 과제', title: '반응형과 디자인 통일', body: '모바일·태블릿 화면, 페이지 간 분위기 통일' },
       ],
     },

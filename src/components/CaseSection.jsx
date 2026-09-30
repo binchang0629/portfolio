@@ -18,7 +18,7 @@ const statusLabel = { intent: '설계 의도', verified: '확인된 결과', unv
 function CaseImage({ image }) {
   if (!image) return null
   if (!image.src) return <div className="case-image case-image-empty"><span>{(image.alt || '[이미지 입력]').replace(/^\[|\]$/g, '')}</span></div>
-  return <img className="case-image" src={image.src} width={image.w} height={image.h} alt={image.alt ?? ''} loading="lazy" decoding="async" />
+  return <img className={`case-image${image.device === 'phone' ? ' is-phone' : ''}`} src={image.src} width={image.w} height={image.h} alt={image.alt ?? ''} loading="lazy" decoding="async" />
 }
 
 function Figure({ image, children }) {
@@ -64,8 +64,8 @@ const Match = ({ section }) => {
   </>
 }
 
-// D — numbered marks on a screen, named in one line underneath
-const Annotated = ({ section }) => <>
+// D — numbered marks on a screen, named in one line underneath (a phone screen sits beside its notes)
+const Annotated = ({ section }) => <div className="case-annotated" data-device={section.image?.device}>
   <Figure image={section.image}>
     <div className="case-pins">
       <CaseImage image={section.image} />
@@ -75,13 +75,22 @@ const Annotated = ({ section }) => <>
   {section.notes?.length > 0 && <ol className="case-notes">
     {section.notes.map((note, i) => <li key={i}><span className="case-note-no" aria-hidden="true">{i + 1}</span><Copy>{note.title}</Copy>{note.body && <Copy as="small">{note.body}</Copy>}</li>)}
   </ol>}
-</>
+</div>
 
 // E — screens one after another (side by side when the band is wide)
 const Compare = ({ section }) => <ol className={`case-steps${section.steps?.length === 1 ? ' is-single' : ''}`}>
   {section.steps?.map((step, i) => <li key={i}>
     <Copy className="case-step-label">{step.label}</Copy>
     <CaseImage image={step.image} />
+    <Copy as="p">{step.caption}</Copy>
+  </li>)}
+</ol>
+
+// F — several phone screens side by side (swipeable on small screens)
+const Screens = ({ section }) => <ol className="case-screens" style={{ '--n': section.steps?.length ?? 1 }}>
+  {section.steps?.map((step, i) => <li key={i}>
+    <CaseImage image={{ device: 'phone', ...step.image }} />
+    <Copy className="case-step-label">{step.label}</Copy>
     <Copy as="p">{step.caption}</Copy>
   </li>)}
 </ol>
@@ -101,7 +110,7 @@ function CaseChart({ chart }) {
       <dl>{group.items.map(item => <div key={item.label} className={item.emphasis ? 'is-emphasis' : undefined}>
         <dt>{item.label}</dt>
         <dd>{item.values.map((value, s) => <span key={s} className="case-bar" data-series={s}>
-          <i style={{ width: `${(value / max) * 100}%` }} aria-hidden="true" />
+          <i style={{ width: `${(Number(value) / max) * 100}%` }} aria-hidden="true" />
           <b>{chart.series?.[s] && <span className="sr-only">{chart.series[s]} </span>}{value}{unit}</b>
           {s === 0 && item.note && <small>{item.note}</small>}
         </span>)}</dd>
@@ -111,7 +120,7 @@ function CaseChart({ chart }) {
   </figure>
 }
 
-const layouts = { lead: Lead, cards: Cards, match: Match, annotated: Annotated, compare: Compare, links: Links }
+const layouts = { lead: Lead, cards: Cards, match: Match, annotated: Annotated, compare: Compare, screens: Screens, links: Links }
 
 export default function CaseSection({ section, id, code }) {
   const Layout = layouts[section.type] ?? Lead
@@ -121,8 +130,9 @@ export default function CaseSection({ section, id, code }) {
       <h3 id={`${id}-title`}>{isSlot(section.title) ? <Copy>{section.title}</Copy> : <Lines text={section.title} />}</h3>
       {section.body && (isSlot(section.body) ? <Copy as="p" className="case-lead">{section.body}</Copy> : <p className="case-lead"><Sentences text={section.body} /></p>)}
     </header>
+    {section.chart && section.chartFirst && <CaseChart chart={section.chart} />}
     <Layout section={section} />
-    {section.chart && <CaseChart chart={section.chart} />}
+    {section.chart && !section.chartFirst && <CaseChart chart={section.chart} />}
     {section.source && <p className="case-source">출처 · <Copy>{section.source}</Copy></p>}
   </section>
 }
