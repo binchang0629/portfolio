@@ -1,7 +1,7 @@
 import { motion as Motion } from 'framer-motion'
 import { ProjectCards, ProjectPreviewFrame } from './ProjectCards'
 
-export default function ContentBody({ content, onProject, onContact, titleId = 'dialog-title', headingRef, motionEnabled = false }) {
+export default function ContentBody({ content, onProject, onContact, titleId = 'dialog-title', headingRef, motionEnabled = false, transport }) {
   return <>
       <header className="dialog-heading">
         {content.parent && <span className="detail-caption">{content.eyebrow}</span>}
@@ -9,7 +9,7 @@ export default function ContentBody({ content, onProject, onContact, titleId = '
         {content.role && <p className="project-role">{content.role}{content.state && <span className="project-state">{content.state}</span>}</p>}
         {content.summary && <p className="dialog-summary">{content.summary}</p>}
       </header>
-      {content.preview && <ProjectPreviewFrame project={content} />}
+      {content.preview && <ProjectPreviewFrame project={content} transport={transport} />}
       {content.site && <div className="project-actions"><a href={content.site} target="_blank" rel="noopener noreferrer">사이트 보기 <span aria-hidden="true">↗</span></a></div>}
       {content.facts && <dl className="project-facts">{content.facts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
       {content.entries && <div className="work-entries">{content.entries.map(entry => <article key={entry.project}>

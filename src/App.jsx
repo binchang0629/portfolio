@@ -245,7 +245,7 @@ export default function App() {
           <p className="intro-copy">{profile.intro}<span className="intro-guide"><br />{profile.guide}</span></p>
         </header>
         <div className="tape-stage" aria-label="포트폴리오 테이프 선택" inert={arriving || undefined}>
-          {availableDeskTracks.map(track => <Motion.button key={`${track.id}-${cycle}`} className={`tape tape-${track.id} ${archivePreview && draggedId === track.id ? 'is-storage-preview' : ''}`} aria-label={`${track.number} ${track.title} 테이프 넣기`} style={{ '--left': `${deskPositions[track.id]?.left ?? track.x / 1536 * 100}%`, '--top': `${deskPositions[track.id]?.top ?? track.y / 1024 * 100}%`, '--rotation': `${deskPositions[track.id] ? 0 : track.rotate}deg` }} drag={!isMobile && !deskSwap.busy} disabled={deskSwap.busy} dragConstraints={stageRef} dragMomentum={false} onDragStart={() => { dragging.current = true; setDraggedId(track.id) }} onDrag={(_e, info) => setDropTarget(previewDrop(info, track.id))} onDragEnd={(_e, info) => onDragEnd(info, track)} onClick={() => { if (!dragging.current) insertTrack(track.id) }} whileHover={reducedMotion ? undefined : { scale: 1.025 }} whileTap={{ scale: 1.01 }}>
+          {availableDeskTracks.map(track => <Motion.button key={`${track.id}-${cycle}`} className={`tape tape-${track.id} ${archivePreview && draggedId === track.id ? 'is-storage-preview' : ''}`} aria-label={`${track.number} ${track.title} 테이프 넣기`} style={{ '--left': `${deskPositions[track.id]?.left ?? track.x / 1536 * 100}%`, '--top': `${deskPositions[track.id]?.top ?? track.y / 1024 * 100}%`, '--rotation': `${deskPositions[track.id] ? 0 : track.rotate}deg`, '--float-delay': `${allTracks.indexOf(track) * .3}s` }} drag={!isMobile && !deskSwap.busy} disabled={deskSwap.busy} dragConstraints={stageRef} dragMomentum={false} onDragStart={() => { dragging.current = true; setDraggedId(track.id) }} onDrag={(_e, info) => setDropTarget(previewDrop(info, track.id))} onDragEnd={(_e, info) => onDragEnd(info, track)} onClick={() => { if (!dragging.current) insertTrack(track.id) }} whileHover={reducedMotion ? undefined : { scale: 1.025 }} whileTap={{ scale: 1.01 }}>
             <div className="tape-magnet"><div className="tape-orientation"><Cassette track={track} {...tapePositions[track.id]} /></div></div>
           </Motion.button>)}
         </div>
@@ -289,8 +289,9 @@ export default function App() {
     <p className="sr-only" aria-live="polite">{status}</p>
     {journalOpen && <NotebookDialog triggerRef={journalButton} entries={notes.entries} goals={memo.checklist} reducedMotion={reducedMotion} mobile={isMobile} onClose={() => setJournalOpen(false)} onProject={project => {
       setJournalOpen(false)
-      const track = tracks.find(item => item.projects?.some(candidate => candidate.id === project.id))
-      if (track) { loadTrack(track.id); setReading(track); setReaderContent({ ...project, parent: track }); setTransport('playing') }
+      // Every project has its own tape, so a note opens that tape directly.
+      const track = tracks.find(item => item.id === project.id)
+      if (track) { loadTrack(track.id); setReading(track); setReaderContent(track); setTransport('playing') }
     }} />}
     {dialog && <ContentDialog key={dialog.id || dialog.title || dialog.heading} content={dialog} onContact={() => setDialog(contact)} onClose={() => setDialog(null)} onProject={project => setDialog({ ...project, parent: dialog })} onBack={() => setDialog(dialog.parent)} />}
   </>

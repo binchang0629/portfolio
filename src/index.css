@@ -161,7 +161,6 @@
 @media(min-width:761px){
  .desk:not([data-arriving]) .tape{animation:tape-float-shadow 3.8s ease-in-out var(--float-delay,0s) infinite}
  .desk:not([data-arriving]) .tape-orientation{animation:tape-float 3.8s ease-in-out var(--float-delay,0s) infinite}
- .tape-team{--float-delay:.35s}.tape-design{--float-delay:.7s}.tape-branding{--float-delay:1.05s}.tape-next{--float-delay:1.4s}
  .tape:hover,.tape:hover .tape-orientation,.tape:active,.tape:active .tape-orientation{animation-play-state:paused}
 }
 @keyframes tape-float{0%,100%{translate:0 0}50%{translate:0 -3.5%}}

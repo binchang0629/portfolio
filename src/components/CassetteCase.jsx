@@ -1,13 +1,11 @@
 import { useId } from 'react'
 import { archiveTray } from '../assets/archive/tray-geometry'
 
-const palette = { about: '#bdd6ec', team: '#e8c5d4', design: '#c1dfd0', branding: '#d2c8e8', next: '#e9dbaf' }
-
 // Only the narrow edge is visible from the shared camera above the desk.
 export default function CassetteCase({ track, occupied, horizontal = false, readableLabel = false }) {
   const prefix = useId().replaceAll(':', '')
   const { width: w, height: h } = archiveTray.spine
-  const tint = palette[track.id] ?? '#cbd8e4'
+  const tint = track.caseColor ?? '#cbd8e4'
   return <g data-part="cassette-case" data-occupied={occupied}>
     <defs>
       <linearGradient id={`${prefix}-glass`} x1={horizontal ? "100%" : "0%"} x2={horizontal ? "0%" : "100%"}>

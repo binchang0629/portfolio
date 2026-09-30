@@ -60,7 +60,7 @@ export default function StoryReader({ track, content, tracks, cases, tapePositio
       <header className="reader-toolbar">{content.parent ? <button className="reader-back" onClick={onBack} aria-label={`${content.parent.heading || content.parent.title} 목록으로 돌아가기`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg><span>{content.parent.heading || content.parent.title}</span></button> : <span className="reader-section-label">{track.eyebrow}</span>}</header>
       <div className="reader-scroll" ref={pane} tabIndex={0} aria-label="설명 페이지 스크롤">
         <Motion.article className={`reader-article content-${content.kind || 'story'}`} key={contentKey} initial={reducedMotion ? false : { opacity: .8 }} animate={{ opacity: 1 }} transition={{ duration: reducedMotion ? 0 : .16, ease: 'easeOut' }}>
-          <ContentBody content={content} titleId="reader-title" headingRef={heading} onProject={onProject} onContact={onContact} motionEnabled={false} />
+          <ContentBody content={content} titleId="reader-title" headingRef={heading} onProject={onProject} onContact={onContact} motionEnabled={false} transport={swap.busy ? 'stopped' : transport} />
           <footer className="reader-page-footer"><span>{track.number} / {String(tracks.length).padStart(2, '0')} · {track.title}</span>{index < tracks.length - 1 && <button disabled={swap.busy} onClick={() => change(1)}>다음 이야기 <span aria-hidden="true">→</span></button>}</footer>
         </Motion.article>
       </div>

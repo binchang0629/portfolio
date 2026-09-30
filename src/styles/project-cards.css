@@ -13,7 +13,7 @@
 .project-media-badge{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:#f9fbffeb;box-shadow:0 1px 3px #3453711a;font-size:11px;line-height:1.6;color:#315a8c}
 .project-media[data-active=true] .project-media-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#6a967e}
 .project-media-progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:#3453711a;opacity:0;transition:opacity 200ms ease-out}
-.project-media[data-active=true] .project-media-progress{opacity:1}
+.project-media-progress[data-visible=true]{opacity:1}
 .project-media-progress i{display:block;height:100%;background:#6289b4;transform-origin:left;transition:transform 300ms linear}
 .project-media.is-empty{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:22px 24px;background:repeating-linear-gradient(135deg,#f1f5fa 0 12px,#ebf0f7 12px 24px)}
 .project-media-empty-title{font-size:20px;font-weight:600;line-height:1.4;letter-spacing:-.3px;color:#8196ad;word-break:keep-all}
