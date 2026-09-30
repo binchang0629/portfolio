@@ -10,6 +10,9 @@ const Copy = ({ as: Tag = 'span', className, children, ...rest }) => {
 }
 // Titles may break lines on purpose with "\n".
 const Lines = ({ text }) => text.split('\n').map((line, i) => <span key={i} className="case-line">{line}</span>)
+// Body copy starts a new line at every sentence (or at an explicit "\n"), so a line never breaks
+// mid-sentence just because the column ran out.
+const sentences = text => text.split('\n').flatMap(part => part.split(/(?<=[.!?])\s+(?=\S)/))
 
 const statusLabel = { intent: '설계 의도', verified: '확인된 결과', unverified: '검증 전' }
 
@@ -113,7 +116,7 @@ export default function CaseSection({ section, id, code }) {
     <header className="case-head">
       <p className="case-kicker"><span className="case-code">{code}</span>{section.kicker ?? section.label}{section.status && <span className="case-status">{statusLabel[section.status]}</span>}</p>
       <h3 id={`${id}-title`}>{isSlot(section.title) ? <Copy>{section.title}</Copy> : <Lines text={section.title} />}</h3>
-      <Copy as="p" className="case-lead">{section.body}</Copy>
+      {section.body && (isSlot(section.body) ? <Copy as="p" className="case-lead">{section.body}</Copy> : <p className="case-lead">{sentences(section.body).map((line, i) => <span key={i} className="case-line">{line}</span>)}</p>)}
     </header>
     <Layout section={section} />
     {section.chart && <CaseChart chart={section.chart} />}

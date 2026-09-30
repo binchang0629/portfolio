@@ -10,13 +10,13 @@
 .case-band>*+*{margin-top:44px}
 
 /* heading block */
-.case-head{display:grid;justify-items:center;gap:14px;max-width:620px;margin:0 auto;text-align:center}
+.case-head{display:grid;justify-items:center;gap:14px;max-width:780px;margin:0 auto;text-align:center}
 .case-kicker{display:flex;align-items:center;gap:10px;margin:0;font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--kick)}
 .case-code{font:500 11px/1 'JetBrains Mono Label',monospace;letter-spacing:.06em;opacity:.7}
 .case-status{padding-left:10px;border-left:1px solid currentColor;font-size:12.5px;font-weight:500;letter-spacing:0;opacity:.8}
 .case-head h3{margin:0;font-size:32px;font-weight:700;line-height:1.35;letter-spacing:-.8px;color:var(--ink);word-break:keep-all}
-.case-line{display:block}
-.case-lead{margin:0;max-width:34em;font-size:16px;line-height:1.8;color:var(--sub);word-break:keep-all}
+.case-line{display:block;text-wrap:balance}
+.case-lead{margin:0;font-size:16px;line-height:1.8;color:var(--sub);word-break:keep-all}
 
 /* images */
 .case-figure{display:grid;justify-items:center;gap:14px;margin:44px 0 0}
