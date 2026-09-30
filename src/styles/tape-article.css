@@ -1,0 +1,104 @@
+/* Reader page as a cassette J-card: label strip, condensed title, credits row, A/B chapters with a sticky tracklist.
+   Shares the desk label's ink, hairlines and label fonts; each tape brings its own accent colour. */
+.story-reader{--tape-ink:#1e2733;--tape-sub:#5a6776;--tape-hair:#d3dbe4;--tape-body:#3a4757}
+
+/* Now playing bar */
+.reader-now{display:flex;align-items:center;gap:10px;min-width:0;margin:0;font:500 11px/1.4 'JetBrains Mono Label',monospace;letter-spacing:.08em;color:var(--tape-sub);white-space:nowrap}
+.reader-now i{flex-shrink:0;width:7px;height:7px;border-radius:50%;background:#a7b3c0}
+.reader-now[data-playing=true] i{background:#d0532a;box-shadow:0 0 0 3px #d0532a1f}
+.reader-now b{font-weight:500;color:var(--tape-ink)}
+.reader-now-chapter{overflow:hidden;text-overflow:ellipsis;font-family:var(--font-family);letter-spacing:0;color:var(--tape-sub)}
+.reader-now-chapter::before{content:'— ';color:var(--tape-hair)}
+
+.tape-article{max-width:1040px;padding:30px 0 40px;color:var(--tape-ink)}
+
+/* Opening */
+.tape-strip{display:flex;align-items:center;gap:10px}
+.tape-play{display:grid;place-items:center;flex-shrink:0;width:26px;height:26px;background:var(--accent)}
+.tape-play i{width:0;height:0;margin-left:2px;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.tape-no{font:800 26px/1 'Archivo Label',sans-serif}
+.tape-rule{flex:1;height:1px;background:var(--tape-hair)}
+.tape-count{font:500 11px/1 'JetBrains Mono Label',monospace;letter-spacing:.08em;color:var(--tape-sub)}
+.tape-title-en{margin:18px 0 0;font:800 clamp(52px,5.4vw,96px)/.86 'Archivo Label',sans-serif;letter-spacing:-.005em;overflow-wrap:anywhere}
+.tape-title{margin:14px 0 0;font-size:26px;font-weight:700;line-height:1.35;letter-spacing:-.6px;word-break:keep-all;color:var(--tape-ink)}
+.tape-title:focus{outline:none}
+.tape-role{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--tape-sub)}
+.tape-state{display:inline-flex;align-items:center;gap:6px;padding:1px 8px;border:1px solid var(--tape-hair);border-radius:999px;font-size:12px;color:var(--tape-ink)}
+.tape-state::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+/* Credits row */
+.tape-credits{display:flex;align-items:stretch;gap:24px;margin-top:28px;border-top:1px solid var(--tape-ink);border-bottom:1px solid var(--tape-hair)}
+.tape-meta{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin:0}
+.tape-meta>div{padding:14px 18px 16px 0;min-width:0}
+.tape-meta>div+div{padding-left:18px;border-left:1px solid var(--tape-hair)}
+.tape-meta dt{font:500 10.5px/1.4 'JetBrains Mono Label',var(--font-family),monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--tape-sub)}
+.tape-meta dd{margin:6px 0 0;font-size:15px;line-height:1.55;color:var(--tape-ink);word-break:keep-all}
+.tape-live{align-self:center;flex-shrink:0;display:grid;place-items:center;align-content:center;width:84px;height:84px;margin:12px 0;border-radius:50%;background:var(--tape-ink);color:#fff;font-size:13px;font-weight:600;line-height:1.2;text-decoration:none;transition:transform 200ms ease-out,background 200ms ease-out}
+.tape-live span[aria-hidden]{font-size:16px}
+.tape-live:hover{transform:scale(1.06);background:var(--accent)}
+
+.tape-lead{max-width:38em;margin:28px 0 0;font-size:19px;line-height:1.7;letter-spacing:-.2px;color:var(--tape-ink);word-break:keep-all}
+.tape-article .project-preview-frame{max-width:none;margin-top:32px}
+
+/* Chapters + J-card flap */
+.tape-body{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:56px;margin-top:44px}
+.tape-chapter{padding:26px 0 30px;border-top:1px solid var(--tape-hair);scroll-margin-top:12px}
+.tape-chapter:first-child{border-top-color:var(--tape-ink)}
+.tape-chapter header{display:flex;align-items:baseline;gap:14px}
+.tape-code{flex-shrink:0;min-width:30px;font:500 12px/1 'JetBrains Mono Label',monospace;letter-spacing:.06em;color:var(--accent);filter:saturate(1.2) brightness(.8)}
+.tape-chapter h3{margin:0;font-size:21px;font-weight:700;line-height:1.4;letter-spacing:-.4px;color:var(--tape-ink);word-break:keep-all}
+.tape-chapter-body{margin:14px 0 0 44px}
+.tape-chapter-body p{margin:0;max-width:40em;font-size:16.5px;line-height:1.8;color:var(--tape-body);word-break:keep-all}
+.tape-chapter-body ul{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.tape-chapter-body li{position:relative;padding-left:20px;font-size:16.5px;line-height:1.75;color:var(--tape-body);word-break:keep-all}
+.tape-chapter-body ul li::before{content:'';position:absolute;left:2px;top:.72em;width:7px;height:7px;background:var(--accent)}
+.tape-flow{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
+.tape-flow li{display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border:1px solid var(--tape-hair);background:#fff;font-size:15px;color:var(--tape-ink)}
+.tape-flow li span{font:500 11px/1 'JetBrains Mono Label',monospace;color:var(--tape-sub)}
+.tape-source{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:6px;font-size:15px;font-weight:600;color:var(--tape-ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px}
+
+.tape-tracklist{position:sticky;top:18px;align-self:start;display:grid;gap:22px;padding-top:4px}
+.tape-side{margin:0 0 8px;padding-bottom:8px;border-bottom:1px solid var(--tape-ink);font:500 10.5px/1 'JetBrains Mono Label',monospace;letter-spacing:.14em;color:var(--tape-ink)}
+.tape-tracklist ol{display:grid;margin:0;padding:0;list-style:none}
+.tape-tracklist button{display:flex;align-items:baseline;gap:10px;width:100%;min-height:36px;padding:7px 0 7px 10px;border-left:2px solid transparent;background:transparent;text-align:left;font-size:13.5px;line-height:1.45;color:var(--tape-sub);transition:color 160ms ease-out,border-color 160ms ease-out}
+.tape-tracklist button span{flex-shrink:0;font:500 11px/1 'JetBrains Mono Label',monospace}
+.tape-tracklist button:hover{color:var(--tape-ink)}
+.tape-tracklist button.is-active{border-left-color:var(--accent);color:var(--tape-ink);font-weight:600}
+
+.tape-contact{margin-top:28px}
+.tape-contact button{display:inline-flex;align-items:center;gap:14px;min-height:48px;padding:0 22px;background:var(--tape-ink);color:#fff;font-size:15px;font-weight:600}
+
+/* Next tape */
+.tape-next{display:grid;gap:6px;width:100%;margin-top:56px;padding:22px 0 8px;border-top:8px solid var(--next);background:transparent;text-align:left;color:var(--tape-ink)}
+.tape-next-label{font:500 11px/1 'JetBrains Mono Label',monospace;letter-spacing:.14em;color:var(--tape-sub)}
+.tape-next-title{display:flex;align-items:center;gap:14px;font:800 clamp(34px,3.4vw,56px)/1 'Archivo Label',sans-serif;transition:transform 220ms cubic-bezier(.22,1,.36,1)}
+.tape-next-title i{width:0;height:0;border-left:.42em solid var(--next);border-top:.26em solid transparent;border-bottom:.26em solid transparent}
+.tape-next-ko{font-size:15px;color:var(--tape-sub)}
+.tape-next:hover:not(:disabled) .tape-next-title{transform:translateX(8px)}
+.tape-next:disabled{opacity:.5;cursor:default}
+
+@media(min-width:761px) and (max-width:1100px){
+ .tape-body{grid-template-columns:1fr}
+ .tape-tracklist{display:none}
+ .tape-chapter-body{margin-left:0}
+}
+@media(max-width:760px){
+ .reader-now{font-size:10px;gap:8px}
+ .reader-now-chapter{display:none}
+ .tape-article{padding:12px 0 28px}
+ .tape-title-en{font-size:clamp(42px,13vw,60px)}
+ .tape-title{font-size:21px}
+ .tape-credits{flex-direction:column;gap:0}
+ .tape-meta{grid-template-columns:1fr}
+ .tape-meta>div+div{padding-left:0;border-left:0;border-top:1px solid var(--tape-hair)}
+ .tape-live{width:auto;height:auto;margin:0 0 14px;padding:12px 18px;border-radius:999px;display:flex;gap:8px;justify-self:start;align-self:flex-start}
+ .tape-lead{font-size:17px}
+ .tape-body{grid-template-columns:1fr;margin-top:32px}
+ .tape-tracklist{display:none}
+ .tape-chapter-body{margin-left:0}
+ .tape-chapter h3{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){
+ .tape-live,.tape-next-title{transition:none}
+ .tape-live:hover,.tape-next:hover:not(:disabled) .tape-next-title{transform:none}
+}

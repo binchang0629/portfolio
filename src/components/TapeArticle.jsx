@@ -1,0 +1,84 @@
+import { useEffect, useState } from 'react'
+import { ProjectPreviewFrame } from './ProjectCards'
+
+// Sections are laid out like a cassette's J-card: the first half is side A, the rest side B.
+const sideCodes = sections => {
+  const half = Math.ceil(sections.length / 2)
+  return sections.map((_, i) => i < half ? `A${i + 1}` : `B${i - half + 1}`)
+}
+const chapterIds = (track, sections) => sideCodes(sections).map(code => `${track.id}-${code.toLowerCase()}`)
+
+// The reading page for one tape: label strip, big title, credits row, then chapters with a J-card tracklist.
+export default function TapeArticle({ track, content, number, total, nextTrack, nextLabel, busy, headingRef, scrollRoot, transport, reducedMotion, onNext, onContact, onChapter }) {
+  const sections = content.sections ?? []
+  const codes = sideCodes(sections)
+  const ids = chapterIds(track, sections)
+  const [active, setActive] = useState(0)
+
+  // The chapter whose heading has passed the upper third of the page is the one "playing".
+  useEffect(() => {
+    const root = scrollRoot.current
+    const targets = chapterIds(track, content.sections ?? [])
+    if (!root || !targets.length) return
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).map(entry => targets.indexOf(entry.target.id))
+      if (visible.length) setActive(Math.min(...visible))
+    }, { root, rootMargin: '0px 0px -65% 0px' })
+    targets.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el) })
+    return () => observer.disconnect()
+  }, [scrollRoot, track, content])
+
+  useEffect(() => {
+    const list = content.sections ?? []
+    onChapter?.(list[active] ? { code: sideCodes(list)[active], title: list[active].title } : null)
+  }, [active, content, onChapter])
+
+  const jump = i => document.getElementById(ids[i])?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
+
+  return <article className="tape-article" style={{ '--accent': track.accent }}>
+    <header className="tape-opening">
+      <div className="tape-strip" aria-hidden="true"><span className="tape-play"><i /></span><span className="tape-no">{track.number}</span><span className="tape-rule" /><span className="tape-count">{number} / {total}</span></div>
+      <p className="tape-title-en" aria-hidden="true">{track.title}</p>
+      <h2 className="tape-title" id="reader-title" ref={headingRef} tabIndex={-1}>{content.heading || content.title}</h2>
+      {content.role && <p className="tape-role">{content.role}{content.state && <span className="tape-state">{content.state}</span>}</p>}
+    </header>
+
+    {(content.facts || content.site) && <div className="tape-credits">
+      {content.facts && <dl className="tape-meta">{content.facts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
+      {content.site && <a className="tape-live" href={content.site} target="_blank" rel="noopener noreferrer"><span>사이트</span><span aria-hidden="true">↗</span></a>}
+    </div>}
+
+    {content.summary && <p className="tape-lead">{content.summary}</p>}
+    {content.preview && <ProjectPreviewFrame project={content} transport={transport} />}
+
+    {sections.length > 0 && <div className="tape-body">
+      <div className="tape-chapters">
+        {sections.map((section, i) => <section key={section.title} id={ids[i]} className="tape-chapter" aria-labelledby={`${ids[i]}-title`}>
+          <header><span className="tape-code">{codes[i]}</span><h3 id={`${ids[i]}-title`}>{section.title}</h3></header>
+          <div className="tape-chapter-body">
+            {section.body && <p>{section.body}</p>}
+            {section.items && <ul>{section.items.map(item => <li key={item}>{item}</li>)}</ul>}
+            {section.flow && <ol className="tape-flow">{section.flow.map((step, n) => <li key={step}><span>{String(n + 1).padStart(2, '0')}</span>{step}</li>)}</ol>}
+            {section.link && <a className="tape-source" href={section.link} target="_blank" rel="noreferrer">{section.linkLabel} <span aria-hidden="true">↗</span></a>}
+          </div>
+        </section>)}
+      </div>
+      <nav className="tape-tracklist" aria-label="트랙 목록">
+        {['A', 'B'].map(side => codes.some(code => code.startsWith(side)) && <div key={side}>
+          <p className="tape-side">SIDE {side}</p>
+          <ol>{sections.map((section, i) => codes[i].startsWith(side) && <li key={section.title}>
+            <button className={i === active ? 'is-active' : ''} aria-current={i === active ? 'true' : undefined} onClick={() => jump(i)}><span>{codes[i]}</span>{section.title}</button>
+          </li>)}</ol>
+        </div>)}
+      </nav>
+    </div>}
+
+    {content.contact && <div className="tape-contact"><button onClick={onContact}>편지 보내기 <span aria-hidden="true">↗</span></button></div>}
+
+    {nextTrack && <button className="tape-next" style={{ '--next': nextTrack.accent }} disabled={busy} onClick={onNext}>
+      <span className="tape-next-label">{nextLabel}</span>
+      <span className="tape-next-title"><i aria-hidden="true" />{nextTrack.number} {nextTrack.title}</span>
+      <span className="tape-next-ko">{nextTrack.heading}</span>
+    </button>}
+  </article>
+}

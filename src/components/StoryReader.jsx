@@ -3,6 +3,7 @@ import { motion as Motion } from 'framer-motion'
 import IntegratedPlayer from './IntegratedPlayer'
 import BrandMark from './BrandMark'
 import ContentBody from './ContentBody'
+import TapeArticle from './TapeArticle'
 import ReaderShelf from './ReaderShelf'
 import useTapeSwap from '../hooks/useTapeSwap'
 import { coherentPlayer } from '../assets/player/coherent-geometry'
@@ -12,6 +13,7 @@ export default function StoryReader({ track, content, tracks, cases, tapePositio
   const heading = useRef(null)
   const player = useRef(null)
   const [playerPreview, setPlayerPreview] = useState(false)
+  const [chapter, setChapter] = useState(null)
   const swap = useTapeSwap({ track, mechanism, reducedMotion, onChange, onBusyChange: onTapeBusyChange })
   const leaveReader = () => { swap.cancel(); onDesk() }
   const contentKey = content.id || track.id
@@ -21,6 +23,9 @@ export default function StoryReader({ track, content, tracks, cases, tapePositio
     pane.current.scrollTo({ top: 0, behavior: 'instant' })
     heading.current?.focus({ preventScroll: true })
   }, [contentKey])
+  // Tapes read as a J-card; the older list/checklist contents keep the plain article.
+  const usesTapeLayout = !content.parent && !content.projects && !content.checklist && !content.entries
+  const nextTrack = tracks[index + 1] ?? tracks[0]
   const change = offset => { if (tracks[index + offset]) swap.changeTrack(tracks[index + offset]) }
   const transportLabel = { playing: '재생 중', stopped: '정지', forwarding: '빨리 감는 중', rewinding: '되감는 중' }[transport]
   const transition = reducedMotion ? { duration: 0 } : { duration: .36, ease: [.22, 1, .36, 1] }
@@ -57,11 +62,15 @@ export default function StoryReader({ track, content, tracks, cases, tapePositio
       <ReaderShelf tapePositions={tapePositions} cases={cases} loadedId={track.id} playerRef={player} onChange={swap.changeTrack} busy={swap.busy} onPreview={setPlayerPreview} mobile={mobile} />
     </aside>
     <Motion.section className="reader-page" initial={reducedMotion ? false : { opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ ...transition, delay: reducedMotion ? 0 : .12 }}>
-      <header className="reader-toolbar">{content.parent ? <button className="reader-back" onClick={onBack} aria-label={`${content.parent.heading || content.parent.title} 목록으로 돌아가기`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg><span>{content.parent.heading || content.parent.title}</span></button> : <span className="reader-section-label">{track.eyebrow}</span>}</header>
+      <header className="reader-toolbar">{content.parent ? <button className="reader-back" onClick={onBack} aria-label={`${content.parent.heading || content.parent.title} 목록으로 돌아가기`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg><span>{content.parent.heading || content.parent.title}</span></button> : <p className="reader-now" data-playing={!swap.busy && transport === 'playing'}><i aria-hidden="true" /><span>NOW PLAYING</span><b>{track.number} {track.title}</b>{chapter && <span className="reader-now-chapter">{chapter.code} · {chapter.title}</span>}</p>}</header>
       <div className="reader-scroll" ref={pane} tabIndex={0} aria-label="설명 페이지 스크롤">
         <Motion.article className={`reader-article content-${content.kind || 'story'}`} key={contentKey} initial={reducedMotion ? false : { opacity: .8 }} animate={{ opacity: 1 }} transition={{ duration: reducedMotion ? 0 : .16, ease: 'easeOut' }}>
-          <ContentBody content={content} titleId="reader-title" headingRef={heading} onProject={onProject} onContact={onContact} motionEnabled={false} transport={swap.busy ? 'stopped' : transport} />
-          <footer className="reader-page-footer"><span>{track.number} / {String(tracks.length).padStart(2, '0')} · {track.title}</span>{index < tracks.length - 1 && <button disabled={swap.busy} onClick={() => change(1)}>다음 이야기 <span aria-hidden="true">→</span></button>}</footer>
+          {usesTapeLayout
+            ? <TapeArticle track={track} content={content} number={track.number} total={String(tracks.length).padStart(2, '0')} nextTrack={nextTrack} nextLabel={index < tracks.length - 1 ? 'NEXT TAPE' : 'FIRST TAPE'} busy={swap.busy} headingRef={heading} scrollRoot={pane} transport={swap.busy ? 'stopped' : transport} reducedMotion={reducedMotion} onNext={() => swap.changeTrack(nextTrack)} onContact={onContact} onChapter={setChapter} />
+            : <>
+              <ContentBody content={content} titleId="reader-title" headingRef={heading} onProject={onProject} onContact={onContact} motionEnabled={false} transport={swap.busy ? 'stopped' : transport} />
+              <footer className="reader-page-footer"><span>{track.number} / {String(tracks.length).padStart(2, '0')} · {track.title}</span>{index < tracks.length - 1 && <button disabled={swap.busy} onClick={() => change(1)}>다음 이야기 <span aria-hidden="true">→</span></button>}</footer>
+            </>}
         </Motion.article>
       </div>
     </Motion.section>
