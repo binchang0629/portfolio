@@ -29,7 +29,8 @@ export const tracks = [
   projectTape(projects[1], { number: '03', title: 'WALGAWAL BOT', subtitle: 'Judge it together.', tint: 88, caseColor: '#e8c5d4', sticker: 'team', x: 1089, y: 365, rotate: 16 }),
   projectTape(personalProjects[0], { number: '04', title: 'KORAIL', subtitle: 'Booking, redesigned.', tint: 140, caseColor: '#efcdbf', sticker: 'design', x: 410, y: 666, rotate: 8 }),
   projectTape(personalProjects[1], { number: '05', title: 'PLANT CARE', subtitle: 'Grow with records.', tint: -65, caseColor: '#c1dfd0', sticker: 'next', x: 871, y: 655, rotate: -10 }),
-  { id: 'branding', number: '06', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, caseColor: '#d2c8e8', x: 1110, y: 120, rotate: -6,
+  // Starts in the archive; x/y is where it lands when taken out.
+  { id: 'branding', number: '06', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, caseColor: '#d2c8e8', stored: true, x: 96, y: 372, rotate: -5,
     eyebrow: '06 / BRANDING', heading: '이 포트폴리오를 만든 과정',
     summary: '카세트에 프로젝트를 담고, 플레이어로 선택해 보는 개인 웹사이트입니다.',
     facts: [{ label: '작업', value: '개인 포트폴리오 · 제작 중' }, { label: '구현', value: 'Vite · React · JavaScript · CSS' }],

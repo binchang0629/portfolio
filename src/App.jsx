@@ -23,7 +23,12 @@ const cassetteViewportWidth = Number(topviewCassette.viewBox.split(' ')[2])
 const playerViewportWidth = Number(coherentPlayer.viewBox.split(' ')[2])
 const tapeToPlayerRatio = cassetteViewportWidth * topviewCassette.insertion.scale / playerViewportWidth
 const allTracks = [...tracks, ...archiveTracks]
-const initialStoredSlots = () => Array.from({ length: archiveTray.capacity }, (_, i) => archiveTracks[i]?.id ?? null)
+// Tapes marked `stored` start in their own numbered slot; archive-only tapes fill the rest.
+const initialStoredSlots = () => {
+  const slots = Array.from({ length: archiveTray.capacity }, (_, i) => tracks[i]?.stored ? tracks[i].id : null)
+  archiveTracks.forEach(track => { const free = slots.indexOf(null); if (free >= 0) slots[free] = track.id })
+  return slots
+}
 const subscribeScreen = listener => {
   const media = window.matchMedia('(max-width: 760px)')
   media.addEventListener('change', listener)
