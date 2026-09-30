@@ -94,7 +94,8 @@ function CaseChart({ chart }) {
         <dt>{item.label}</dt>
         <dd>{item.values.map((value, s) => <span key={s} className="case-bar" data-series={s}>
           <i style={{ width: `${(value / max) * 100}%` }} aria-hidden="true" />
-          <b><span className="sr-only">{chart.series?.[s]} </span>{value}{unit}</b>
+          <b>{chart.series?.[s] && <span className="sr-only">{chart.series[s]} </span>}{value}{unit}</b>
+          {s === 0 && item.note && <small className="case-bar-note">{item.note}</small>}
         </span>)}</dd>
       </div>)}</dl>
     </div>)}

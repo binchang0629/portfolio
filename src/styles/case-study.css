@@ -49,6 +49,9 @@ p.case-slot,strong.case-slot,h3.case-slot{display:inline-block}
 .case-bar{display:flex;align-items:center;gap:8px;min-height:14px}
 .case-bar i{flex:none;max-width:calc(100% - 48px);height:10px;border-radius:0 2px 2px 0;background:var(--tape-ink)}
 .case-bar[data-series='1'] i{background:var(--accent)}
+.case-chart:not(:has(.case-chart-legend)) .case-bar i{height:14px;max-width:calc(100% - 84px)}
+.case-chart:not(:has(.case-chart-legend)) .is-emphasis .case-bar i{background:var(--accent)}
+.case-bar-note{font-size:12px;white-space:nowrap;color:var(--tape-sub)}
 .case-bar b{font:500 12px/1 'JetBrains Mono Label',var(--font-family),monospace;color:var(--tape-ink)}
 .case-chart figcaption{font-size:13.5px;line-height:1.5;color:var(--tape-sub)}
 

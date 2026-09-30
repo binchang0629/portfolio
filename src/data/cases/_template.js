@@ -11,7 +11,8 @@
 //   source  근거의 출처 — 생략 가능
 //   hidden  true면 화면에서 숨김. 해당 과정이 없던 프로젝트는 지우지 말고 숨겨 두세요
 //   chart   숫자로 그리는 막대 차트 — 그래프 캡처 대신 쓰세요. 어느 섹션에나 붙일 수 있습니다
-//           { series: ['설문 1', '설문 2'], groups: [{ title, items: [{ label, values: [75, 50], emphasis }] }], caption, unit: '%', max: 100 }
+//           { groups: [{ title, items: [{ label, values: [75], note: '12명', emphasis }] }], caption, unit: '%', max: 100 }
+//           비교가 필요할 때만 series: ['A', 'B']와 values: [75, 50]처럼 두 값을 넣습니다
 //
 // 이미지: { src: '/cases/<id>/screen.webp', w: 1600, h: 900, alt, caption }  — 파일은 public/cases/<id>/에 둡니다.
 //   src가 비어 있으면 alt 문구가 들어간 자리 표시가 보입니다. w, h는 원본 크기(레이아웃 흔들림 방지).

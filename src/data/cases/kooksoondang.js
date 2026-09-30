@@ -30,28 +30,29 @@ export default {
       body: '팀이 진행한 설문 두 건 모두에서 선택 기준은 ‘맛·풍미’에 모였습니다. 맛은 사기 전에 직접 확인하기 어려운 정보인데, 기존 사이트에는 이를 말로 풀어 주는 내용이 부족했습니다. 혼자 마신다는 응답이 없었기 때문에, 함께 마시는 상황까지 고려한 정보가 필요하다고 판단했습니다.',
       cards: [
         { value: '14 / 16', title: '새로운 술을 시도할 의향', body: '응답자 16명 중 14명이 있다고 답했습니다.' },
-        { value: '1순위', title: '선택 기준은 맛·풍미', body: '두 설문 모두 같은 결과였습니다.' },
-        { value: '0%', title: '혼술 응답', body: '두 설문 모두 모임·파티가 75%였습니다.' },
+        { value: '1순위', title: '선택 기준은 맛·풍미', body: '56%로, 두 설문 모두 1순위였습니다.' },
+        { value: '0%', title: '혼술 응답', body: '모임·파티가 75%로 가장 많았습니다.' },
       ],
+      // 두 설문(4명, 12명)의 응답 수를 더해 16명 기준 비율로 합쳤습니다.
+      // 슬라이드 비율 → 응답 수: 설문 1은 25% 단위(4명), 설문 2는 17%가 12명 중 2명이라 12명.
       chart: {
-        series: ['설문 1', '설문 2'],
         groups: [
           { title: '주로 마시는 상황', items: [
-            { label: '모임·파티', values: [75, 75], emphasis: true },
-            { label: '의식·행사', values: [25, 17] },
-            { label: '혼술', values: [0, 0], emphasis: true },
+            { label: '모임·파티', values: [75], note: '12명', emphasis: true },
+            { label: '의식·행사', values: [19], note: '3명' },
+            { label: '혼술', values: [0], note: '0명', emphasis: true },
           ] },
           { title: '술을 고를 때 보는 것 (복수 선택)', items: [
-            { label: '맛·풍미', values: [75, 50], emphasis: true },
-            { label: '패키지·디자인', values: [0, 25] },
-            { label: '브랜드 스토리', values: [50, 0] },
-            { label: '가격', values: [25, 17] },
-            { label: '음식과의 페어링', values: [25, 17], emphasis: true },
+            { label: '맛·풍미', values: [56], note: '9명', emphasis: true },
+            { label: '패키지·디자인', values: [19], note: '3명' },
+            { label: '가격', values: [19], note: '3명' },
+            { label: '음식과의 페어링', values: [19], note: '3명', emphasis: true },
+            { label: '브랜드 스토리', values: [13], note: '2명' },
           ] },
         ],
-        caption: '설문 결과 — 두 설문의 응답 비율',
+        caption: '설문 2건 합계 — 응답자 16명 기준',
       },
-      source: '팀 설문조사 2건 (Google Forms)',
+      source: '팀 설문조사 2건 합산 (Google Forms, 4명 + 12명)',
     },
     {
       type: 'cards',
