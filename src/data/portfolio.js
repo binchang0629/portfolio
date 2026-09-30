@@ -10,7 +10,7 @@ export const profile = {
 const projectTape = (project, tape) => ({ ...project, ...tape, eyebrow: `${tape.number} / ${tape.title}` })
 
 export const tracks = [
-  { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, caseColor: '#bdd6ec', x: 1110, y: 110, rotate: -8,
+  { id: 'about', number: '01', title: 'ABOUT ME', subtitle: 'Who I am.', tint: 0, caseColor: '#bdd6ec', x: 516, y: 146, rotate: -8,
     eyebrow: '01 / ABOUT ME', heading: '정창빈',
     summary: 'UI/UX 디자인을 공부하고 있습니다. Figma로 설계한 화면을 HTML, CSS, JavaScript, React로 구현하는 작업도 함께 하고 있습니다.',
     facts: [{ label: '분야', value: 'UI/UX 디자인 · 웹 화면 구현' }, { label: '사용 도구', value: profile.tools.join(', ') }],
@@ -22,10 +22,10 @@ export const tracks = [
     ],
   },
   // Each project is its own tape: pressing it plays that project directly.
-  projectTape(projects[0], { number: '02', title: 'KOOKSOONDANG', subtitle: 'Global site redesign.', tint: 185, caseColor: '#e9dbaf', sticker: 'team', x: 735, y: 94, rotate: 10 }),
-  projectTape(projects[1], { number: '03', title: 'WALGAWAL BOT', subtitle: 'Judge it together.', tint: 88, caseColor: '#e8c5d4', sticker: 'team', x: 1089, y: 365, rotate: 16 }),
-  projectTape(personalProjects[0], { number: '04', title: 'KORAIL', subtitle: 'Booking, redesigned.', tint: 140, caseColor: '#efcdbf', sticker: 'design', x: 410, y: 666, rotate: 8 }),
-  projectTape(personalProjects[1], { number: '05', title: 'PLANT CARE', subtitle: 'Grow with records.', tint: -65, caseColor: '#c1dfd0', sticker: 'next', x: 871, y: 655, rotate: -10 }),
+  projectTape(projects[0], { number: '02', title: 'KOOKSOONDANG', subtitle: 'Global site redesign.', tint: 185, caseColor: '#e9dbaf', sticker: 'team', x: 896, y: 141, rotate: 10 }),
+  projectTape(projects[1], { number: '03', title: 'WALGAWAL BOT', subtitle: 'Judge it together.', tint: 88, caseColor: '#e8c5d4', sticker: 'team', x: 1061, y: 394, rotate: 16 }),
+  projectTape(personalProjects[0], { number: '04', title: 'KORAIL', subtitle: 'Booking, redesigned.', tint: 140, caseColor: '#efcdbf', sticker: 'design', x: 473, y: 694, rotate: 8 }),
+  projectTape(personalProjects[1], { number: '05', title: 'PLANT CARE', subtitle: 'Grow with records.', tint: -65, caseColor: '#c1dfd0', sticker: 'next', x: 890, y: 671, rotate: -10 }),
   // Starts in the archive; x/y is where it lands when taken out.
   { id: 'branding', number: '06', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, caseColor: '#d2c8e8', stored: true, x: 170, y: 330, rotate: -6,
     eyebrow: '06 / BRANDING', heading: '이 포트폴리오를 만든 과정',
