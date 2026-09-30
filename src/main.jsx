@@ -6,6 +6,7 @@ import './styles/typography.css'
 import './styles/desk-intro.css'
 import './styles/reader.css'
 import './styles/tape-article.css'
+import './styles/case-study.css'
 import './styles/project-cards.css'
 import './styles/work-notebook.css'
 

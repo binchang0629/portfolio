@@ -1,3 +1,5 @@
+import kooksoondangCase from './cases/kooksoondang'
+
 export const personalProjects = [
   { id: 'korail', kind: 'project', eyebrow: 'PERSONAL / 01', heading: '코레일 홈페이지 리디자인', role: '개인 프로젝트 · 웹사이트 리디자인', state: '작업 중',
     summary: '열차를 예매할 때 겪는 불편을 조사하고, 예매 화면을 다시 설계하는 작업입니다.',
@@ -26,20 +28,7 @@ export const projects = [
     preview: { kind: 'web', video: '/projects/kooksoondang/preview.mp4', poster: '/projects/kooksoondang/poster.webp', caption: '인트로 영상 → 연령 확인 → 취향 테스트 첫 화면' },
     summary: '기존 국순당 웹사이트를 리디자인했습니다. 전통주에 익숙하지 않은 해외 사용자가 제품의 맛과 음식 조합을 알아보도록 구성했습니다.',
     facts: [{ label: '프로젝트', value: '기존 웹사이트 리디자인' }, { label: '내 역할', value: '서브팀장 · 기획·디자인·개발 참여' }, { label: '담당 페이지', value: 'Pairing 디자인·구현 · Products 구현' }],
-    sections: [
-      { title: '팀이 다룬 문제', body: '기존 사이트의 복잡한 구성과 끊기는 페이지 이동, 모바일 이용의 어려움을 개선하려 했습니다. 사용자 조사와 경쟁사 분석을 거쳐 맛과 풍미를 이해하고 제품을 고르는 과정에 집중했습니다.' },
-      { title: '내가 맡은 페이지', items: [
-        'Pairing — 디자인과 구현. 질문에 답하면 어울리는 음식을 결과 창으로 보여 주는 질문지, 한식·세계 음식 탭, 끌어서 넘기는 음료 레시피 목록',
-        'Products — 구현. 막걸리 경험 수준과 제품군(막걸리·백세주·예담청·소주)으로 고르는 제품 목록, 입문자를 위한 Starter Kit',
-      ], links: [
-        { href: 'https://kooksoondang-k1iilin9n-binchang0629.vercel.app/pairing/pairing.html', label: 'Pairing 페이지 보기' },
-        { href: 'https://kooksoondang-k1iilin9n-binchang0629.vercel.app/products/products.html', label: 'Products 페이지 보기' },
-      ] },
-      { title: '팀이 만든 기능', items: ['취향 퀴즈로 제품 탐색', '제품의 맛·당도·도수 비교', '음식 페어링과 음용 가이드', '술 카드와 음식 카드를 접시에 끌어 놓는 페어링 게임'] },
-      { title: '참여와 협업', body: '서브팀장으로 기획·디자인·개발에 참여했습니다. 초반에는 소통이 늦어 진행에 어려움이 있었고, 후반에 소통이 활발해지면서 작업 속도가 붙었습니다.' },
-      { title: '보완할 부분', body: '모바일·태블릿 반응형과 페이지 간 디자인 통일이 남은 과제입니다.' },
-      { title: '자료', link: 'https://www.figma.com/slides/9TAEi7HeQYv6TCNPN3TenX', linkLabel: '발표 자료 보기' },
-    ],
+    ...kooksoondangCase,
   },
   { id: 'walgawalbot', site: 'https://walgawal-bot.vercel.app/onboarding', kind: 'project', eyebrow: 'TEAM / 02', heading: '왈가왈BOT', role: '팀 프로젝트 · 신규 웹앱 제작 · 개발 팀장',
     preview: { kind: 'mobile', video: '/projects/walgawalbot/preview.mp4', poster: '/projects/walgawalbot/poster.webp', caption: '스플래시 → 온보딩 → 홈 → 밸런스 게임 → 막상막하 → 후일담 편지' },
