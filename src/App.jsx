@@ -260,7 +260,7 @@ export default function App() {
         </div>
         {arriving && <DeskArrival stageRef={stageRef} archiveRef={archiveRef} tracks={tracks} onRelease={releaseArrivalTape} onFinish={finishArrival} />}
         <Motion.section layoutId="portfolio-player" transition={reducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 240, damping: 30 }} className={`player ${loaded ? 'is-loaded' : ''} ${dropTarget?.kind === 'player' ? 'is-drop-target' : ''}`} ref={playerRef} aria-label="카세트 플레이어" data-state={deskSwap.busy ? 'stopped' : transport} data-tape-phase={deskSwap.phase} aria-busy={deskSwap.busy}>
-          <IntegratedPlayer track={loaded} angles={deskSwap.mechanism.angles} progress={deskSwap.mechanism.progress} travel={deskSwap.mechanism.travel} transport={deskSwap.busy ? 'stopped' : transport} tapePhase={deskSwap.phase} onTapeMotionComplete={deskSwap.finishStage} />
+          <IntegratedPlayer track={loaded} angles={deskSwap.mechanism.angles} progress={deskSwap.mechanism.progress} travel={deskSwap.mechanism.travel} transport={deskSwap.busy ? 'stopped' : transport} tapePhase={deskSwap.phase} invite={dropTarget?.kind === 'player'} onTapeMotionComplete={deskSwap.finishStage} />
           <span className="player-label">CHANG BIN · PORTFOLIO</span>
           <div className="transport-controls" aria-label="플레이어 조작">{coherentPlayer.controls.map((control, i) => {
             const [x, y, width, height] = control.bounds

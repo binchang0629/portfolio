@@ -9,7 +9,7 @@ import CassetteSurface from './CassetteSurface'
 import { topviewCassette } from '../assets/cassette/topview-geometry'
 import { cassetteFit } from '../assets/player/cassette-fit'
 
-export default function IntegratedPlayer({ track, angles, progress, travel, transport, tapePhase = 'idle', onTapeMotionComplete }) {
+export default function IntegratedPlayer({ track, angles, progress, travel, transport, tapePhase = 'idle', invite = false, onTapeMotionComplete }) {
   const prefix = useId().replaceAll(':', '')
   const reducedMotion = useReducedMotion()
   const loaded = Boolean(track) && tapePhase !== 'empty'
@@ -33,7 +33,9 @@ export default function IntegratedPlayer({ track, angles, progress, travel, tran
     </foreignObject>}
   </Motion.g>
   const shellLayer = <PlayerHousingArtwork key="housing" clipPath={`url(#${prefix}-body)`} mask={`url(#${prefix}-body-without-lid)`} />
-  const doorLayer = <PlayerDoor key="door" phase={tapePhase} reducedMotion={reducedMotion} onComplete={onTapeMotionComplete} />
+  // An empty, idle player hints where a tape goes; a tape held over it opens the lid a little.
+  const empty = !loaded && tapePhase === 'idle'
+  const doorLayer = <PlayerDoor key="door" phase={tapePhase} hint={empty} invite={empty && invite} reducedMotion={reducedMotion} onComplete={onTapeMotionComplete} />
   return <svg className="player-shell integrated-player" viewBox={geometry.viewBox} role="img" aria-label={loaded ? `${track.title} 테이프가 들어간 흰색 카세트 플레이어` : '흰색 휴대용 카세트 플레이어'} data-camera="player-v1" style={{ overflow: changing ? 'visible' : undefined }}>
     <defs>
       <mask id={`${prefix}-body-without-lid`} maskUnits="userSpaceOnUse" x="0" y="0" width={geometry.width} height={geometry.height}>
