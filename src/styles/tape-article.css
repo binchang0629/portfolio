@@ -19,7 +19,8 @@
 .tape-no{font:800 26px/1 'Archivo Label',sans-serif}
 .tape-rule{flex:1;height:1px;background:var(--tape-hair)}
 .tape-count{font:500 11px/1 'JetBrains Mono Label',monospace;letter-spacing:.08em;color:var(--tape-sub)}
-.tape-title-en{margin:18px 0 0;font:800 clamp(52px,5.4vw,96px)/.86 'Archivo Label',sans-serif;letter-spacing:-.005em;overflow-wrap:anywhere}
+.tape-title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-top:18px}
+.tape-title-en{margin:0;font:800 clamp(52px,5.4vw,96px)/.86 'Archivo Label',sans-serif;letter-spacing:-.005em;overflow-wrap:anywhere}
 .tape-title{margin:14px 0 0;font-size:26px;font-weight:700;line-height:1.35;letter-spacing:-.6px;word-break:keep-all;color:var(--tape-ink)}
 .tape-title:focus{outline:none}
 .tape-role{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--tape-sub)}
@@ -27,14 +28,13 @@
 .tape-state::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent)}
 
 /* Credits row */
-.tape-credits{display:flex;align-items:stretch;gap:24px;margin-top:28px;border-top:1px solid var(--tape-ink);border-bottom:1px solid var(--tape-hair)}
-.tape-meta{flex:1;display:flex;flex-wrap:wrap;margin:0}
+.tape-meta{display:flex;flex-wrap:wrap;margin:28px 0 0;border-top:1px solid var(--tape-ink);border-bottom:1px solid var(--tape-hair)}
 .tape-meta>div{flex:1 1 auto}
 .tape-meta>div{padding:12px 18px 12px 0;min-width:0}
 .tape-meta>div+div{padding-left:18px;border-left:1px solid var(--tape-hair)}
 .tape-meta dt{font:500 10.5px/1.4 'JetBrains Mono Label',var(--font-family),monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--tape-sub)}
 .tape-meta dd{margin:4px 0 0;white-space:nowrap;font-size:15px;line-height:1.55;color:var(--tape-ink);word-break:keep-all}
-.tape-live{align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:999px;background:var(--tape-ink);color:#fff;font-size:13px;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;transition:background 180ms ease-out}
+.tape-live{flex-shrink:0;margin-bottom:.4em;display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:999px;background:var(--tape-ink);color:#fff;font-size:13px;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;transition:background 180ms ease-out}
 .tape-live span[aria-hidden]{font-size:14px;transition:transform 180ms ease-out}
 .tape-live:hover{background:var(--accent)}
 .tape-live:hover span[aria-hidden]{transform:translate(2px,-2px)}
@@ -91,11 +91,11 @@
  .tape-article{padding:12px 0 28px}
  .tape-title-en{font-size:clamp(42px,13vw,60px)}
  .tape-title{font-size:21px}
- .tape-credits{flex-direction:column;gap:0}
  .tape-meta{flex-direction:column}
  .tape-meta dd{white-space:normal}
  .tape-meta>div+div{padding-left:0;border-left:0;border-top:1px solid var(--tape-hair)}
- .tape-live{margin:0 0 12px;align-self:flex-start}
+ .tape-title-row{flex-wrap:wrap;gap:12px}
+ .tape-live{margin:0}
  .tape-lead{font-size:17px}
  .tape-body{grid-template-columns:1fr;margin-top:32px}
  .tape-tracklist{display:none}
