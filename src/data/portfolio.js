@@ -22,10 +22,10 @@ export const tracks = [
     ],
   },
   // Each project is its own tape: pressing it plays that project directly.
-  projectTape(projects[0], { number: '02', title: 'KOOKSOONDANG', subtitle: 'Global site redesign.', tint: 185, caseColor: '#e9dbaf', accent: '#c9a44f', sticker: 'team', x: 896, y: 141, rotate: 10 }),
-  projectTape(projects[1], { number: '03', title: 'WALGAWAL BOT', subtitle: 'Judge it together.', tint: 88, caseColor: '#e8c5d4', accent: '#c97fa8', sticker: 'team', x: 1061, y: 394, rotate: 16 }),
-  projectTape(personalProjects[0], { number: '04', title: 'KORAIL', subtitle: 'Booking, redesigned.', tint: 140, caseColor: '#efcdbf', accent: '#d98e76', sticker: 'design', x: 473, y: 694, rotate: 8 }),
-  projectTape(personalProjects[1], { number: '05', title: 'PLANT CARE', subtitle: 'Grow with records.', tint: -65, caseColor: '#c1dfd0', accent: '#6fae92', sticker: 'next', x: 890, y: 671, rotate: -10 }),
+  projectTape(projects[0], { number: '02', title: 'KOOKSOONDANG', subtitle: 'Global site redesign.', tint: 175, shellSaturation: 1.1, caseColor: '#f7c7a7', accent: '#F29556', sticker: 'team', x: 896, y: 141, rotate: 10 }),
+  projectTape(projects[1], { number: '03', title: 'WALGAWAL BOT', subtitle: 'Judge it together.', tint: 25, shellSaturation: 1, shellBrightness: 1.08, caseColor: '#cbd0ff', accent: '#374BFF', sticker: 'team', x: 1061, y: 394, rotate: 16 }),
+  projectTape(personalProjects[0], { number: '04', title: 'KORAIL', subtitle: 'Booking, redesigned.', tint: 4, shellSaturation: 1.7, shellBrightness: .68, caseColor: '#7182db', accent: '#255EFF', sticker: 'design', x: 473, y: 694, rotate: 8 }),
+  projectTape(personalProjects[1], { number: '05', title: 'PLANT CARE', subtitle: 'Grow with records.', tint: -110, shellSaturation: .8, shellBrightness: .78, caseColor: '#d7e9b9', accent: '#384E2F', sticker: 'next', x: 890, y: 671, rotate: -10 }),
   // Starts in the archive; x/y is where it lands when taken out.
   { id: 'branding', number: '06', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, caseColor: '#d2c8e8', accent: '#9a86c9', stored: true, x: 170, y: 330, rotate: -6,
     eyebrow: '06 / BRANDING', heading: '이 포트폴리오를 만든 과정',
