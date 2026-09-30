@@ -2,8 +2,8 @@ import { personalProjects, projects } from './projects'
 
 export const profile = {
   name: '정창빈', englishName: 'CHANG BIN', role: 'UI/UX DESIGNER',
-  // The last line is set in a lighter italic.
-  headline: ['Design it.', 'Build it.', 'Press play.'],
+  // Desk label, set like a blank cassette's printed label.
+  label: { side: 'A', number: '01', spec: 'UX-60 · 2026', tagline: 'UI/UX DESIGNER · FIGMA → REACT', guide: '테이프를 골라 재생하면 제 이야기가 시작됩니다.' },
   tools: ['Figma', 'Photoshop', 'HTML', 'CSS', 'JavaScript', 'React'],
 }
 

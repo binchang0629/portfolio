@@ -1,23 +1,39 @@
-/* Desk intro: a small name line and a quiet headline in the desk's own blues, so the tapes stay the focus.
-   The Fraunces files are pre-set to opsz 144 and SOFT 100 (WONK off upright, on italic); only weight 400–600 varies. */
-@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 600;font-display:swap;src:url('/fonts/fraunces/fraunces-normal.woff2') format('woff2')}
-@font-face{font-family:'Fraunces';font-style:italic;font-weight:400 600;font-display:swap;src:url('/fonts/fraunces/fraunces-italic.woff2') format('woff2')}
+/* Desk intro, set like a blank cassette's printed label (TDK D-C90 style): side box, number, rule and spec,
+   a condensed name, a ruled line of copy and one tape-coloured stripe. */
+@font-face{font-family:'Archivo Label';font-style:normal;font-weight:800;font-display:swap;src:url('/fonts/archivo/archivo-condensed-800.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono Label';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/jetbrains-mono/jetbrains-mono-500.woff2') format('woff2')}
 
-:root{--intro-ink:#2f5383;--intro-soft:#6a8fbd;--desk-w:min(100vw,150vh,1840px)}
+:root{--label-ink:#2b4a74;--label-sub:#56708b;--label-hair:#b9c9db;--label-stripe:#3e6fb5;--desk-w:min(100vw,150vh,1840px)}
 
-.desk-intro{width:calc(var(--desk-w) * .24)}
-.intro-kicker{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;font-size:11px;font-weight:600;line-height:1.5;letter-spacing:.16em;text-transform:uppercase;color:var(--intro-ink)}
-.intro-name{min-height:28px;padding:2px 0;background:transparent;font:inherit;letter-spacing:inherit;color:inherit}
+.desk-intro{width:clamp(220px,calc(var(--desk-w) * .194),340px);color:var(--label-ink)}
+.label-top{display:flex;align-items:center;gap:8px}
+.label-side{display:grid;place-items:center;width:22px;height:22px;background:var(--label-ink);color:#fff;font:800 13px/1 'Archivo Label',sans-serif}
+.label-number{font:800 22px/1 'Archivo Label',sans-serif;letter-spacing:.02em}
+.label-rule{flex:1;height:1px;background:var(--label-hair)}
+.label-spec{font:500 10px/1 'JetBrains Mono Label',monospace;letter-spacing:.08em;color:var(--label-sub);white-space:nowrap}
+.label-name{margin:14px 0 0;font:800 clamp(40px,calc(var(--desk-w) * .0415),72px)/.9 'Archivo Label',sans-serif;letter-spacing:-.005em}
+.intro-name{padding:0;background:transparent;font:inherit;letter-spacing:inherit;color:inherit;text-align:left}
 .intro-name:hover{color:#1f3a5c}
-.intro-dash{color:#a5b7cb}
-.intro-title{margin:14px 0 0;font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,calc(var(--desk-w) * .03),52px);font-weight:460;line-height:1.04;letter-spacing:-.01em;color:var(--intro-ink)}
-.intro-title span,.intro-title em{display:block}
-.intro-title em{font-weight:440;color:var(--intro-soft)}
+.label-tagline{margin:10px 0 0;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:.16em;color:var(--label-ink)}
+.label-tagline span{white-space:nowrap}
+.label-tagline b{font-weight:inherit}
+.label-guide{margin:14px 0 0;padding:6px 0;border-top:1px solid var(--label-hair);border-bottom:1px solid var(--label-hair);font-size:13px;line-height:1.6;color:var(--label-sub);word-break:keep-all}
+.label-stripe{display:grid;gap:2px;margin-top:10px}
+.label-stripe i{display:block;height:4px;background:var(--label-stripe)}
+.label-stripe i+i{height:2px;background:var(--label-ink)}
 
 @media(min-width:761px) and (max-height:800px){
- .intro-title{margin-top:10px}
+ .desk-intro{width:clamp(220px,calc(var(--desk-w) * .24),340px)}
+ .label-name{margin-top:10px}
+ .label-guide{margin-top:10px;font-size:12px}
+}
+/* Narrow desks: the About tape sits right beside the label, so it gets slimmer. */
+@media(min-width:761px) and (max-width:1180px){
+ .desk-intro{width:calc(var(--desk-w) * .165)}
+ .label-tagline{font-size:10px;letter-spacing:.1em}
+ .label-guide{font-size:12px}
 }
 @media(max-width:760px){
- .desk-intro{width:100%;margin-bottom:28px}
- .intro-title{margin-top:12px;font-size:clamp(34px,10vw,44px)}
+ .desk-intro{width:100%;max-width:340px;margin-bottom:28px}
+ .label-name{font-size:clamp(44px,14vw,60px)}
 }
