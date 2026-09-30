@@ -85,7 +85,6 @@
 }
 @media(max-width:760px){
  .reader-header{align-items:flex-start;padding:26px 24px 12px;gap:12px}
- .reader-header .reader-brand,.reader-header .reader-wordmark{display:block}
  .reader-header .brand-role{display:block}
  .reader-exit{gap:8px;font-size:12px}
  .reader-exit>span{font-size:0}

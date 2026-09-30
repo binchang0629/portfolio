@@ -106,3 +106,17 @@
  .tape-live,.tape-live span[aria-hidden],.tape-next-title{transition:none}
  .tape-live:hover span[aria-hidden],.tape-next:hover:not(:disabled) .tape-next-title{transform:none}
 }
+
+/* Reader header mark */
+.reader-brand{display:flex;align-items:center;gap:14px;color:var(--tape-ink)}
+.reader-wordmark{display:flex;align-items:center;gap:10px;min-height:40px;padding:0;background:transparent;color:inherit}
+.reader-mark-play{display:grid;place-items:center;width:24px;height:24px;background:var(--tape-ink);transition:background 160ms ease-out}
+.reader-mark-play i{width:0;height:0;margin-left:2px;border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.reader-mark-name{font:800 30px/1 'Archivo Label',sans-serif;letter-spacing:.005em}
+.reader-wordmark:hover .reader-mark-play{background:var(--tape-sub)}
+.reader-brand-role{padding-left:14px;border-left:1px solid var(--tape-hair);font:500 11px/1.4 'JetBrains Mono Label',monospace;letter-spacing:.12em;color:var(--tape-sub)}
+@media(max-width:760px){
+ .reader-mark-name{font-size:24px}
+ .reader-brand-role{font-size:10px;padding-left:10px}
+ .reader-brand{gap:10px}
+}
