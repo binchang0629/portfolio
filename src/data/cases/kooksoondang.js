@@ -5,9 +5,8 @@ const img = name => `/cases/kooksoondang/${name}.webp`
 
 export default {
   period: '2026.05 – 2026.08',
-  // 팀 스타일 가이드의 색: 주황(브랜드), 먹색, 밝은 배경, 연두(포인트).
-  // deep은 브랜드 띠 배경용 진한 주황 — 흰 글씨 대비 5.0:1
-  theme: { brand: '#F29556', deep: '#B84F18', dark: '#262322', light: '#FAF8F7', point: '#D4E400' },
+  // 팀 스타일 가이드의 색: 주황(브랜드), 먹색, 밝은 배경, 연두(포인트). 브랜드 띠는 주황 배경에 흰 글씨
+  theme: { brand: '#F29556', dark: '#262322', light: '#FAF8F7', point: '#D4E400' },
   // 카세트 J-카드의 두 면: A는 팀 기획 과정, B는 제가 만든 Pairing 페이지
   sides: {
     A: { name: '기획', note: '팀이 함께 조사하고 방향을 정한 과정' },

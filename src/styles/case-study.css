@@ -6,8 +6,10 @@
 
 .case-band{--ink:#262322;--sub:#6f6560;--line:#e6ded8;--kick:var(--case-brand);padding:88px 56px;background:var(--case-light);color:var(--ink);scroll-margin-top:12px}
 .case-band[data-tone=dark]{--ink:#f5efea;--sub:#b7aca5;--line:#ffffff1f;--kick:var(--case-brand);background:var(--case-dark)}
-/* Brand bands use the deep shade of the brand colour so white text reads (theme.deep, contrast ≥ 4.5:1). */
-.case-band[data-tone=brand]{--ink:#fff;--sub:#fffffff0;--line:#ffffff47;--kick:#fff;background:var(--case-deep,var(--case-brand))}
+/* Brand bands: white text on the brand colour (or theme.deep when a project sets one).
+   Contrast on a light brand colour is low, so body text stays pure white and a little heavier. */
+.case-band[data-tone=brand]{--ink:#fff;--sub:#fff;--line:#ffffff59;--kick:#fff;background:var(--case-deep,var(--case-brand))}
+.case-band[data-tone=brand] .case-lead,.case-band[data-tone=brand] figcaption,.case-band[data-tone=brand] .case-steps p{font-weight:500}
 .case-band>*+*{margin-top:44px}
 
 /* heading block */
