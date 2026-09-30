@@ -56,6 +56,7 @@
 .tape-flow{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
 .tape-flow li{display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border:1px solid var(--tape-hair);background:#fff;font-size:15px;color:var(--tape-ink)}
 .tape-flow li span{font:500 11px/1 'JetBrains Mono Label',monospace;color:var(--tape-sub)}
+.tape-links{display:flex;flex-wrap:wrap;gap:4px 24px;margin:10px 0 0}
 .tape-source{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:6px;font-size:15px;font-weight:600;color:var(--tape-ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px}
 
 .tape-tracklist{position:sticky;top:18px;align-self:start;display:grid;gap:22px;padding-top:4px}

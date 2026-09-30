@@ -60,6 +60,7 @@ export default function TapeArticle({ track, content, number, total, nextTrack, 
             {section.items && <ul>{section.items.map(item => <li key={item}>{item}</li>)}</ul>}
             {section.flow && <ol className="tape-flow">{section.flow.map((step, n) => <li key={step}><span>{String(n + 1).padStart(2, '0')}</span>{step}</li>)}</ol>}
             {section.link && <a className="tape-source" href={section.link} target="_blank" rel="noreferrer">{section.linkLabel} <span aria-hidden="true">↗</span></a>}
+            {section.links && <p className="tape-links">{section.links.map(link => <a key={link.href} className="tape-source" href={link.href} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</p>}
           </div>
         </section>)}
       </div>
