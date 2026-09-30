@@ -2,8 +2,13 @@ import { useEffect, useState } from 'react'
 import { ProjectPreviewFrame } from './ProjectCards'
 import CaseSection, { Copy } from './CaseSection'
 
-// Sections are laid out like a cassette's J-card: the first half is side A, the rest side B.
+// Sections are laid out like a cassette's J-card. A section can name its own side ('A' or 'B');
+// otherwise the first half is side A and the rest side B.
 const sideCodes = sections => {
+  if (sections.some(section => section.side)) {
+    const count = {}
+    return sections.map(section => { const side = section.side ?? 'A'; count[side] = (count[side] ?? 0) + 1; return `${side}${count[side]}` })
+  }
   const half = Math.ceil(sections.length / 2)
   return sections.map((_, i) => i < half ? `A${i + 1}` : `B${i - half + 1}`)
 }
@@ -74,7 +79,7 @@ export default function TapeArticle({ track, content, number, total, nextTrack, 
       </div>
       <nav className="tape-tracklist" aria-label="트랙 목록">
         {['A', 'B'].map(side => codes.some(code => code.startsWith(side)) && <div key={side}>
-          <p className="tape-side">SIDE {side}</p>
+          <p className="tape-side">{content.sides?.[side] ? <><span className="tape-side-letter">{side}</span>{content.sides[side]}</> : `SIDE ${side}`}</p>
           <ol>{sections.map((section, i) => codes[i].startsWith(side) && <li key={chapterName(section)}>
             <button className={i === active ? 'is-active' : ''} aria-current={i === active ? 'true' : undefined} onClick={() => jump(i)}><span>{codes[i]}</span>{chapterName(section)}</button>
           </li>)}</ol>

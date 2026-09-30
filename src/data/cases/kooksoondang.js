@@ -5,9 +5,12 @@ const img = name => `/cases/kooksoondang/${name}.webp`
 
 export default {
   period: '2026.05 – 2026.08',
+  // 카세트 J-카드의 두 면: A는 팀 기획 과정, B는 제가 만든 Pairing 페이지
+  sides: { A: '기획', B: 'Pairing 페이지' },
   sections: [
     {
       type: 'cards',
+      side: 'A',
       label: '문제 발견',
       title: '기존 사이트는 읽히지도, 이어지지도, 해외에 닿지도 않았습니다',
       body: '국순당 웹사이트는 2009년 제작 이후 구조와 언어가 거의 그대로였습니다. 그사이 사용자는 모바일로 옮겨 갔고, 막걸리는 K-푸드와 함께 해외에서 다시 알려지기 시작했습니다.',
@@ -21,6 +24,7 @@ export default {
     },
     {
       type: 'cards',
+      side: 'A',
       label: '근거',
       title: '사람들은 맛으로 술을 고르지만, 사이트에는 맛을 설명하는 말이 없었습니다',
       body: '팀이 진행한 설문 두 건 모두에서 선택 기준은 ‘맛·풍미’에 모였습니다. 맛은 사기 전에 직접 확인하기 어려운 정보인데, 기존 사이트에는 이를 말로 풀어 주는 내용이 부족했습니다. 혼자 마신다는 응답이 없었기 때문에, 함께 마시는 상황까지 고려한 정보가 필요하다고 판단했습니다.',
@@ -29,11 +33,29 @@ export default {
         { value: '1순위', title: '선택 기준은 맛·풍미', body: '두 설문 모두 같은 결과였습니다.' },
         { value: '0%', title: '혼술 응답', body: '두 설문 모두 모임·파티가 75%였습니다.' },
       ],
-      image: { src: img('survey'), w: 1024, h: 738, alt: '마시는 상황과 술을 고르는 기준을 두 설문으로 비교한 막대그래프', caption: '설문 결과 — 마시는 상황과 선택 기준' },
+      chart: {
+        series: ['설문 1', '설문 2'],
+        groups: [
+          { title: '주로 마시는 상황', items: [
+            { label: '모임·파티', values: [75, 75], emphasis: true },
+            { label: '의식·행사', values: [25, 17] },
+            { label: '혼술', values: [0, 0], emphasis: true },
+          ] },
+          { title: '술을 고를 때 보는 것 (복수 선택)', items: [
+            { label: '맛·풍미', values: [75, 50], emphasis: true },
+            { label: '패키지·디자인', values: [0, 25] },
+            { label: '브랜드 스토리', values: [50, 0] },
+            { label: '가격', values: [25, 17] },
+            { label: '음식과의 페어링', values: [25, 17], emphasis: true },
+          ] },
+        ],
+        caption: '설문 결과 — 두 설문의 응답 비율',
+      },
       source: '팀 설문조사 2건 (Google Forms)',
     },
     {
       type: 'cards',
+      side: 'A',
       label: '사용자',
       title: 'Pairing 페이지는 ‘음식에 맞는 술을 빨리 찾고 싶은’ 사용자에서 출발했습니다',
       body: '팀은 조사를 바탕으로 두 명의 페르소나를 세웠습니다. 제가 맡은 Pairing 페이지는 두 번째 페르소나가 겪는 문제, 곧 페어링 정보가 없고 제품을 비교하기 어렵다는 점을 풀기 위한 페이지입니다.',
@@ -45,6 +67,7 @@ export default {
     },
     {
       type: 'lead',
+      side: 'A',
       label: '내 역할',
       title: '7개 페이지 중 PAIRING을 맡아 디자인부터 코드까지 만들었습니다',
       body: '5명이 기획·디자인·개발을 나눠 맡은 팀에서 서브팀장을 맡았습니다. Pairing 페이지는 레퍼런스 조사, PC 디자인, 피드백 반영, 코딩과 반응형 작업까지 직접 했고, Products 페이지 구현에도 참여했습니다. 팀 자체 평가에서 적은 기여도는 디자인 10% · 개발 25% · 기획 10%입니다.',
@@ -52,6 +75,7 @@ export default {
     },
     {
       type: 'match',
+      side: 'A',
       label: '설계 판단',
       title: '맛을 글로 길게 설명하는 대신, 고르면서 알게 되는 순서로 설계했습니다',
       status: 'intent',
@@ -64,6 +88,7 @@ export default {
     },
     {
       type: 'annotated',
+      side: 'B',
       label: '핵심 기능 1',
       title: '한 번에 한 질문만 펼쳐서, 네 단계를 끝까지 따라오게 했습니다',
       body: '네 문항을 한 화면에 늘어놓지 않고 지금 답할 질문만 펼쳤습니다. 나머지는 색 탭으로 접어 남은 단계가 보이게 했습니다.',
@@ -77,6 +102,7 @@ export default {
     },
     {
       type: 'annotated',
+      side: 'B',
       label: '핵심 기능 2',
       title: '결과 창에서 추천 제품과 함께 마시는 법까지 알려 줍니다',
       body: '제품 하나만 보여 주면 비교할 기준이 없습니다. 맛 지표, 비슷한 제품, 마시는 팁을 한 창에 모으고 음식 페어링으로 넘어가는 버튼을 두었습니다.',
@@ -92,6 +118,7 @@ export default {
     },
     {
       type: 'compare',
+      side: 'B',
       label: '핵심 기능 3',
       title: '추천이 끝난 뒤에도 음식과 레시피로 이어지게 했습니다',
       body: '결과를 본 뒤 페이지가 끝나지 않도록, 어울리는 음식과 직접 만들어 볼 수 있는 레시피를 차례로 배치했습니다.',
@@ -103,6 +130,7 @@ export default {
     },
     {
       type: 'match',
+      side: 'B',
       label: '피드백 반영',
       title: '‘확인하고 넘어가게’ 해 달라는 피드백을 버튼 상태로 반영했습니다',
       body: '8월 7일 중간 점검에서 Pairing 페이지에 두 가지 피드백을 받았습니다.',
@@ -116,6 +144,7 @@ export default {
     },
     {
       type: 'cards',
+      side: 'B',
       label: '결과와 한계',
       title: '페이지는 완성했지만, 사용자에게 검증하지는 못했습니다',
       body: '질문부터 레시피까지 이어지는 흐름을 구현해 배포했습니다. 다만 사용자가 추천 결과를 믿고 제품을 고르는지는 테스트하지 못했습니다.',
@@ -127,12 +156,14 @@ export default {
     },
     {
       type: 'lead',
+      side: 'B',
       label: '회고',
       title: '초반의 소통 공백이 일정을 밀었고, 다음에는 처음부터 먼저 묻기로 했습니다',
       body: '자체 평가는 10점 중 5점이었습니다. 계획한 것을 다 담지 못했고, 초반에 소통이 늦어 같은 논의가 반복되면서 일정에 쫓겼습니다. 후반에 소통이 늘자 속도가 붙었습니다. 낯을 가리더라도 처음부터 적극적으로 참여해야 결과물이 좋아진다는 것을 배웠습니다.',
     },
     {
       type: 'cards',
+      side: 'B',
       label: 'AI 활용',
       hidden: true,
       title: '[제목 입력]',
@@ -140,6 +171,7 @@ export default {
       cards: [{ title: '[사용한 도구]', body: '[프롬프트와 수정 과정 입력]' }],
     },
     {
+      side: 'B',
       label: '자료',
       title: '자료',
       links: [

@@ -2,6 +2,7 @@
 // 그다음 src/data/projects.js에서 불러와 프로젝트 항목에 펼쳐 넣습니다: { id: '...', ...newCase }
 //
 // 공통 필드 (모든 섹션)
+//   side    'A' | 'B' — 트랙 목록에서 어느 면에 둘지. 면 이름은 아래 sides에 적습니다
 //   type    'lead' | 'cards' | 'match' | 'annotated' | 'compare'  — 레이아웃 A~E
 //   label   트랙 목록에 보일 짧은 이름 (예: '문제 발견')
 //   title   결론 문장. 항목 이름('사용자 조사')이 아니라 알게 된 것('사람들은 맛으로 고릅니다')
@@ -9,6 +10,8 @@
 //   status  'intent'(설계 의도) | 'verified'(확인된 결과) | 'unverified'(검증 전) — 생략 가능
 //   source  근거의 출처 — 생략 가능
 //   hidden  true면 화면에서 숨김. 해당 과정이 없던 프로젝트는 지우지 말고 숨겨 두세요
+//   chart   숫자로 그리는 막대 차트 — 그래프 캡처 대신 쓰세요. 어느 섹션에나 붙일 수 있습니다
+//           { series: ['설문 1', '설문 2'], groups: [{ title, items: [{ label, values: [75, 50], emphasis }] }], caption, unit: '%', max: 100 }
 //
 // 이미지: { src: '/cases/<id>/screen.webp', w: 1600, h: 900, alt, caption }  — 파일은 public/cases/<id>/에 둡니다.
 //   src가 비어 있으면 alt 문구가 들어간 자리 표시가 보입니다. w, h는 원본 크기(레이아웃 흔들림 방지).
@@ -16,6 +19,7 @@
 // 조사 수치·인터뷰·테스트 결과는 실제로 한 것만 적습니다.
 export default {
   period: '[기간 입력]',
+  sides: { A: '[A면 이름, 예: 기획]', B: '[B면 이름, 예: 담당 페이지]' },
   sections: [
     // A 대표 이미지형 — 한 장의 이미지로 설명되는 섹션 (개요, 역할, 최종 화면, 회고)
     { type: 'lead', label: '[짧은 이름]', title: '[제목 입력]', body: '[본문 입력]', image: { src: '', alt: '[대표 이미지]', caption: '[주석 입력]' } },

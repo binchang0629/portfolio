@@ -81,6 +81,27 @@ const Compare = ({ section }) => <ol className={`case-steps${section.steps?.leng
   </li>)}
 </ol>
 
+// Any layout can carry a small bar chart drawn from numbers, instead of a screenshot of one.
+// Horizontal bars keep grouped values apart and stay readable in a narrow column.
+function CaseChart({ chart }) {
+  const max = chart.max ?? 100
+  const unit = chart.unit ?? '%'
+  return <figure className="case-chart">
+    {chart.series?.length > 1 && <ul className="case-chart-legend">{chart.series.map((name, s) => <li key={name} data-series={s}>{name}</li>)}</ul>}
+    {chart.groups.map(group => <div key={group.title} className="case-chart-group">
+      <p className="case-chart-title">{group.title}</p>
+      <dl>{group.items.map(item => <div key={item.label} className={item.emphasis ? 'is-emphasis' : undefined}>
+        <dt>{item.label}</dt>
+        <dd>{item.values.map((value, s) => <span key={s} className="case-bar" data-series={s}>
+          <i style={{ width: `${(value / max) * 100}%` }} aria-hidden="true" />
+          <b><span className="sr-only">{chart.series?.[s]} </span>{value}{unit}</b>
+        </span>)}</dd>
+      </div>)}</dl>
+    </div>)}
+    {chart.caption && <Copy as="figcaption">{chart.caption}</Copy>}
+  </figure>
+}
+
 const layouts = { lead: Lead, cards: Cards, match: Match, annotated: Annotated, compare: Compare }
 
 export default function CaseSection({ section }) {
@@ -91,6 +112,7 @@ export default function CaseSection({ section }) {
       <Copy as="p">{section.body}</Copy>
     </div>}
     <Layout section={section} />
+    {section.chart && <CaseChart chart={section.chart} />}
     {section.source && <p className="case-source">출처 · <Copy>{section.source}</Copy></p>}
   </div>
 }

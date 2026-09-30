@@ -1,6 +1,8 @@
 /* Case-study layouts A–E inside a tape chapter. Same ink, hairlines and label fonts as the J-card reader;
    the tape's accent colour marks pins, arrows and the highlighted card. */
 .tape-chapter-head{min-width:0}
+.tape-side:has(.tape-side-letter){display:flex;align-items:center;font:600 13px/1.2 var(--font-family);letter-spacing:0}
+.tape-side-letter{display:inline-grid;place-items:center;width:18px;height:18px;margin-right:8px;background:var(--tape-ink);color:#fff;font:500 10.5px/1 'JetBrains Mono Label',monospace;letter-spacing:0}
 .tape-chapter-label{margin:0 0 6px;font-size:12.5px;font-weight:600;line-height:1.3;color:var(--tape-sub)}
 .tape-period{padding-left:12px;border-left:1px solid var(--tape-hair);font:500 12px/1.4 'JetBrains Mono Label',var(--font-family),monospace;letter-spacing:.04em}
 
@@ -30,6 +32,25 @@ p.case-slot,strong.case-slot,h3.case-slot{display:inline-block}
 .case-card-value{margin-bottom:4px;font:800 34px/1 'Archivo Label',var(--font-family),sans-serif;color:var(--tape-ink)}
 .case-card-title{font-size:16px;font-weight:700;line-height:1.45;color:var(--tape-ink);word-break:keep-all}
 .tape-chapter-body .case-cards p{font-size:14.5px;line-height:1.65}
+
+/* Bar chart drawn from numbers: series 1 in ink, series 2 in the tape accent */
+.case-chart{display:grid;gap:20px;margin:0;padding:20px 22px 18px;border:1px solid var(--tape-hair);border-radius:6px;background:#fff}
+.tape-chapter-body .case-chart-legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;font-size:13px;color:var(--tape-sub)}
+.tape-chapter-body .case-chart-legend li{display:flex;align-items:center;gap:7px;padding:0;font-size:13px;line-height:1.4;color:var(--tape-sub)}
+.tape-chapter-body .case-chart-legend li::before{content:'';position:static;width:12px;height:12px;border-radius:2px;background:var(--tape-ink)}
+.tape-chapter-body .case-chart-legend li[data-series='1']::before{background:var(--accent)}
+.case-chart-group{display:grid;gap:10px}
+.tape-chapter-body .case-chart-title{padding-bottom:8px;border-bottom:1px solid var(--tape-hair);font-size:13.5px;font-weight:600;color:var(--tape-ink)}
+.case-chart dl{display:grid;gap:12px;margin:0}
+.case-chart dl>div{display:grid;grid-template-columns:112px minmax(0,1fr);align-items:center;gap:14px}
+.case-chart dt{font-size:14px;line-height:1.35;color:var(--tape-sub);word-break:keep-all}
+.case-chart .is-emphasis dt{font-weight:700;color:var(--tape-ink)}
+.case-chart dd{display:grid;gap:4px;margin:0}
+.case-bar{display:flex;align-items:center;gap:8px;min-height:14px}
+.case-bar i{flex:none;max-width:calc(100% - 48px);height:10px;border-radius:0 2px 2px 0;background:var(--tape-ink)}
+.case-bar[data-series='1'] i{background:var(--accent)}
+.case-bar b{font:500 12px/1 'JetBrains Mono Label',var(--font-family),monospace;color:var(--tape-ink)}
+.case-chart figcaption{font-size:13.5px;line-height:1.5;color:var(--tape-sub)}
 
 /* C — problem → decision */
 .case-match{display:grid;border-top:1px solid var(--tape-ink)}
