@@ -26,7 +26,7 @@ export default function CassetteSurface({ track, angles = { left: 0, right: 0 },
   const prefix = useId().replaceAll(':', '')
   const winding = reelRadii(progress)
   const radii = { left: winding.left * geometry.texturePackRadius / 185, right: winding.right * geometry.texturePackRadius / 185 }
-  const tint = { filter: `hue-rotate(${track.tint}deg) saturate(.6)` }
+  const tint = { filter: `hue-rotate(${track.tint}deg) saturate(${track.shellSaturation ?? .6}) brightness(${track.shellBrightness ?? 1})` }
   return <g data-camera="orthographic-topview-v1" data-part="cassette-surface">
     <defs>
       <clipPath id={`${prefix}-body`}><path d={geometry.outline} /></clipPath>
