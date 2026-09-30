@@ -2,9 +2,7 @@ import { personalProjects, projects } from './projects'
 
 export const profile = {
   name: '정창빈', englishName: 'CHANG BIN', role: 'UI/UX DESIGNER',
-  guide: '테이프를 골라 재생하면 제 이야기가 시작됩니다.',
-  focus: ['WEB PUBLISHING', 'REACT', 'INTERACTION'],
-  // The last line is set in the accent italic.
+  // The last line is set in a lighter italic.
   headline: ['Design it.', 'Build it.', 'Press play.'],
   tools: ['Figma', 'Photoshop', 'HTML', 'CSS', 'JavaScript', 'React'],
 }
