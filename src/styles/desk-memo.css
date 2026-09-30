@@ -11,7 +11,7 @@
 .memo .object-link{display:flex;justify-content:flex-start;align-items:center;gap:8px;margin-top:10%;font-size:clamp(8px,.65cqw,11px);line-height:1.5;color:#6a849c}
 .memo:hover .object-link{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:760px){
- .desk-object.memo{position:relative;inset:auto;width:min(100%,280px);height:340px;align-self:center;padding:0;margin:12px 0 28px;transform:rotate(-3deg);background:linear-gradient(135deg,#fffefa,#fcfcfa);border:1px solid #dce3e9;border-radius:2px;box-shadow:0 3px 0 -1px #f8fafc,0 4px 0 #d7e0e8,3px 9px 10px #536d9217}
+ .desk-object.memo{position:relative;inset:auto;width:min(100%,280px);height:340px;align-self:center;padding:0;margin:12px 0 28px;transform:rotate(-3deg);background:linear-gradient(135deg,#fbfdff,#f3f7fd);border:1px solid #dce3e9;border-radius:2px;box-shadow:0 3px 0 -1px #f8fafc,0 4px 0 #d7e0e8,3px 9px 10px #536d9217}
  .memo-binding{top:7%;height:6%}.memo-content{top:21%;bottom:11%}
  .memo-heading strong{font-size:18px}.memo-heading>span{font-size:9px}
  .memo .memo-task-list{font-size:14px}.memo-task-list>span{min-height:2.65em}.memo-task-list>span::before{width:10px;height:10px}
