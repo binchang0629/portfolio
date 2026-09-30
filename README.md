@@ -24,6 +24,7 @@ npm run dev
 - `docs/projects`: 개인 작업의 근거와 진행 기록.
 - `docs/에셋_가이드.md`: 실제 파일 목록, 편집 범위와 추가 작업 등록 방법.
 - `docs/디자인_정교화_기록.md`: 시각 변경과 에셋 구조, 남은 과제.
+- `docs/케이스스터디_작성_규칙.md`: 프로젝트 상세 페이지의 구조·문구·줄바꿈·디자인 규칙. 내용은 `src/data/cases/`에 씁니다.
 
 테이프는 소개·프로젝트마다 하나씩이며, `stored: true`인 테이프(현재 06 BRANDING)는 처음에 자기 번호 칸의 보관함에 꽂혀 있습니다. 책상에 놓이지 않고 보관함에만 둘 추가 작업은 archiveTracks 배열에 등록합니다. 항목은 기존 테이프처럼 id·number·title·subtitle·tint·winding·x·y·rotate·heading·summary·sections를 갖습니다. id는 고유해야 하며 x·y는 1536×1024 책상에서 꺼낸 테이프의 위치입니다. 보관함에서 꺼내면 책상에 놓이고, 플레이어에서 꺼내면 보관함으로 반납합니다.
 

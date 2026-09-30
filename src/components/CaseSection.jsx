@@ -1,6 +1,8 @@
 // Case-study sections drawn as full-width colour bands: short centred heading, large screen, little chrome.
 // Project files only supply words and images; this file decides how they sit.
 // Text written as "[...]" is an unfilled slot and shows as a dashed placeholder instead of real copy.
+import Sentences from './Sentences'
+
 const isSlot = text => typeof text === 'string' && /^\[.*\]$/.test(text.trim())
 const Copy = ({ as: Tag = 'span', className, children, ...rest }) => {
   if (children == null || children === '') return null
@@ -10,9 +12,6 @@ const Copy = ({ as: Tag = 'span', className, children, ...rest }) => {
 }
 // Titles may break lines on purpose with "\n".
 const Lines = ({ text }) => text.split('\n').map((line, i) => <span key={i} className="case-line">{line}</span>)
-// Body copy starts a new line at every sentence (or at an explicit "\n"), so a line never breaks
-// mid-sentence just because the column ran out.
-const sentences = text => text.split('\n').flatMap(part => part.split(/(?<=[.!?])\s+(?=\S)/))
 
 const statusLabel = { intent: '설계 의도', verified: '확인된 결과', unverified: '검증 전' }
 
@@ -47,14 +46,18 @@ const Cards = ({ section }) => <>
 </>
 
 // C — what was found on the left, what was done about it on the right
+// Cells use the same tidy line layout as body copy (see Sentences.jsx).
+const Cell = ({ className, text }) => isSlot(text)
+  ? <Copy as="p" className={className} role="cell">{text}</Copy>
+  : <p className={className} role="cell"><Sentences text={text} /></p>
 const Match = ({ section }) => {
   const [from, to] = section.columns ?? ['발견한 문제', '설계 판단']
   return <>
     <div className="case-match" role="table" aria-label={section.label}>
       <div className="case-match-head" role="row"><span role="columnheader">{from}</span><span role="columnheader">{to}</span></div>
       {section.rows?.map((row, i) => <div key={i} className="case-match-row" role="row">
-        <Copy as="p" className="case-match-problem" role="cell">{row.problem}</Copy>
-        <Copy as="p" className="case-match-decision" role="cell">{row.decision}</Copy>
+        <Cell className="case-match-problem" text={row.problem} />
+        <Cell className="case-match-decision" text={row.decision} />
       </div>)}
     </div>
     <Figure image={section.image} />
@@ -116,7 +119,7 @@ export default function CaseSection({ section, id, code }) {
     <header className="case-head">
       <p className="case-kicker"><span className="case-code">{code}</span>{section.kicker ?? section.label}{section.status && <span className="case-status">{statusLabel[section.status]}</span>}</p>
       <h3 id={`${id}-title`}>{isSlot(section.title) ? <Copy>{section.title}</Copy> : <Lines text={section.title} />}</h3>
-      {section.body && (isSlot(section.body) ? <Copy as="p" className="case-lead">{section.body}</Copy> : <p className="case-lead">{sentences(section.body).map((line, i) => <span key={i} className="case-line">{line}</span>)}</p>)}
+      {section.body && (isSlot(section.body) ? <Copy as="p" className="case-lead">{section.body}</Copy> : <p className="case-lead"><Sentences text={section.body} /></p>)}
     </header>
     <Layout section={section} />
     {section.chart && <CaseChart chart={section.chart} />}

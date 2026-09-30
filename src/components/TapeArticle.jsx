@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { ProjectPreviewFrame } from './ProjectCards'
 import CaseSection, { CaseSide } from './CaseSection'
+import Sentences from './Sentences'
 
 // Sections are laid out like a cassette's J-card. A section can name its own side ('A' or 'B');
 // otherwise the first half is side A and the rest side B.
@@ -60,7 +61,7 @@ export default function TapeArticle({ track, content, number, total, nextTrack, 
 
     {content.facts && content.kind !== 'project' && <dl className="tape-meta">{content.facts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
 
-    {content.summary && <p className="tape-lead">{content.summary}</p>}
+    {content.summary && <p className="tape-lead"><Sentences text={content.summary} /></p>}
     {content.preview && <ProjectPreviewFrame project={content} transport={transport} />}
 
     {sections.length > 0 && (content.theme ? <div className="case-flow" style={caseTheme(content.theme)}>
@@ -73,7 +74,7 @@ export default function TapeArticle({ track, content, number, total, nextTrack, 
         {sections.map((section, i) => <section key={chapterName(section)} id={ids[i]} className="tape-chapter" aria-labelledby={`${ids[i]}-title`}>
           <header><span className="tape-code">{codes[i]}</span><h3 id={`${ids[i]}-title`}>{section.title}</h3></header>
           <div className="tape-chapter-body">
-            {section.body && <p>{section.body}</p>}
+            {section.body && <p><Sentences text={section.body} /></p>}
             {section.items && <ul>{section.items.map(item => <li key={item}>{item}</li>)}</ul>}
             {section.flow && <ol className="tape-flow">{section.flow.map((step, n) => <li key={step}><span>{String(n + 1).padStart(2, '0')}</span>{step}</li>)}</ol>}
             {section.link && <a className="tape-source" href={section.link} target="_blank" rel="noreferrer">{section.linkLabel} <span aria-hidden="true">↗</span></a>}
