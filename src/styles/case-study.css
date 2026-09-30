@@ -4,11 +4,11 @@
 
 .case-flow{--case-brand:#f29556;--case-dark:#262322;--case-light:#faf8f7;--case-point:#d4e400;margin-top:48px;border-radius:14px;overflow:hidden}
 
-.case-band{--ink:#262322;--sub:#6f6560;--line:#e6ded8;--kick:var(--case-brand);padding:88px 56px;background:var(--case-light);color:var(--ink);scroll-margin-top:12px}
-.case-band[data-tone=dark]{--ink:#f5efea;--sub:#b7aca5;--line:#ffffff1f;--kick:var(--case-brand);background:var(--case-dark)}
+.case-band{--ink:#262322;--sub:#6f6560;--line:#e6ded8;--kick:var(--case-brand);--accent:var(--case-brand);--on-accent:var(--case-on-brand,#262322);padding:88px 56px;background:var(--case-light);color:var(--ink);scroll-margin-top:12px}
+.case-band[data-tone=dark]{--ink:#f5efea;--sub:#b7aca5;--line:#ffffff1f;--kick:var(--case-bright,var(--case-brand));--accent:var(--case-bright,var(--case-brand));--on-accent:var(--case-on-bright,#262322);background:var(--case-dark)}
 /* Brand bands: white text on the brand colour (or theme.deep when a project sets one).
    Contrast on a light brand colour is low, so body text stays pure white and a little heavier. */
-.case-band[data-tone=brand]{--ink:#fff;--sub:#fff;--line:#ffffff59;--kick:#fff;background:var(--case-deep,var(--case-brand))}
+.case-band[data-tone=brand]{--ink:#fff;--sub:#fff;--line:#ffffff59;--kick:#fff;--accent:#fff;--on-accent:var(--case-brand);background:var(--case-deep,var(--case-brand))}
 .case-band[data-tone=brand] .case-lead,.case-band[data-tone=brand] figcaption,.case-band[data-tone=brand] .case-steps p{font-weight:500}
 .case-band>*+*{margin-top:44px}
 
@@ -38,11 +38,11 @@
 .case-points li{display:grid;align-content:start;gap:8px;padding:26px 22px 4px;text-align:center}
 .case-points li+li{border-left:1px solid var(--line)}
 .case-point-kicker{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--kick)}
-.case-point-value{font-size:44px;font-weight:800;line-height:1.05;letter-spacing:-1px;color:var(--case-brand)}
+.case-point-value{font-size:44px;font-weight:800;line-height:1.05;letter-spacing:-1px;color:var(--accent)}
 .case-band[data-tone=brand] .case-point-value{color:var(--ink)}
 .case-point-title{font-size:17px;font-weight:700;line-height:1.45;color:var(--ink);word-break:keep-all}
 .case-points p{margin:0;font-size:14.5px;line-height:1.65;color:var(--sub);word-break:keep-all}
-.case-points li.is-highlight .case-point-title{color:var(--case-brand)}
+.case-points li.is-highlight .case-point-title{color:var(--accent)}
 .case-band[data-tone=brand] .case-points li.is-highlight .case-point-title{color:var(--ink);text-decoration:underline;text-underline-offset:5px}
 
 /* C — found → done */
@@ -52,16 +52,26 @@
 .case-match-row{align-items:baseline;padding:20px 0;border-top:1px solid var(--line)}
 .case-match-problem{margin:0;font-size:15px;line-height:1.65;color:var(--sub);word-break:keep-all}
 .case-match-decision{position:relative;margin:0;font-size:16px;font-weight:600;line-height:1.65;color:var(--ink);word-break:keep-all}
-.case-match-decision::before{content:'→';position:absolute;left:-26px;color:var(--case-brand);font-weight:400}
+.case-match-decision::before{content:'→';position:absolute;left:-26px;color:var(--accent);font-weight:400}
 .case-band[data-tone=brand] .case-match-decision::before{color:var(--ink)}
 
 /* D — numbered marks on a screen */
 .case-pins{position:relative;width:100%}
-.case-pin{position:absolute;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--case-brand);box-shadow:0 0 0 4px #ffffffd9;color:#262322;font-size:12.5px;font-weight:800;transform:translate(-50%,-50%)}
+.case-pin{position:absolute;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px #ffffffd9;color:var(--on-accent);font-size:12.5px;font-weight:800;transform:translate(-50%,-50%)}
 .case-notes{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;max-width:760px;margin:24px auto 0;padding:0;list-style:none}
 .case-notes li{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;color:var(--ink)}
 .case-notes small{font-size:13.5px;font-weight:400;color:var(--sub)}
-.case-note-no{display:grid;place-items:center;flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--case-brand);color:#262322;font-size:11px;font-weight:800}
+.case-note-no{display:grid;place-items:center;flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:11px;font-weight:800}
+
+/* phone screens: device-sized, rounded like a phone */
+.case-image.is-phone{width:auto;max-width:min(100%,300px);border-radius:28px}
+.case-annotated[data-device=phone]{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:56px;max-width:720px;margin:44px auto 0}
+.case-annotated[data-device=phone] .case-figure{margin:0}
+.case-annotated[data-device=phone] .case-notes{flex-direction:column;align-items:flex-start;gap:18px;margin:0}
+.case-screens{display:grid;grid-template-columns:repeat(var(--n),minmax(0,240px));justify-content:center;gap:28px;margin:44px 0 0;padding:0;list-style:none}
+.case-screens li{display:grid;justify-items:center;align-content:start;gap:12px;text-align:center}
+.case-screens .case-image.is-phone{width:100%;max-width:none;border-radius:22px}
+.case-screens p{margin:0;font-size:13.5px;line-height:1.5;color:var(--sub);text-wrap:balance}
 
 /* E — screens one after another */
 .case-steps{display:grid;gap:48px;margin:44px 0 0;padding:0;list-style:none;container:steps/inline-size}
@@ -81,7 +91,7 @@
 .case-chart-legend{display:flex;justify-content:center;gap:18px;margin:0;padding:0;list-style:none;font-size:13px;color:var(--sub)}
 .case-chart-legend li{display:flex;align-items:center;gap:7px}
 .case-chart-legend li::before{content:'';width:12px;height:12px;border-radius:2px;background:var(--sub)}
-.case-chart-legend li[data-series='1']::before{background:var(--case-brand)}
+.case-chart-legend li[data-series='1']::before{background:var(--accent)}
 .case-chart-group{display:grid;gap:12px}
 .case-chart-title{margin:0;padding-bottom:10px;border-bottom:1px solid var(--line);font-size:13.5px;font-weight:700;color:var(--ink)}
 .case-chart dl{display:grid;gap:12px;margin:0}
@@ -91,14 +101,14 @@
 .case-chart dd{display:grid;gap:4px;margin:0}
 .case-bar{display:flex;align-items:center;gap:8px}
 .case-bar i{flex:none;max-width:calc(100% - 88px);height:14px;border-radius:0 3px 3px 0;background:var(--sub);opacity:.55}
-.case-chart .is-emphasis .case-bar i,.case-bar[data-series='1'] i{background:var(--case-brand);opacity:1}
+.case-chart .is-emphasis .case-bar i,.case-bar[data-series='1'] i{background:var(--accent);opacity:1}
 .case-bar b{font-size:13px;font-weight:700;color:var(--ink)}
 .case-bar small{font-size:12px;white-space:nowrap;color:var(--sub)}
 .case-chart figcaption{text-align:center;font-size:13px;color:var(--sub)}
 
 /* side divider: "SIDE A · 기획" */
 .case-side{display:grid;justify-items:center;gap:10px;padding:96px 56px 88px;background:var(--case-dark);color:#f5efea;text-align:center}
-.case-side-letter{margin:0;font:500 12px/1 'JetBrains Mono Label',monospace;letter-spacing:.24em;color:var(--case-brand)}
+.case-side-letter{margin:0;font:500 12px/1 'JetBrains Mono Label',monospace;letter-spacing:.24em;color:var(--case-bright,var(--case-brand))}
 .case-side-name{margin:0;font-size:46px;font-weight:800;line-height:1.1;letter-spacing:-1.4px}
 .case-side-note{margin:0;font-size:15px;color:#b7aca5}
 .case-side .case-image{margin-top:40px;box-shadow:0 28px 70px #0000008c}
@@ -121,6 +131,12 @@
  .case-match-decision::before{left:0}
  .case-chart dl>div{grid-template-columns:96px minmax(0,1fr);gap:12px}
  .case-pin{width:20px;height:20px;font-size:10.5px;box-shadow:0 0 0 3px #ffffffd9}
+ .case-annotated[data-device=phone]{grid-template-columns:1fr;gap:24px;justify-items:center}
+ .case-annotated[data-device=phone] .case-notes{align-items:center}
+ .case-image.is-phone{max-width:min(100%,260px)}
+ .case-screens{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;justify-content:flex-start;gap:16px;margin-inline:-20px;padding:0 20px 8px;scrollbar-width:none}
+ .case-screens::-webkit-scrollbar{display:none}
+ .case-screens li{flex:0 0 62%;scroll-snap-align:center}
  .case-side{padding:64px 20px 56px}
  .case-side-name{font-size:34px}
  .case-side .case-image{margin-top:28px}

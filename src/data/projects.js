@@ -1,4 +1,5 @@
 import kooksoondangCase from './cases/kooksoondang'
+import walgawalbotCase from './cases/walgawalbot'
 
 export const personalProjects = [
   { id: 'korail', kind: 'project', eyebrow: 'PERSONAL / 01', heading: '코레일 홈페이지 리디자인', role: '개인 프로젝트 · 웹사이트 리디자인', state: '작업 중',
@@ -34,12 +35,6 @@ export const projects = [
     preview: { kind: 'mobile', video: '/projects/walgawalbot/preview.mp4', poster: '/projects/walgawalbot/poster.webp', caption: '스플래시 → 온보딩 → 홈 → 밸런스 게임 → 막상막하 → 후일담 편지' },
     summary: '새롭게 기획하고 제작한 커뮤니티 웹앱입니다. 일상 갈등에 대한 AI의 참고 의견과 사람들의 판단을 비교하고, 이후 이야기를 기록합니다.',
     facts: [{ label: '프로젝트', value: '신규 커뮤니티 웹앱 제작' }, { label: '내 역할', value: '개발 팀장' }, { label: '담당 화면', value: '홈 · 배심원 광장 · 후일담' }, { label: '구현 범위', value: '시나리오 기반 발표용 UI' }],
-    sections: [
-      { title: '서비스 흐름', flow: ['사건 작성', 'AI 참고 의견', '사람들의 판단', '후일담 기록'] },
-      { title: '내가 맡은 작업', items: ['홈·배심원 광장·후일담 화면 개발', '밸런스게임, 카테고리, 정렬, 페이지네이션 수정', '브랜치 병합과 기능 통합', '반응형 화면과 디자인 확인'] },
-      { title: '발표 후 수정', body: '서비스의 사용 상황과 차별점이 충분히 전달되지 않는다는 피드백을 받았습니다. 팀은 승패를 가르는 것보다 서로 다른 판단의 이유를 비교하고 다음 행동을 결정하는 경험으로 방향을 정리했습니다.' },
-      { title: '현재 범위', body: '발표 버전은 준비된 시나리오로 화면과 인터랙션을 확인하는 단계입니다. 실제 AI 연동과 응답 품질, 실패 상태를 검증하는 작업은 다음 단계입니다.' },
-      { title: '자료', link: 'https://www.figma.com/design/5msPuamjPpGJOUFl0OXBOX?node-id=3063-1230', linkLabel: '발표·작업 자료 보기' },
-    ],
+    ...walgawalbotCase,
   },
 ]
