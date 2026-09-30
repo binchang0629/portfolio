@@ -20,7 +20,7 @@ const chapterIds = (track, sections) => sideCodes(sections).map(code => `${track
 const visibleSections = content => (content.sections ?? []).filter(section => !section.hidden)
 const chapterName = section => section.label ?? section.title
 // A case study brings its own palette (from the project's style guide) for the colour bands.
-const caseTheme = theme => ({ '--case-brand': theme.brand, '--case-dark': theme.dark, '--case-light': theme.light, '--case-point': theme.point })
+const caseTheme = theme => ({ '--case-brand': theme.brand, '--case-deep': theme.deep, '--case-dark': theme.dark, '--case-light': theme.light, '--case-point': theme.point })
 
 export default function TapeArticle({ track, content, number, total, nextTrack, nextLabel, busy, headingRef, scrollRoot, transport, reducedMotion, onNext, onContact, onChapter }) {
   const sections = visibleSections(content)
