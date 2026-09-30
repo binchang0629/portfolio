@@ -133,7 +133,6 @@ export default {
       columns: ['받은 피드백', '반영한 것'],
       rows: [
         { problem: '체크를 확인하고 넘어갈 수 있게', decision: '답을 고르기 전엔 Next·View Result를 끄고, 고른 답을 색으로 표시' },
-        { problem: '칵테일 섹션 오른쪽 위 동그라미를 주황색으로', decision: '[반영 여부 확인 후 입력]' },
       ],
       image: { src: img('quiz-last'), w: 1600, h: 774, alt: 'Q4까지 답을 모두 고른 질문지. View Result 버튼이 켜져 있다', caption: '모든 답을 고르면 View Result가 켜집니다' },
       source: '팀 중간 피드백 (8/7)',
