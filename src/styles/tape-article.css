@@ -29,13 +29,14 @@
 /* Credits row */
 .tape-credits{display:flex;align-items:stretch;gap:24px;margin-top:28px;border-top:1px solid var(--tape-ink);border-bottom:1px solid var(--tape-hair)}
 .tape-meta{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin:0}
-.tape-meta>div{padding:14px 18px 16px 0;min-width:0}
+.tape-meta>div{padding:12px 18px 12px 0;min-width:0}
 .tape-meta>div+div{padding-left:18px;border-left:1px solid var(--tape-hair)}
 .tape-meta dt{font:500 10.5px/1.4 'JetBrains Mono Label',var(--font-family),monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--tape-sub)}
-.tape-meta dd{margin:6px 0 0;font-size:15px;line-height:1.55;color:var(--tape-ink);word-break:keep-all}
-.tape-live{align-self:center;flex-shrink:0;display:grid;place-items:center;align-content:center;width:84px;height:84px;margin:12px 0;border-radius:50%;background:var(--tape-ink);color:#fff;font-size:13px;font-weight:600;line-height:1.2;text-decoration:none;transition:transform 200ms ease-out,background 200ms ease-out}
-.tape-live span[aria-hidden]{font-size:16px}
-.tape-live:hover{transform:scale(1.06);background:var(--accent)}
+.tape-meta dd{margin:4px 0 0;font-size:15px;line-height:1.55;color:var(--tape-ink);word-break:keep-all}
+.tape-live{align-self:center;flex-shrink:0;display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:999px;background:var(--tape-ink);color:#fff;font-size:13px;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;transition:background 180ms ease-out}
+.tape-live span[aria-hidden]{font-size:14px;transition:transform 180ms ease-out}
+.tape-live:hover{background:var(--accent)}
+.tape-live:hover span[aria-hidden]{transform:translate(2px,-2px)}
 
 .tape-lead{max-width:38em;margin:28px 0 0;font-size:19px;line-height:1.7;letter-spacing:-.2px;color:var(--tape-ink);word-break:keep-all}
 .tape-article .project-preview-frame{max-width:none;margin-top:32px}
@@ -91,7 +92,7 @@
  .tape-credits{flex-direction:column;gap:0}
  .tape-meta{grid-template-columns:1fr}
  .tape-meta>div+div{padding-left:0;border-left:0;border-top:1px solid var(--tape-hair)}
- .tape-live{width:auto;height:auto;margin:0 0 14px;padding:12px 18px;border-radius:999px;display:flex;gap:8px;justify-self:start;align-self:flex-start}
+ .tape-live{margin:0 0 12px;align-self:flex-start}
  .tape-lead{font-size:17px}
  .tape-body{grid-template-columns:1fr;margin-top:32px}
  .tape-tracklist{display:none}
@@ -99,6 +100,6 @@
  .tape-chapter h3{font-size:19px}
 }
 @media(prefers-reduced-motion:reduce){
- .tape-live,.tape-next-title{transition:none}
- .tape-live:hover,.tape-next:hover:not(:disabled) .tape-next-title{transform:none}
+ .tape-live,.tape-live span[aria-hidden],.tape-next-title{transition:none}
+ .tape-live:hover span[aria-hidden],.tape-next:hover:not(:disabled) .tape-next-title{transform:none}
 }
