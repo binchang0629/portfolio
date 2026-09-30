@@ -38,6 +38,8 @@ const mobileSnapshot = () => window.matchMedia('(max-width: 760px)').matches
 
 export default function App() {
   const stageRef = useRef(null), playerRef = useRef(null), archiveRef = useRef(null), dragging = useRef(false)
+  // Desk objects can be dragged anywhere inside the visible window, not just the desk artwork.
+  const boundsRef = useRef(null)
   const archiveDrag = useRef(null), suppressArchiveClick = useRef(false), returnFocus = useRef(false)
   const journalButton = useRef(null)
   const [journalOpen, setJournalOpen] = useState(false)
@@ -242,6 +244,7 @@ export default function App() {
   return <>
     <LayoutGroup><AnimatePresence initial={false}>
     {!reading && <Motion.main key="desk" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reducedMotion ? 0 : .2 }} onAnimationComplete={() => { if (!reading && returnFocus.current) { returnFocus.current = false; playerRef.current?.querySelector("button")?.focus({ preventScroll: true }) } }} className="portfolio" aria-label="정창빈 포트폴리오">
+      <div className="drag-bounds" ref={boundsRef} aria-hidden="true" />
       <div className="desk" ref={stageRef} data-arriving={arriving || undefined} onPointerDownCapture={arriving ? finishArrival : undefined} onKeyDownCapture={arriving ? finishArrival : undefined} style={{ '--tape-player-ratio': tapeToPlayerRatio }}>
         <header className="site-header desk-intro">
           <div className="label-top" aria-hidden="true"><span className="label-play"><i /></span><span className="label-number">{profile.label.number}</span><span className="label-rule" /><span className="label-spec">{profile.label.spec}</span></div>
@@ -251,7 +254,7 @@ export default function App() {
           <div className="label-stripe" aria-hidden="true">{tracks.filter(track => !track.stored).map(track => <i key={track.id} style={{ background: track.accent }} />)}</div>
         </header>
         <div className="tape-stage" aria-label="포트폴리오 테이프 선택" inert={arriving || undefined}>
-          {availableDeskTracks.map(track => <Motion.button key={`${track.id}-${cycle}`} className={`tape tape-${track.id} ${archivePreview && draggedId === track.id ? 'is-storage-preview' : ''}`} aria-label={`${track.number} ${track.title} 테이프 넣기`} style={{ '--left': `${deskPositions[track.id]?.left ?? track.x / 1536 * 100}%`, '--top': `${deskPositions[track.id]?.top ?? track.y / 1024 * 100}%`, '--rotation': `${deskPositions[track.id] ? 0 : track.rotate}deg`, '--float-delay': `${allTracks.indexOf(track) * .3}s` }} drag={!isMobile && !deskSwap.busy} disabled={deskSwap.busy} dragConstraints={stageRef} dragMomentum={false} onDragStart={() => { dragging.current = true; setDraggedId(track.id) }} onDrag={(_e, info) => setDropTarget(previewDrop(info, track.id))} onDragEnd={(_e, info) => onDragEnd(info, track)} onClick={() => { if (!dragging.current) insertTrack(track.id) }} whileHover={reducedMotion ? undefined : { scale: 1.025 }} whileTap={{ scale: 1.01 }}>
+          {availableDeskTracks.map(track => <Motion.button key={`${track.id}-${cycle}`} className={`tape tape-${track.id} ${archivePreview && draggedId === track.id ? 'is-storage-preview' : ''}`} aria-label={`${track.number} ${track.title} 테이프 넣기`} style={{ '--left': `${deskPositions[track.id]?.left ?? track.x / 1536 * 100}%`, '--top': `${deskPositions[track.id]?.top ?? track.y / 1024 * 100}%`, '--rotation': `${deskPositions[track.id] ? 0 : track.rotate}deg`, '--float-delay': `${allTracks.indexOf(track) * .3}s` }} drag={!isMobile && !deskSwap.busy} disabled={deskSwap.busy} dragConstraints={boundsRef} dragMomentum={false} onDragStart={() => { dragging.current = true; setDraggedId(track.id) }} onDrag={(_e, info) => setDropTarget(previewDrop(info, track.id))} onDragEnd={(_e, info) => onDragEnd(info, track)} onClick={() => { if (!dragging.current) insertTrack(track.id) }} whileHover={reducedMotion ? undefined : { scale: 1.025 }} whileTap={{ scale: 1.01 }}>
             <div className="tape-magnet"><div className="tape-orientation"><Cassette track={track} {...tapePositions[track.id]} /></div></div>
           </Motion.button>)}
         </div>
@@ -267,7 +270,7 @@ export default function App() {
           })}</div>
           <div className="player-under"><span className={`led ${transport !== 'stopped' ? 'active' : ''}`} /><span>{deskSwap.busy ? 'CHANGING TAPE' : loaded ? (transport === 'playing' ? 'PLAYING' : transport === 'rewinding' ? 'REWIND' : transport === 'forwarding' ? 'FAST FORWARD' : 'READY TO PLAY') : 'PICK A TAPE'}</span>{loaded && <button disabled={deskSwap.busy} onClick={() => deskSwap.changeTrack(null)}>꺼내기 ⏏</button>}</div>
         </Motion.section>
-        <Motion.button key={`letter-${cycle}`} className="desk-letter" drag dragConstraints={stageRef} dragMomentum={false} onPointerDown={() => { letterDragging.current = false }} onDragStart={() => { letterDragging.current = true }} onClick={event => { if (event.detail === 0 || !letterDragging.current) setDialog(contact) }} whileDrag={{ zIndex: 8 }} aria-label="이메일 보내기">
+        <Motion.button key={`letter-${cycle}`} className="desk-letter" drag dragConstraints={boundsRef} dragMomentum={false} onPointerDown={() => { letterDragging.current = false }} onDragStart={() => { letterDragging.current = true }} onClick={event => { if (event.detail === 0 || !letterDragging.current) setDialog(contact) }} whileDrag={{ zIndex: 8 }} aria-label="이메일 보내기">
           <span className="desk-letter-paper">
             <span className="desk-letter-tape" aria-hidden="true" />
             <span className="desk-letter-to">TO. CHANG BIN</span>
@@ -276,7 +279,7 @@ export default function App() {
           </span>
         </Motion.button>
         <WorkNotebook buttonRef={journalButton} onOpen={() => setJournalOpen(true)} />
-        <DeskPen key={`pen-${cycle}`} stageRef={stageRef} reducedMotion={reducedMotion} />
+        <DeskPen key={`pen-${cycle}`} stageRef={boundsRef} reducedMotion={reducedMotion} />
         <section className={`desk-object archive ${dropTarget?.kind === 'archive' ? 'is-drop-target' : ''}`} ref={archiveRef} aria-label="카세트 보관함" data-hovered-slot={archivePreview?.hoveredSlot} data-preview-slot={archivePreview?.slot}>
           <div className="archive-orientation">
             <div className="archive-display"><ArchiveTray slots={arrivalSlots ?? storedTracks} cases={arrivalSlots ?? caseTracks} preview={archivePreview} previewTrack={previewTrack} /></div>

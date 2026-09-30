@@ -79,7 +79,11 @@
 @media(min-width:761px){
  .portfolio{height:100vh;display:grid;place-items:center}
  .desk{width:min(100%,150vh);flex-shrink:0;container-type:inline-size}
+ /* Tilted, floating tapes may reach past the desk edge; the page frame (.portfolio) does the clipping. */
+ .desk{overflow:visible}
 }
+/* Drag area = the window the visitor has open, kept a little in from the edges so tilted corners stay visible. */
+.drag-bounds{position:fixed;inset:16px;pointer-events:none;z-index:-1}
 @media(max-width:760px){.portfolio{min-height:100vh}}
 
 /* Seven-slot storage: real hit areas follow the same rotated tray as its artwork. */
