@@ -266,7 +266,9 @@ export default function App() {
             const [x, y, width, height] = control.bounds
             const action = [play, stop, () => move('forwarding'), () => move('rewinding')][i]
             const pressed = [transport === 'playing', false, transport === 'forwarding', transport === 'rewinding'][i]
-            return <button key={control.name} onClick={action} disabled={deskSwap.busy || (i !== 0 && !loaded)} aria-label={control.name} title={control.name} aria-pressed={i !== 1 ? !deskSwap.busy && pressed : undefined} style={{ left: `${(x - 70) / 1380 * 100}%`, top: `${(y - 75) / 880 * 100}%`, width: `${width / 1380 * 100}%`, height: `${height / 880 * 100}%` }} />
+            // A tape waiting in a stopped player: make the play key glow so it is clear what to press next.
+            const cue = i === 0 && loaded && transport === 'stopped' && !deskSwap.busy
+            return <button key={control.name} className={cue ? 'is-cue' : undefined} onClick={action} disabled={deskSwap.busy || (i !== 0 && !loaded)} aria-label={control.name} title={control.name} aria-pressed={i !== 1 ? !deskSwap.busy && pressed : undefined} style={{ left: `${(x - 70) / 1380 * 100}%`, top: `${(y - 75) / 880 * 100}%`, width: `${width / 1380 * 100}%`, height: `${height / 880 * 100}%` }} />
           })}</div>
           <div className="player-under"><span className={`led ${transport !== 'stopped' ? 'active' : ''}`} /><span>{deskSwap.busy ? 'CHANGING TAPE' : loaded ? (transport === 'playing' ? 'PLAYING' : transport === 'rewinding' ? 'REWIND' : transport === 'forwarding' ? 'FAST FORWARD' : 'READY TO PLAY') : 'PICK A TAPE'}</span>{loaded && <button disabled={deskSwap.busy} onClick={() => deskSwap.changeTrack(null)}>꺼내기 ⏏</button>}</div>
         </Motion.section>
