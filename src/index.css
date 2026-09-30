@@ -1,8 +1,7 @@
+@import url('./styles/pretendard.css');
 @import url('./styles/dialog.css');
 @import url('./styles/desk-letter.css');
 @import url('./styles/desk-memo.css');
-
-@font-face{font-family:'Pretendard Variable';font-style:normal;font-weight:45 920;font-display:swap;src:url('/fonts/pretendard/PretendardVariable.woff2') format('woff2')}
 
 :root{--brand-inline-offset:clamp(24px,3vw,56px);--brand-block-offset:30px;--brand-name-size:24px;--brand-role-size:9px;--brand-name-weight:650;--brand-name-spacing:.6px;--brand-role-spacing:1.8px;--desk-background:#EAF2FF;--font-family:'Pretendard Variable',Pretendard,sans-serif;font-family:var(--font-family);color:#345371;background:var(--desk-background);font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-weight:400}
 *{box-sizing:border-box}body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button{border:0}button:focus-visible,a:focus-visible{outline:3px solid #315f9c;outline-offset:5px;border-radius:6px}a{color:#2e5685}button:disabled{cursor:default}button svg{pointer-events:none}

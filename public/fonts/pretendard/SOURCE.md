@@ -1,9 +1,8 @@
-Pretendard Variable v1.3.9
+Pretendard Variable v1.3.9 — dynamic subset (92 slices, each with its own unicode-range)
 
 Official project: https://github.com/orioncactus/pretendard
 
-Source: https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard/dist/web/variable/woff2/PretendardVariable.woff2
-
-SHA256: 9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4
+Source: npm pretendard@1.3.9, dist/web/variable/woff2-dynamic-subset/*.woff2
+The @font-face rules live in src/styles/pretendard.css; the browser only downloads the slices whose characters are on screen.
 
 SIL Open Font License 1.1: LICENSE.txt

@@ -1,6 +1,7 @@
-/* Desk intro: small tracked labels, a soft retro display face, and one warm "play" accent. */
-@font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;src:url('/fonts/fraunces/fraunces-latin-full-normal.woff2') format('woff2')}
-@font-face{font-family:'Fraunces';font-style:italic;font-weight:100 900;font-display:swap;src:url('/fonts/fraunces/fraunces-latin-full-italic.woff2') format('woff2')}
+/* Desk intro: small tracked labels, a soft retro display face, and one warm "play" accent.
+   The Fraunces files are pre-set to opsz 144 and SOFT 100 (WONK off upright, on italic); only weight 400–600 varies. */
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 600;font-display:swap;src:url('/fonts/fraunces/fraunces-normal.woff2') format('woff2')}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400 600;font-display:swap;src:url('/fonts/fraunces/fraunces-italic.woff2') format('woff2')}
 
 :root{--intro-ink:#2c4a70;--intro-accent:#c0652a;--intro-accent-text:#a4521a;--desk-w:min(100vw,150vh,1840px)}
 
@@ -12,9 +13,9 @@
 .intro-slash{color:var(--intro-accent)}
 .intro-focus{margin-top:2px;column-gap:.5em;font-size:11px;color:var(--intro-accent-text)}
 
-.intro-title{margin:22px 0 0;font-family:'Fraunces',Georgia,serif;font-size:clamp(36px,calc(var(--desk-w) * .036),64px);font-weight:520;line-height:1.02;letter-spacing:-.008em;color:var(--intro-ink);font-variation-settings:'SOFT' 100,'WONK' 0,'opsz' 144}
+.intro-title{margin:22px 0 0;font-family:'Fraunces',Georgia,serif;font-size:clamp(36px,calc(var(--desk-w) * .036),64px);font-weight:520;line-height:1.02;letter-spacing:-.008em;color:var(--intro-ink)}
 .intro-title span,.intro-title em{display:block}
-.intro-title em{margin-top:.04em;font-weight:480;color:var(--intro-accent);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144}
+.intro-title em{margin-top:.04em;font-weight:480;color:var(--intro-accent)}
 .intro-copy{margin:20px 0 0;font-size:15px;line-height:1.75;color:#4f6a86;word-break:keep-all}
 
 @media(min-width:761px) and (max-height:800px){

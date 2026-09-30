@@ -1,13 +1,26 @@
-import { lazy, Suspense, useId, useRef } from 'react'
+import { lazy, Suspense, useEffect, useId, useRef, useState } from 'react'
 import { motion as Motion, useAnimationFrame, useMotionValue } from 'framer-motion'
 import { assets } from '../assets'
 
 const Pen3D = lazy(() => import('./Pen3D'))
 
+// The flat pen image carries the first paint; three.js is fetched once the page has gone idle.
+function useIdle() {
+  const [idle, setIdle] = useState(false)
+  useEffect(() => {
+    const ready = () => setIdle(true)
+    if ('requestIdleCallback' in window) { const id = requestIdleCallback(ready, { timeout: 2500 }); return () => cancelIdleCallback(id) }
+    const id = setTimeout(ready, 1200)
+    return () => clearTimeout(id)
+  }, [])
+  return idle
+}
+
 export default function DeskPen({ stageRef, reducedMotion }) {
   const penRef = useRef(null), rolling = useRef(null)
   const x = useMotionValue(0), y = useMotionValue(0), rotate = useMotionValue(0), roll = useMotionValue(0)
   const instructions = useId()
+  const idle = useIdle()
   const stopRolling = () => { rolling.current = null; x.stop(); y.stop(); rotate.stop() }
   const release = (_event, info) => {
     stopRolling()
@@ -58,9 +71,10 @@ export default function DeskPen({ stageRef, reducedMotion }) {
     x.set(Math.max(x.get() + desk.left - pen.left, Math.min(x.get() + desk.right - pen.right, x.get() + direction[0] * step)))
     y.set(Math.max(y.get() + desk.top - pen.top, Math.min(y.get() + desk.bottom - pen.bottom, y.get() + direction[1] * step)))
   }
+  const flatPen = <svg viewBox="354 49 431 1437" aria-hidden="true"><image href={assets.pen} width="1024" height="1536" /></svg>
   return <>
     <Motion.button ref={penRef} className="desk-pen" type="button" style={{ x, y, rotate }} drag dragConstraints={stageRef} dragMomentum={false} dragElastic={0} onDragStart={stopRolling} onDragEnd={release} whileDrag={{ zIndex: 9 }} onKeyDown={moveWithKeys} aria-label="펜 · 끌어서 이동" aria-describedby={instructions} title="잡아서 옮기거나 가볍게 던져보세요">
-      <span className="desk-pen-art"><Suspense fallback={<svg viewBox="354 49 431 1437" aria-hidden="true"><image href={assets.pen} width="1024" height="1536" /></svg>}><Pen3D roll={roll} turn={rotate} /></Suspense></span>
+      <span className="desk-pen-art">{idle ? <Suspense fallback={flatPen}><Pen3D roll={roll} turn={rotate} /></Suspense> : flatPen}</span>
     </Motion.button>
     <span className="sr-only" id={instructions}>펜을 잡아끌고 놓으면 살짝 회전하며 미끄러지다 멈춥니다. 키보드 방향키로도 옮길 수 있습니다. 배치 초기화를 누르면 제자리로 돌아갑니다.</span>
   </>
