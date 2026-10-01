@@ -199,6 +199,7 @@ export default {
       title: '직접 보기',
       links: [
         { href: 'https://walgawal-bot.vercel.app/onboarding', label: '웹앱' },
+        { href: 'https://www.figma.com/deck/emKhyBGkOFHLUV1nzrw7CX', label: '발표 자료' },
         { href: 'https://www.figma.com/design/5msPuamjPpGJOUFl0OXBOX', label: 'Figma' },
       ],
     },
