@@ -18,6 +18,9 @@ export default function MechanicalKeys({ transport }) {
         <stop stopColor="#29302e" stopOpacity=".22" /><stop offset=".25" stopColor="#29302e" stopOpacity=".05" /><stop offset="1" stopColor="#29302e" stopOpacity=".06" />
       </linearGradient>
       <filter id={`${prefix}-blend`}><feGaussianBlur stdDeviation="2" /></filter>
+      <radialGradient id={`${prefix}-cue`} cx=".5" cy=".5" r=".6">
+        <stop stopColor="#7fb0ff" stopOpacity=".75" /><stop offset=".55" stopColor="#5b94f5" stopOpacity=".35" /><stop offset="1" stopColor="#3f7fe0" stopOpacity=".12" />
+      </radialGradient>
       {coherentPlayer.controls.map((control, i) => {
         const [, , width, height] = control.bounds
         return <g key={control.name}>
@@ -42,6 +45,8 @@ export default function MechanicalKeys({ transport }) {
             <rect x="4" y="4" width={width - 10} height={height - 10} rx="13" fill={`url(#${prefix}-face)`} />
             <image data-part="key-face-texture" href={assets.player.empty} x={-x} y={-y} width={coherentPlayer.width} height={coherentPlayer.height} mask={`url(#${prefix}-texture-${i})`} />
             <rect className="mechanical-key-shade" x="4" y="4" width={width - 10} height={height - 10} rx="13" fill={`url(#${prefix}-shade)`} />
+            {/* Cue light: same shape as the face, so a highlight always fits the key exactly. */}
+            <rect className="mechanical-key-cue" x="4" y="4" width={width - 10} height={height - 10} rx="13" fill={`url(#${prefix}-cue)`} />
           </g>
           <rect data-part="key-face-outline" x="4" y="4" width={width - 10} height={height - 10} rx="13" fill="none" stroke="#a8aca2" strokeWidth="1.5" />
           <path d={`M17 6H${width - 23}`} stroke="#fffef8" strokeOpacity=".65" strokeWidth="2" />

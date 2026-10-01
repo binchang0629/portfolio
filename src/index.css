@@ -47,10 +47,14 @@
 .transport-controls button:hover:not(:disabled)::after{background:#ffffff12}
 .transport-controls button:active:not(:disabled)::after,.transport-controls button[aria-pressed="true"]::after{background:transparent;box-shadow:none}
 .transport-controls button:focus-visible{outline-offset:2px}
-/* Play cue: a tape is in and nothing is playing yet. */
-.transport-controls button.is-cue::after{inset:-2%;border-radius:8px;box-shadow:0 0 0 2px #3f7fe0;animation:play-cue 1.4s ease-in-out infinite}
-@keyframes play-cue{0%,100%{background:#4b8df01a;box-shadow:0 0 0 2px #3f7fe0cc,0 0 0 0 #3f7fe066}55%{background:#4b8df04d;box-shadow:0 0 0 2px #3f7fe0,0 0 0 9px #3f7fe000}}
-@media(prefers-reduced-motion:reduce){.transport-controls button.is-cue::after{animation:none;background:#4b8df033}}
+/* Play cue: a tape is in and nothing is playing yet. The play key itself lights from inside
+   and dips as if tapped; the effect is drawn in the key's own shape (MechanicalKeys.jsx). */
+.mechanical-key-cue{opacity:0;pointer-events:none}
+.player:has(.transport-controls button.is-cue) .mechanical-key[data-key-index="0"] .mechanical-key-cue{animation:key-cue-light 2.4s ease-in-out infinite}
+.player:has(.transport-controls button.is-cue) .mechanical-key[data-key-index="0"] .mechanical-key-face{animation:key-cue-tap 2.4s ease-in-out infinite}
+@keyframes key-cue-light{0%,100%{opacity:.15}45%{opacity:.9}}
+@keyframes key-cue-tap{0%,62%,100%{transform:translate(0,0)}70%{transform:translate(0,3px);filter:drop-shadow(1px 1px 0 #313b3530)}78%{transform:translate(0,0)}}
+@media(prefers-reduced-motion:reduce){.player:has(.transport-controls button.is-cue) .mechanical-key[data-key-index="0"] .mechanical-key-cue{animation:none;opacity:.6}.player:has(.transport-controls button.is-cue) .mechanical-key[data-key-index="0"] .mechanical-key-face{animation:none}}
 .player-under{top:99%;min-height:28px;left:8%;right:4%;font-size:9px;letter-spacing:1px;gap:6px}
 .player-under button{min-height:28px;font-size:11px}
 @media(max-width:760px){.player{margin-bottom:60px}.player-label{font-size:8px;letter-spacing:1px}.transport-controls{inset:0;width:100%;height:100%}.transport-controls button{min-height:0;padding:0}.player-under{font-size:9px}.player-under button{min-height:32px}}
