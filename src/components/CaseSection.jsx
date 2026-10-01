@@ -78,8 +78,9 @@ const Annotated = ({ section }) => <div className="case-annotated" data-device={
 </div>
 
 // E — screens one after another (side by side when the band is wide)
-const Compare = ({ section }) => <ol className={`case-steps${section.steps?.length === 1 ? ' is-single' : ''}`}>
-  {section.steps?.map((step, i) => <li key={i}>
+// row: true sets them side by side at the same height (each item widens by its image's aspect ratio).
+const Compare = ({ section }) => <ol className={`case-steps${section.steps?.length === 1 ? ' is-single' : ''}${section.row ? ' is-row' : ''}`}>
+  {section.steps?.map((step, i) => <li key={i} style={section.row && step.image?.w ? { '--grow': step.image.w / step.image.h } : undefined}>
     <Copy className="case-step-label">{step.label}</Copy>
     <CaseImage image={step.image} />
     <Copy as="p">{step.caption}</Copy>

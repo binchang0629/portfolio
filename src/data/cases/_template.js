@@ -47,7 +47,7 @@ export default {
     { type: 'annotated', label: '핵심 기능', title: '[제목 입력]', body: '[본문 입력]', status: 'intent',
       image: { src: '', alt: '[기능 화면]', caption: '[주석 입력]' },
       notes: [{ x: 30, y: 40, title: '[주석 제목]', body: '[주석 설명]' }] },
-
+    // E 과정·비교형 — 전후 비교, 단계별 과정. 기본은 위아래로 크게 쌓고, row: true면 같은 높이로 나란히 놓습니다(작은 창·팝업 비교에 씁니다. 모바일에서는 다시 쌓입니다)
     // E 과정·비교형 — 전후 비교, 단계별 과정. 두 장이면 나란히, 한 장이면 넓게
     { type: 'compare', label: '[짧은 이름]', title: '[제목 입력]', body: '[본문 입력]',
       steps: [{ label: 'BEFORE', image: { src: '', alt: '[이전 화면]' }, caption: '[주석 입력]' }, { label: 'AFTER', image: { src: '', alt: '[이후 화면]' }, caption: '[주석 입력]' }] },

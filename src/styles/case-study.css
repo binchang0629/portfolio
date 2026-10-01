@@ -79,6 +79,8 @@
 .case-steps li{display:grid;justify-items:center;gap:14px}
 .case-step-label{font-size:14px;font-weight:700;color:var(--kick)}
 .case-steps p{margin:0;font-size:13.5px;color:var(--sub)}
+.case-steps.is-row{display:flex;align-items:flex-start;gap:32px}
+.case-steps.is-row li{flex:var(--grow,1) 1 0;min-width:0}
 
 /* links */
 .case-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:36px 0 0}
@@ -117,6 +119,7 @@
 @container steps (min-width:880px){.case-steps:not(.is-single){grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}}
 
 @media(max-width:760px){
+ .case-steps.is-row{flex-direction:column;align-items:stretch;gap:40px}
  .case-flow{margin-top:32px;border-radius:10px}
  .case-band{padding:56px 20px}
  .case-band>*+*{margin-top:32px}

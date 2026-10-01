@@ -5,8 +5,8 @@ import korailCase from './cases/korail'
 
 export const personalProjects = [
   { id: 'korail', kind: 'project', eyebrow: 'PERSONAL / 01', heading: '코레일 홈페이지 리디자인', role: '개인 프로젝트 · 웹사이트 리디자인', state: '작업 중',
-    summary: '열차를 예매할 때 겪는 불편을 조사하고, 예매 화면을 다시 설계하는 작업입니다. 바꾼 화면은 지금 추가하고 있습니다.',
-    facts: [{ label: '유형', value: '웹사이트 리디자인' }, { label: '진행', value: '사용자 조사 · 페르소나 · 사용자 여정 · 와이어프레임' }],
+    summary: '열차를 예매할 때 겪는 불편을 조사하고, 예매 화면을 다시 설계하는 작업입니다. 디자인은 아직 최종안이 아닌 작업 중 시안입니다.',
+    facts: [{ label: '유형', value: '웹사이트 리디자인' }, { label: '진행', value: '사용자 조사 · 페르소나 · 와이어프레임 · 디자인 시안' }],
     ...korailCase,
   },
   { id: 'plant-care', kind: 'project', eyebrow: 'PERSONAL / 02', heading: '반려식물 관리 모바일 웹앱', role: '개인 프로젝트 · 신규 웹앱 제작', state: '작업 중',
