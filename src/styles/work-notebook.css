@@ -44,12 +44,25 @@
 .journal-entry-mark::after{transform:rotate(90deg)}
 .journal-entry[open] .journal-entry-mark::after{display:none}
 .journal-entry>p{font-size:14px;line-height:1.8;color:#536a7c;margin:0 0 8px 28px;word-break:keep-all}
+.journal-entry-lines{display:grid;gap:12px;margin:0 0 6px 28px}
+.journal-entry-lines div{display:grid;gap:3px}
+.journal-entry-lines dt{font-size:11.5px;font-weight:600;line-height:1.5;color:#6f8196}
+.journal-entry-lines dd{margin:0;font-size:14px;line-height:1.65;color:#536a7c;word-break:keep-all}
+.journal-entry-lines [data-line=change] dd{color:#345371}
 .journal-project-link{display:flex;align-items:center;gap:16px;min-height:44px;padding:6px 0;margin:0 0 10px 28px;background:transparent;font-size:12px;color:#436b92}
 .journal-project-link:hover{text-decoration:underline;text-underline-offset:4px}
 .journal-goals{list-style:none;padding:0;margin:0}
-.journal-goals li{display:flex;align-items:baseline;gap:16px;padding:24px 0;border-bottom:1px solid #dbe3ee}
-.journal-goals h4{font-size:16px;line-height:1.5;font-weight:550;margin:0 0 8px}
-.journal-goals p{font-size:14px;line-height:1.8;color:#536a7c;margin:0;word-break:keep-all}
+.journal-goals li{display:flex;align-items:flex-start;gap:14px;padding:20px 0;border-bottom:1px solid #dbe3ee}
+.journal-goals li>div{flex:1;min-width:0}
+.journal-goal-mark{flex-shrink:0;display:grid;place-items:center;width:18px;height:18px;margin-top:3px;border:1.5px solid #8ba0b6;border-radius:50%}
+.journal-goal-mark svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.journal-goals [data-state=done] .journal-goal-mark{background:#5279a3;border-color:#5279a3}
+.journal-goals [data-state=doing] .journal-goal-mark{border-color:#5279a3;background:linear-gradient(90deg,#5279a3 50%,transparent 50%)}
+.journal-goal-state{margin-left:10px;font-size:11.5px;font-weight:500;color:#6f8196}
+.journal-goals [data-state=doing] .journal-goal-state{color:#436b92;font-weight:600}
+.journal-goals [data-state=done] h4,.journal-goals [data-state=done] p{color:#7f90a0}
+.journal-goals h4{font-size:16px;line-height:1.5;font-weight:550;margin:0 0 4px}
+.journal-goals p{font-size:14px;line-height:1.65;color:#536a7c;margin:0;word-break:keep-all}
 .journal-paper>footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:18px;font-size:11px;color:#71849a;line-height:1.5;flex-shrink:0}
 .journal-opening-cover{position:absolute;left:50%;top:0;width:50%;height:100%;border-radius:0 8px 8px 0;transform-origin:0 50%;transform:rotateY(-180deg);backface-visibility:hidden;pointer-events:none;z-index:10;box-shadow:2px 3px 4px #334b6233}
 /* Decorative sheets turn at the cover hinge and settle out of the reading surface. */
@@ -84,9 +97,9 @@
  .journal-entry summary{gap:12px;min-height:68px}
  .journal-entry summary>span:nth-child(2){display:block}
  .journal-entry small{display:block;margin-top:3px}
- .journal-entry>p{margin-left:0}
+ .journal-entry>p,.journal-entry-lines{margin-left:0}
  .journal-project-link{margin-left:0}
- .journal-goals li{padding:22px 0;gap:12px}
+ .journal-goals li{padding:18px 0;gap:12px}
  .journal-opening-cover{left:0;width:100%;border-radius:5px}
  .journal-turning-leaf{left:0;width:100%}
  .journal-opening-cover .journal-cover-title{font-size:28px}

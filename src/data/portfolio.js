@@ -42,24 +42,47 @@ export const tracks = [
   },
 ]
 
+// Home notebook. Each record: what got in the way (problem), what changed (change), and later what I felt (learned).
+// learned stays empty until I write it myself; the notebook hides an empty line.
 export const notes = {
   id: 'notes', kind: 'notes', eyebrow: 'WORK NOTES', heading: '작업 기록',
-  summary: '각 프로젝트에서 다뤘던 문제와 수정할 부분을 모았습니다.',
+  summary: '프로젝트마다 부딪힌 문제와 바꾼 것을 모았습니다.',
   entries: [
-    { project: '코레일', label: '예매 흐름', body: '설문과 인터뷰에서 매진 정보, 비회원 예매 진입, 좌석 선택의 불편을 찾았습니다. 이 문제들을 예매 화면과 연결해 정리하고 있습니다.', target: personalProjects[0] },
-    { project: '반려식물 웹앱', label: '기획 방향', body: '초기의 게임형 아이디어에서 식물 상태와 관리 경험을 기록하는 방향으로 바뀌었습니다. 상태 확인 → 행동 선택 → 결과 기록이 핵심 흐름입니다.', target: personalProjects[1] },
-    { project: '왈가왈BOT', label: '발표 피드백', body: '서비스를 언제 쓰는지와 차별점이 잘 전달되지 않는다는 피드백을 받았습니다. 서로 다른 판단의 이유를 비교하는 경험을 중심으로 내용을 정리했습니다.', target: projects[1] },
-    { project: '국순당', label: '협업', body: '초반에는 소통이 늦어 진행에 어려움이 있었습니다. 후반에 소통이 활발해지면서 작업 속도가 붙었습니다. 모바일과 페이지 간 디자인 통일은 보완할 부분입니다.', target: projects[0] },
+    { project: '이 포트폴리오', label: '수업 피드백', target: { id: 'branding' },
+      problem: '테이프를 어디에 넣고, 넣은 뒤 무엇을 눌러야 할지 모르겠다는 피드백을 받았습니다. 상세 페이지는 글이 중간에서 잘려 AI가 만든 것 같다는 말도 들었습니다.',
+      change: '빈 플레이어의 뚜껑이 들썩이고, 테이프를 넣으면 재생 키에 빛이 돌게 했습니다. 상세 페이지는 색 띠로 다시 짜고, 문장 단위로 줄을 나누는 규칙을 만들었습니다.',
+      learned: '' },
+    { project: '코레일', label: '예매 흐름', target: personalProjects[0],
+      problem: '설문과 인터뷰에서 매진 정보, 비회원 예매 진입, 좌석 선택의 불편을 찾았습니다.',
+      change: '빠른 예매를 1순위 가설로 두고, 메인 예매 칸을 출발역·도착역·날짜·인원 네 가지로 줄였습니다. 예매 화면에는 매진 열차 숨김과 적용 가능한 할인을 넣고 있습니다.',
+      learned: '' },
+    { project: 'Planty', label: '방향 전환', target: personalProjects[1],
+      problem: '처음에는 실제 식물과 앱 속 식물을 함께 키우는 게임형 아이디어였습니다. 첫 화면도 AI로 빠르게 만든 초안이었습니다.',
+      change: '식물 상태를 확인하고 비슷한 경험과 견주는 방향으로 바꿨습니다. AI 초안은 사진으로 고르는 보기와 상태 설명을 더해 직접 다듬었습니다.',
+      learned: '' },
+    { project: '왈가왈BOT', label: '발표 피드백', target: projects[1],
+      problem: '서비스를 언제 쓰는지와 차별점이 잘 전달되지 않는다는 피드백을 받았습니다.',
+      change: '서로 다른 판단의 이유를 비교하는 경험을 중심으로 내용을 다시 정리했습니다.',
+      learned: '' },
+    { project: '국순당', label: '협업', target: projects[0],
+      problem: '초반에는 소통이 늦어 진행에 어려움이 있었습니다.',
+      change: '후반에 소통이 활발해지면서 작업 속도가 붙었습니다. 모바일과 페이지 간 디자인 통일은 보완할 부분으로 남았습니다.',
+      learned: '' },
   ],
 }
 
+// state: 'done' | 'doing' | 'next'
 export const memo = {
-  id: 'memo', kind: 'memo', eyebrow: 'TO DO', heading: '남은 작업',
-  summary: '지금 작업 중인 것들입니다.',
+  id: 'memo', kind: 'memo', eyebrow: 'TO DO', heading: '앞으로의 목표',
+  summary: '끝낸 것과 하고 있는 것, 다음에 할 것.',
   checklist: [
-    { label: '코레일 리디자인', detail: '조사에서 찾은 문제와 바뀐 예매 화면을 함께 정리하기', state: '작업 중' },
-    { label: '반려식물 웹앱', detail: '상태 확인부터 결과 기록까지 핵심 화면 연결하기', state: '작업 중' },
-    { label: '포트폴리오', detail: '프로젝트 화면, 담당 작업, 수정 과정을 추가하기', state: '작업 중' },
+    { label: '프로젝트 상세 페이지', detail: '네 프로젝트와 이 포트폴리오의 과정을 색 띠 페이지로 정리하기', state: 'done' },
+    { label: '수업 피드백 반영', detail: '넣는 곳 안내, 재생 키, 줄바꿈, 줄간격 고치기', state: 'done' },
+    { label: '연락하기', detail: '편지 모양 폼으로 메일을 받을 수 있게 연결하기', state: 'done' },
+    { label: '코레일 리디자인', detail: '최종 시안을 정하고, 비회원 예매와 모바일 화면 설계하기', state: 'doing' },
+    { label: 'Planty', detail: '결과 기록 흐름과 Community · Journal 탭 설계하기', state: 'doing' },
+    { label: '사용자에게 확인하기', detail: '두 개인 프로젝트의 가설을 실제 사용자에게 확인하기', state: 'next' },
+    { label: '모바일 흐름', detail: '작은 화면에서 테이프를 고르고 읽는 과정 다듬기', state: 'next' },
   ],
 }
 

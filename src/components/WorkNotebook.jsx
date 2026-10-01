@@ -1,6 +1,10 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import Sentences from './Sentences'
 
 const openingLeaves = Array.from({ length: 5 }, (_, index) => index)
+// A record reads as labelled lines; a line without text (an unwritten 'learned') is left out.
+const entryLines = [['problem', '부딪힌 문제'], ['change', '바꾼 것'], ['learned', '느낀 점']]
+const goalStates = { done: '완료', doing: '진행 중', next: '다음' }
 
 function Cover() {
   return <span className="journal-cover-face">
@@ -120,14 +124,18 @@ export function NotebookDialog({ triggerRef, entries, goals, reducedMotion, mobi
           <div className="journal-paper-scroll">
             {entries.map((entry, index) => <details className="journal-entry" key={entry.project} open={index === 0 ? true : undefined}>
               <summary><span className="journal-entry-number">{String(index + 1).padStart(2, '0')}</span><span><strong>{entry.project}</strong><small>{entry.label}</small></span><span className="journal-entry-mark" aria-hidden="true" /></summary>
-              <p>{entry.body}</p><button className="journal-project-link" onClick={() => close(entry.target)}>프로젝트 보기 <span aria-hidden="true">↗</span></button>
+              <dl className="journal-entry-lines">{entryLines.filter(([key]) => entry[key]).map(([key, name]) => <div key={key} data-line={key}><dt>{name}</dt><dd><Sentences text={entry[key]} /></dd></div>)}</dl>
+              <button className="journal-project-link" onClick={() => close(entry.target)}>프로젝트 보기 <span aria-hidden="true">↗</span></button>
             </details>)}
           </div>
           <footer><span>CHANG BIN</span><span>01</span></footer>
         </section>
         <section id="journal-goals" className="journal-paper journal-right" role={mobile ? 'tabpanel' : undefined} aria-labelledby={mobile ? 'journal-goals-tab' : 'journal-goals-heading'}>
-          <header><span>다음</span><h3 id="journal-goals-heading">앞으로의 목표</h3><p>지금의 작업에서, 다음 단계로.</p></header>
-          <div className="journal-paper-scroll"><ol className="journal-goals">{goals.map((goal, index) => <li key={goal.label}><span className="journal-goal-number">{String(index + 1).padStart(2, '0')}</span><div><h4>{goal.label}</h4><p>{goal.detail}</p></div></li>)}</ol></div>
+          <header><span>다음</span><h3 id="journal-goals-heading">앞으로의 목표</h3><p>끝낸 것, 하고 있는 것, 다음에 할 것.</p></header>
+          <div className="journal-paper-scroll"><ol className="journal-goals">{goals.map(goal => <li key={goal.label} data-state={goal.state}>
+            <span className="journal-goal-mark" aria-hidden="true">{goal.state === 'done' && <svg viewBox="0 0 20 20"><path d="M4.5 10.5 8.4 14 15.5 5.8" /></svg>}</span>
+            <div><h4>{goal.label}<span className="journal-goal-state">{goalStates[goal.state]}</span></h4><p><Sentences text={goal.detail} /></p></div>
+          </li>)}</ol></div>
           <footer><span>계속 채워 가는 노트</span><span>02</span></footer>
         </section>
         <div className="journal-turning-pages" aria-hidden="true">{openingLeaves.map(index => <div ref={element => { leaves.current[index] = element }} className="journal-turning-leaf" key={index} style={{ zIndex: openingLeaves.length - index }}>

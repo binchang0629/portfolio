@@ -87,13 +87,16 @@ function bestLines(tokens, width, measure) {
 }
 
 // Measures with a hidden copy inside the element, so widths use exactly the fonts on screen.
+// On-screen widths include any scale or 3D projection around the element (the notebook opens in 3D),
+// so they are divided back to layout pixels to compare with clientWidth.
 function measurer(el) {
   const probe = document.createElement('span')
   probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:0;top:0'
   el.appendChild(probe)
+  const scale = (el.offsetWidth && el.getBoundingClientRect().width / el.offsetWidth) || 1
   const cache = new Map()
   const measure = text => {
-    if (!cache.has(text)) { probe.textContent = text; cache.set(text, probe.getBoundingClientRect().width) }
+    if (!cache.has(text)) { probe.textContent = text; cache.set(text, probe.getBoundingClientRect().width / scale) }
     return cache.get(text)
   }
   measure.done = () => probe.remove()

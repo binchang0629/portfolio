@@ -13,7 +13,7 @@ export default function ContentBody({ content, onProject, onContact, titleId = '
       {content.site && <div className="project-actions"><a href={content.site} target="_blank" rel="noopener noreferrer">사이트 보기 <span aria-hidden="true">↗</span></a></div>}
       {content.facts && <dl className="project-facts">{content.facts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
       {content.entries && <div className="work-entries">{content.entries.map(entry => <article key={entry.project}>
-        <div className="entry-caption"><span>{entry.project}</span><span>{entry.label}</span></div><p>{entry.body}</p>
+        <div className="entry-caption"><span>{entry.project}</span><span>{entry.label}</span></div><p>{entry.body ?? entry.change}</p>
         <button onClick={() => onProject(entry.target)}>프로젝트 보기 <span aria-hidden="true">↗</span></button>
       </article>)}</div>}
       {content.checklist && <ol className="work-checklist">{content.checklist.map(item => <li key={item.label}><span className="task-mark" aria-hidden="true"/><div><strong>{item.label}</strong><p>{item.detail}</p></div><span className="task-state">{item.state}</span></li>)}</ol>}
