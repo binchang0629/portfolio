@@ -46,7 +46,7 @@
 .tape-live:hover{border-color:var(--accent);background:var(--accent)}
 .tape-live:hover span[aria-hidden]{transform:translate(2px,-2px)}
 
-.tape-lead{max-width:none;margin:28px 0 0;font-size:19px;line-height:1.7;letter-spacing:-.2px;color:var(--tape-ink);word-break:keep-all}
+.tape-lead{max-width:none;margin:28px 0 0;font-size:19px;line-height:1.6;letter-spacing:-.2px;color:var(--tape-ink);word-break:keep-all}
 .tape-article .project-preview-frame{max-width:none;margin-top:32px}
 
 /* Chapters + J-card flap */
@@ -57,9 +57,9 @@
 .tape-code{flex-shrink:0;min-width:30px;font:500 12px/1 'JetBrains Mono Label',monospace;letter-spacing:.06em;color:var(--accent);filter:saturate(1.2) brightness(.8)}
 .tape-chapter h3{margin:0;font-size:21px;font-weight:700;line-height:1.4;letter-spacing:-.4px;color:var(--tape-ink);word-break:keep-all}
 .tape-chapter-body{margin:14px 0 0 44px}
-.tape-chapter-body p{margin:0;max-width:none;font-size:16.5px;line-height:1.8;color:var(--tape-body);word-break:keep-all}
+.tape-chapter-body p{margin:0;max-width:none;font-size:16.5px;line-height:1.65;color:var(--tape-body);word-break:keep-all}
 .tape-chapter-body ul{display:grid;gap:10px;margin:0;padding:0;list-style:none}
-.tape-chapter-body li{position:relative;padding-left:20px;font-size:16.5px;line-height:1.75;color:var(--tape-body);word-break:keep-all}
+.tape-chapter-body li{position:relative;padding-left:20px;font-size:16.5px;line-height:1.6;color:var(--tape-body);word-break:keep-all}
 .tape-chapter-body ul li::before{content:'';position:absolute;left:2px;top:.72em;width:7px;height:7px;background:var(--accent)}
 .tape-flow{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
 .tape-flow li{display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border:1px solid var(--tape-hair);background:#fff;font-size:15px;color:var(--tape-ink)}
