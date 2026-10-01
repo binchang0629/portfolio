@@ -7,8 +7,8 @@ import { useLayoutEffect, useRef, useState } from 'react'
 // a reason. Rechecked when the width changes or fonts finish loading.
 function tokenize(text) {
   const tokens = []
-  // Keep " · " separators attached to the word before them, so no line starts with a dot.
-  const paragraphs = text.replace(/ · /g, '\u00a0· ').split('\n')
+  // Keep " · " separators attached to the word before them, and glue "상태·행동" with word joiners, so no line starts with a dot.
+  const paragraphs = text.replace(/ · /g, '\u00a0· ').replace(/(\S)·(?=\S)/g, '$1\u2060·\u2060').split('\n')
   paragraphs.forEach((paragraph, p) => {
     const sentences = paragraph.split(/(?<=[.!?])\s+(?=\S)/)
     sentences.forEach((sentence, s) => {

@@ -1,26 +1,18 @@
 import kooksoondangCase from './cases/kooksoondang'
 import walgawalbotCase from './cases/walgawalbot'
+import plantCareCase from './cases/plant-care'
+import korailCase from './cases/korail'
 
 export const personalProjects = [
   { id: 'korail', kind: 'project', eyebrow: 'PERSONAL / 01', heading: '코레일 홈페이지 리디자인', role: '개인 프로젝트 · 웹사이트 리디자인', state: '작업 중',
-    summary: '열차를 예매할 때 겪는 불편을 조사하고, 예매 화면을 다시 설계하는 작업입니다.',
+    summary: '열차를 예매할 때 겪는 불편을 조사하고, 예매 화면을 다시 설계하는 작업입니다. 바꾼 화면은 지금 추가하고 있습니다.',
     facts: [{ label: '유형', value: '웹사이트 리디자인' }, { label: '진행', value: '사용자 조사 · 페르소나 · 사용자 여정 · 와이어프레임' }],
-    sections: [
-      { title: '조사에서 찾은 문제', items: ['열차와 좌석의 매진 정보를 이해하기 어렵다.', '비회원 예매를 어디서 시작해야 하는지 찾기 어렵다.', '좌석 선택 과정이 불편하다.'] },
-      { title: '진행한 작업', body: '설문조사와 인터뷰를 진행했습니다. 발견한 문제를 바탕으로 페르소나, 사용자 여정, 와이어프레임을 만들었습니다.' },
-      { title: '다음 작업', body: '조사 내용과 실제로 바뀐 화면을 함께 정리하고 있습니다. 완성한 화면과 구현 범위는 이후 추가할 예정입니다.' },
-    ],
+    ...korailCase,
   },
   { id: 'plant-care', kind: 'project', eyebrow: 'PERSONAL / 02', heading: '반려식물 관리 모바일 웹앱', role: '개인 프로젝트 · 신규 웹앱 제작', state: '작업 중',
-    summary: '식물의 상태를 살펴보고, 비슷한 환경에서 키운 사람들의 기록을 참고하는 모바일 웹앱입니다.',
+    summary: '식물의 상태를 직접 살펴보고, 비슷한 환경에서 키운 사람들의 경험을 참고하는 모바일 웹앱 Planty입니다.',
     facts: [{ label: '유형', value: '신규 모바일 웹앱 기획·설계' }, { label: '진행', value: '기획 · 핵심 화면 설계' }],
-    sections: [
-      { title: '출발점', body: '물주기 일정만으로는 지금 물이 필요한지 판단하기 어렵다고 보았습니다. 같은 식물이라도 빛과 계절, 실내 환경이 다르기 때문에 현재 상태를 먼저 확인하도록 구성했습니다.' },
-      { title: '화면 흐름', flow: ['식물 선택', '상태 확인', '비슷한 경험', '행동 선택', '결과 기록'] },
-      { title: '설계한 화면', body: '홈, 내 식물, 식물 상세, 상태 확인, 비슷한 경험, 행동 선택, 결과 기록 화면을 설계했습니다. 관리 전후의 변화를 기록하고 다음 관리 때 참고하는 흐름입니다.' },
-      { title: '남은 부분', body: '핵심 흐름을 연결하고 기록 부담과 사례 비교 기준을 확인해야 합니다. 포인트와 상점은 확장 기능으로 계획한 단계입니다.' },
-      { title: '자료', link: 'https://www.figma.com/design/WW3bdlwtel1WXeNpVPiRlv?node-id=59-114', linkLabel: 'Figma 화면 보기' },
-    ],
+    ...plantCareCase,
   },
 ]
 

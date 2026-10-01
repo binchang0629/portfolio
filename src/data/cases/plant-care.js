@@ -1,16 +1,17 @@
 // 반려식물 관리 모바일 웹앱 케이스 스터디 (작업 중) — 내용만 담는 파일입니다.
 // 규칙: docs/케이스스터디_작성_규칙.md
-// 출처: 개인 Figma(린캔버스 페이지 — 아이디어 메모, 경쟁 앱 체험, 인터뷰 3명, 린캔버스, 타깃 사용자 / 앱 페이지 — 핵심 화면),
-//       docs/projects/개인_앱.md. 시장 통계는 원문 확인 전이라 쓰지 않았고, 화면 속 수치는 예시 값입니다.
+// 출처: 개인 Figma(린캔버스 페이지 — 아이디어 메모, 경쟁 앱 체험, 인터뷰 3명, 린캔버스, 타깃 사용자 /
+//       앱 페이지 '진짜' 섹션 — 직접 다듬은 실제 화면 7개, AI 초안 화면), docs/projects/개인_앱.md.
+//       시장 통계는 원문 확인 전이라 쓰지 않았고, 화면 속 수치는 예시 값입니다.
 const img = name => `/cases/plant-care/${name}.webp`
 const phone = (name, alt) => ({ src: img(name), w: 402, h: 874, alt, device: 'phone' })
 
 export default {
-  // 앱 화면의 색: 진한 잎 초록(브랜드), 먹색, 종이색 배경, 연두(포인트). bright는 어두운 띠 위의 연두
-  theme: { brand: '#4F6645', onBrand: '#FFFFFF', bright: '#BFD49C', onBright: '#30312E', dark: '#30312E', light: '#F9F8F1', point: '#D4E7B8' },
+  // Planty 화면의 색: 진한 이끼 초록(버튼·탭), 먹색, 종이색 배경, 연두(상태 확인 버튼·선택). bright는 어두운 띠 위의 연두
+  theme: { brand: '#384D2F', onBrand: '#FFFFFF', bright: '#DBEBA8', onBright: '#2B3325', dark: '#262B22', light: '#FAF9F4', point: '#DBEBA8' },
   sides: {
     A: { name: '기획', note: '아이디어를 정하고 방향을 바꾼 과정' },
-    B: { name: '설계한 화면', note: '핵심 흐름 8개 화면 중 일부 · 작업 중' },
+    B: { name: 'Planty 화면', note: '직접 다듬은 화면 7개 · 작업 중' },
   },
   sections: [
     {
@@ -75,40 +76,52 @@ export default {
     {
       side: 'B', type: 'screens', tone: 'light',
       label: '기본 화면', kicker: 'Screens',
-      title: '정답보다\n관찰이 먼저',
-      body: '홈은 오늘 확인할 식물과 주변 환경, 이어서 기록할 결과를 먼저 보여 줍니다. 내 식물과 상세 화면도 관리가 필요한 상태부터 보이게 했습니다.',
+      title: '오늘 볼 식물이\n먼저 보이게',
+      body: '홈은 오늘 확인할 식물과 지금의 환경, 이어서 기록할 식물을 먼저 보여 줍니다. 환경은 숫자만 두지 않고 “좋아요”, “간접광 추천”처럼 말로 풀었습니다.',
       status: 'intent',
       steps: [
-        { label: '홈', image: phone('home', '홈. 오늘 몬스테라를 한번 바라봐요, 상태 확인하기 버튼, 오늘의 환경, 이어서 기록할 결과'), caption: '오늘 확인할 식물과 환경' },
-        { label: '내 식물', image: phone('plants', '내 식물 목록. 확인할 시기인 몬스테라 카드와 스킨답서스, 고무나무, 상태별 보기'), caption: '확인이 필요한 식물이 맨 위에' },
-        { label: '식물 상세', image: phone('detail', '몬스테라 상세. 최근 관리, 관찰 리듬, 상태 확인하기 버튼'), caption: '최근 관리와 관찰 리듬' },
+        { label: '홈', image: phone('home', '홈. 몬스테라를 확인해볼 시기예요, 상태 확인하기 버튼, 현재 환경(온도·습도·햇빛·실내 환경), 이어서 기록할 식물 스킨답서스'), caption: '오늘 확인할 식물과 현재 환경' },
+        { label: '내 식물', image: phone('plants', '내 식물. 전체·실내·베란다·야외 필터, 대표 식물 몬스테라와 스킨답서스 카드, 식물별 한 줄 상태'), caption: '식물마다 한 줄로 보는 상태' },
+        { label: '식물 상세', image: phone('detail', '몬스테라 상세. 실내·기본 청정·중형 화분 태그, 현재 상태(마지막 물주기, 흙 상태)'), caption: '마지막 물주기와 흙 상태' },
       ],
     },
     {
       side: 'B', type: 'screens', tone: 'dark',
       label: '핵심 흐름', kicker: 'Core Flow',
-      title: '확인하고, 비교하고,\n결과를 남긴다',
-      body: '흙과 잎 상태를 직접 골라 확인하고, 비슷한 상황의 사람들이 한 일을 본 뒤, 다음 날 결과를 기록합니다.',
+      title: '확인하고, 고르고,\n비슷한 경험과 견준다',
+      body: '흙과 잎 상태는 사진을 보고 고릅니다. 내가 한 행동을 고르면, 비슷한 환경의 사람들이 어떻게 했는지 볼 수 있습니다.',
       status: 'intent',
       steps: [
-        { label: '상태 확인', image: phone('check', '상태 확인 1/3. 흙 상태는 어떤가요? 촉촉해요, 조금 촉촉해요, 충분히 말랐어요'), caption: '흙과 잎 상태를 직접 보고 고르기' },
-        { label: '비슷한 경험', image: phone('similar', '나와 비슷한 상황에서는 이런 흐름이 많았어요. 전체 경향과 개별 경험'), caption: '같은 상태였던 사람들의 선택' },
-        { label: '결과 기록', image: phone('result', '결과 기록. 지금 몬스테라는 어떤 모습에 가까운가요? 세 가지 상태 선택과 짧은 메모'), caption: '하루 뒤 실제 모습으로 기록' },
+        { label: '상태 확인', image: phone('check', '상태 확인. 흙 상태는 어떤가요? 사진으로 된 보기(촉촉해요, 조금 촉촉해요, 충분히 말랐어요), 잎 상태는 어떤가요?'), caption: '사진을 보고 고르는 흙·잎 상태' },
+        { label: '행동 선택', image: phone('action', '행동 선택. 어떤 행동을 선택하셨나요? 물주기, 조금 더 기다리기, 위치 변경, 기타 관리'), caption: '내가 한 행동 네 가지 중 하나' },
+        { label: '비슷한 경험', image: phone('similar', '비슷한 환경의 경험 124건. 다른 사람들은 어떻게 했을까요? 기다렸어요 48%, 물줬어요 37%, 위치 변경했어요 15%'), caption: '같은 조건에서 사람들이 한 일' },
       ],
       source: '화면 속 수치는 예시 값',
     },
     {
       side: 'B', type: 'annotated', tone: 'light',
       label: '경험 데이터', kicker: 'Experience Data',
-      title: '쌓인 경험은\n데이터로 다시 본다',
-      body: '기본 비교는 무료로 충분히 보이고, 구독(GROW PASS)은 기능을 잠그는 대신 더 깊은 분석을 더하는 구조로 설계했습니다.',
+      title: '쌓인 경험은\n숫자로 다시 본다',
+      body: '같은 식물, 계절, 환경으로 모인 경험을 숫자로 요약합니다. 전체 요약은 누구나 보고, 상태별 분석과 내 식물 비교는 프리미엄으로 더하는 구조입니다.',
       status: 'intent',
-      image: { ...phone('data', '경험 데이터. 124개의 경험, 가장 많은 행동 62%, 좋아진 기록 78%, 행동별 결과 비교, GROW PASS 고급 분석 카드'), caption: '화면 속 수치는 예시 값입니다' },
+      image: { ...phone('data', '경험 데이터 분석. 식물·계절·환경 필터, 전체 요약 탭과 잠긴 상태별·내 식물과 비교 탭, 총 경험 수 1,284건, 가장 많은 행동 기다림 48%'), caption: '화면 속 수치는 예시 값입니다' },
       notes: [
-        { x: 30, y: 30, title: '가장 많이 선택한 행동' },
-        { x: 8, y: 46, title: '행동별 결과 비교' },
-        { x: 8, y: 66, title: '환경별 요약은 무료로' },
-        { x: 8, y: 82, title: '구독은 더 깊은 분석만 더하기' },
+        { x: 84, y: 31, title: '식물·계절·환경으로 조건 고르기' },
+        { x: 37, y: 40.5, title: '전체 요약은 무료, 깊은 분석은 잠금' },
+        { x: 15, y: 66, title: '조건에 맞는 경험 수' },
+        { x: 15, y: 89, title: '가장 많이 한 행동' },
+      ],
+    },
+    {
+      side: 'B', type: 'screens', tone: 'dark',
+      label: '다듬은 과정', kicker: 'Process',
+      title: 'AI 초안에서 시작해,\n직접 고쳐 나갔다',
+      body: '처음 화면은 AI로 빠르게 만든 초안이었습니다. 이 초안을 바탕으로 정보와 구성을 직접 보강하고 고쳐 지금 화면을 만들었습니다.',
+      steps: [
+        { label: 'AI 초안 · 홈', image: phone('draft-home', 'AI 초안 홈. 식물 그림, 오늘의 환경 숫자 세 개, 이어서 기록할 결과'), caption: '그림과 숫자 세 개뿐인 환경' },
+        { label: '다듬은 홈', image: phone('home', '다듬은 홈. 실제 식물 사진, 아이콘과 상태 설명이 붙은 환경 네 가지'), caption: '사진과 상태 설명을 더한 환경' },
+        { label: 'AI 초안 · 상태 확인', image: phone('draft-check', 'AI 초안 상태 확인 1/3. 글로만 된 흙 상태 보기 세 개'), caption: '글로만 고르는 보기' },
+        { label: '다듬은 상태 확인', image: phone('check', '다듬은 상태 확인. 사진으로 된 흙·잎 상태 보기'), caption: '사진을 보고 고르는 보기' },
       ],
     },
     {
@@ -118,8 +131,8 @@ export default {
       body: '핵심 흐름의 화면 설계까지 진행했습니다. 아래 작업은 이어서 추가할 예정입니다.',
       status: 'unverified',
       cards: [
-        { kicker: '설계', title: '행동 선택 화면 다듬기', body: '참고 사례와 직접 선택의 관계를 더 분명하게' },
-        { kicker: '설계', title: '빈 상태와 오류 화면', body: '사례가 없을 때, 저장에 실패했을 때' },
+        { kicker: '설계', title: '결과 기록 흐름 잇기', body: '홈의 결과 기록하기에서 이어지는 화면' },
+        { kicker: '설계', title: 'Community와 Journal', body: '하단 탭에만 있고 화면은 아직 없다' },
         { kicker: '검증', title: '기록 부담과 사례 신뢰도', body: '사용자에게 직접 확인하기' },
       ],
     },
@@ -128,7 +141,7 @@ export default {
       label: '자료', kicker: 'Links',
       title: '직접 보기',
       links: [
-        { href: 'https://www.figma.com/design/WW3bdlwtel1WXeNpVPiRlv?node-id=120-209', label: '앱 화면' },
+        { href: 'https://www.figma.com/design/WW3bdlwtel1WXeNpVPiRlv?node-id=164-116', label: '앱 화면' },
         { href: 'https://www.figma.com/design/WW3bdlwtel1WXeNpVPiRlv?node-id=16-2', label: '린캔버스' },
       ],
     },
