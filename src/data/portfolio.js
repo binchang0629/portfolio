@@ -1,4 +1,5 @@
 import { personalProjects, projects } from './projects'
+import brandingCase from './cases/branding'
 
 export const profile = {
   name: '정창빈', englishName: 'CHANG BIN', role: 'UI/UX DESIGNER',
@@ -29,14 +30,9 @@ export const tracks = [
   // Starts in the archive; x/y is where it lands when taken out.
   { id: 'branding', number: '06', title: 'BRANDING', subtitle: 'A side of me.', tint: 35, caseColor: '#d2c8e8', accent: '#9a86c9', stored: true, x: 170, y: 330, rotate: -6,
     eyebrow: '06 / BRANDING', heading: '이 포트폴리오를 만든 과정',
-    summary: '카세트에 프로젝트를 담고, 플레이어로 선택해 보는 개인 웹사이트입니다.',
+    summary: '프로젝트를 카세트에 담고, 플레이어에 넣어 재생해 보는 개인 포트폴리오 웹사이트입니다. 처음 컨셉 이미지에서 지금의 책상까지 만든 과정을 정리했습니다.',
     facts: [{ label: '작업', value: '개인 포트폴리오 · 제작 중' }, { label: '구현', value: 'Vite · React · JavaScript · CSS' }],
-    sections: [
-      { title: '카세트를 고른 이유', body: '소개와 프로젝트를 한 개씩 테이프에 담았습니다. 테이프를 끌어 넣거나 클릭해 선택한 뒤 재생하면 해당 내용을 볼 수 있습니다.' },
-      { title: '수정한 부분', items: ['사물마다 달랐던 시점을 플레이어 기준으로 맞췄습니다.', '테이프 크기와 삽입 위치를 같은 기준으로 계산했습니다.', '릴과 테이프 띠를 분리해 재생·빨리 감기·되감기 상태를 표현했습니다.', '보관함에 놓을 칸을 미리 보여 주고, 꺼낸 뒤에는 빈 케이스가 남도록 했습니다.'] },
-      { title: '이미지와 직접 구현한 부분', body: '사물 이미지를 만드는 데 AI를 사용했습니다. 콘텐츠 구성, 배치, 문구를 정리하고 React와 CSS로 드래그, 보관, 재생 상태와 상세 화면을 구현하고 있습니다. 이미지의 원근과 카세트 구조는 여러 차례 수정했습니다.' },
-      { title: '남은 작업', body: '프로젝트별 실제 화면과 전후 비교를 추가하고, 모바일에서 콘텐츠를 읽고 이동하는 흐름을 더 다듬을 예정입니다.' },
-    ],
+    ...brandingCase,
   },
 ]
 
