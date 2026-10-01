@@ -10,7 +10,7 @@ export const personalProjects = [
     ...korailCase,
   },
   { id: 'plant-care', kind: 'project', eyebrow: 'PERSONAL / 02', heading: '반려식물 관리 모바일 웹앱', role: '개인 프로젝트 · 신규 웹앱 제작', state: '작업 중',
-    summary: '식물의 상태를 직접 살펴보고, 비슷한 환경에서 키운 사람들의 경험을 참고하는 모바일 웹앱 Planty입니다.',
+    summary: '식물의 상태를 직접 살펴보고, 비슷한 환경에서 키운 사람들의 경험을 참고하는 모바일 웹앱 플랜잇입니다.',
     facts: [{ label: '유형', value: '신규 모바일 웹앱 기획·설계' }, { label: '진행', value: '기획 · 핵심 화면 설계' }],
     ...plantCareCase,
   },

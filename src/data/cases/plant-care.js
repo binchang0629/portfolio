@@ -7,11 +7,11 @@ const img = name => `/cases/plant-care/${name}.webp`
 const phone = (name, alt) => ({ src: img(name), w: 402, h: 874, alt, device: 'phone' })
 
 export default {
-  // Planty 화면의 색: 진한 이끼 초록(버튼·탭), 먹색, 종이색 배경, 연두(상태 확인 버튼·선택). bright는 어두운 띠 위의 연두
+  // 플랜잇 화면의 색: 진한 이끼 초록(버튼·탭), 먹색, 종이색 배경, 연두(상태 확인 버튼·선택). bright는 어두운 띠 위의 연두
   theme: { brand: '#384D2F', onBrand: '#FFFFFF', bright: '#DBEBA8', onBright: '#2B3325', dark: '#262B22', light: '#FAF9F4', point: '#DBEBA8' },
   sides: {
     A: { name: '기획', note: '아이디어를 정하고 방향을 바꾼 과정' },
-    B: { name: 'Planty 화면', note: '직접 다듬은 화면 7개 · 작업 중' },
+    B: { name: '플랜잇 화면', note: '직접 다듬은 화면 7개 · 작업 중' },
   },
   sections: [
     {

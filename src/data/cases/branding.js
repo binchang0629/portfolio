@@ -110,7 +110,7 @@ export default {
       body: '포트폴리오도 프로젝트와 함께 계속 고치고 있습니다.',
       status: 'unverified',
       cards: [
-        { kicker: '콘텐츠', title: '작업 중인 두 프로젝트', body: '코레일과 Planty의 최종 화면 넣기' },
+        { kicker: '콘텐츠', title: '작업 중인 두 프로젝트', body: '코레일과 플랜잇의 최종 화면 넣기' },
         { kicker: '모바일', title: '읽고 이동하는 흐름', body: '작은 화면에서 테이프를 고르고 읽는 과정 다듬기' },
         { kicker: '소리', title: '실제 음원은 아직', body: '지금 재생 버튼은 이야기와 릴 움직임만 제어한다' },
       ],
