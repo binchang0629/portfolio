@@ -133,7 +133,7 @@ export function NotebookDialog({ triggerRef, entries, goals, reducedMotion, mobi
         <section id="journal-goals" className="journal-paper journal-right" role={mobile ? 'tabpanel' : undefined} aria-labelledby={mobile ? 'journal-goals-tab' : 'journal-goals-heading'}>
           <header><span>다음</span><h3 id="journal-goals-heading">앞으로의 목표</h3><p>끝낸 것, 하고 있는 것, 다음에 할 것.</p></header>
           <div className="journal-paper-scroll"><ol className="journal-goals">{goals.map(goal => <li key={goal.label} data-state={goal.state}>
-            <span className="journal-goal-mark" aria-hidden="true">{goal.state === 'done' && <svg viewBox="0 0 20 20"><path d="M4.5 10.5 8.4 14 15.5 5.8" /></svg>}</span>
+            <span className="journal-goal-mark" aria-hidden="true">{goal.state === 'done' && <svg viewBox="0 0 24 24"><path d="M4.2 13.4c1.4 1.1 2.6 2.4 3.6 4.1 2.7-5.3 6.4-9.8 11.6-13.6" /></svg>}</span>
             <div><h4>{goal.label}<span className="journal-goal-state">{goalStates[goal.state]}</span></h4><p><Sentences text={goal.detail} /></p></div>
           </li>)}</ol></div>
           <footer><span>계속 채워 가는 노트</span><span>02</span></footer>
