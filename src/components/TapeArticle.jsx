@@ -53,7 +53,10 @@ export default function TapeArticle({ track, content, number, total, nextTrack, 
       <div className="tape-strip" aria-hidden="true"><span className="tape-play"><i /></span><span className="tape-no">{track.number}</span><span className="tape-rule" /><span className="tape-count">{number} / {total}</span></div>
       <div className="tape-title-row">
         <p className="tape-title-en" aria-hidden="true">{track.title}</p>
-        {content.site && <a className="tape-live" href={content.site} target="_blank" rel="noopener noreferrer"><span>사이트</span><span aria-hidden="true">↗</span></a>}
+        {(content.site || content.deck) && <div className="tape-actions">
+          {content.site && <a className="tape-live" href={content.site} target="_blank" rel="noopener noreferrer"><span>사이트</span><span aria-hidden="true">↗</span></a>}
+          {content.deck && <a className="tape-live is-secondary" href={content.deck} target="_blank" rel="noopener noreferrer"><span>발표 자료</span><span aria-hidden="true">↗</span></a>}
+        </div>}
       </div>
       <h2 className="tape-title" id="reader-title" ref={headingRef} tabIndex={-1}>{content.heading || content.title}</h2>
       {content.role && <p className="tape-role">{content.role}{content.period && <span className="tape-period">{content.period}</span>}{content.state && <span className="tape-state">{content.state}</span>}</p>}

@@ -38,9 +38,12 @@
 .tape-meta>div+div{padding-left:18px;border-left:1px solid var(--tape-hair)}
 .tape-meta dt{font:500 10.5px/1.4 'JetBrains Mono Label',var(--font-family),monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--tape-sub)}
 .tape-meta dd{margin:4px 0 0;white-space:nowrap;font-size:15px;line-height:1.55;color:var(--tape-ink);word-break:keep-all}
-.tape-live{flex-shrink:0;margin-bottom:.4em;display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:999px;background:var(--tape-ink);color:#fff;font-size:13px;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;transition:background 180ms ease-out}
-.tape-live span[aria-hidden]{font-size:14px;transition:transform 180ms ease-out}
-.tape-live:hover{background:var(--accent)}
+.tape-actions{flex-shrink:0;display:flex;gap:10px;margin-bottom:.4em}
+.tape-live{flex-shrink:0;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border:1.5px solid var(--tape-ink);border-radius:999px;background:var(--tape-ink);color:#fff;font-size:15px;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;transition:background 180ms ease-out,border-color 180ms ease-out,color 180ms ease-out}
+.tape-live.is-secondary{background:transparent;color:var(--tape-ink)}
+.tape-live.is-secondary:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+.tape-live span[aria-hidden]{font-size:16px;transition:transform 180ms ease-out}
+.tape-live:hover{border-color:var(--accent);background:var(--accent)}
 .tape-live:hover span[aria-hidden]{transform:translate(2px,-2px)}
 
 .tape-lead{max-width:none;margin:28px 0 0;font-size:19px;line-height:1.7;letter-spacing:-.2px;color:var(--tape-ink);word-break:keep-all}
@@ -99,7 +102,12 @@
  .tape-meta dd{white-space:normal}
  .tape-meta>div+div{padding-left:0;border-left:0;border-top:1px solid var(--tape-hair)}
  .tape-title-row{flex-wrap:wrap;gap:12px}
- .tape-live{margin:0}
+ /* On phones the buttons follow the role line instead of sitting between the two titles. */
+ .tape-opening{display:flex;flex-direction:column}
+ .tape-title-row{display:contents}
+ .tape-title-en{margin-top:16px}
+ .tape-actions{order:5;align-self:flex-start;margin:18px 0 0}
+ .tape-live{height:44px;padding:0 18px;font-size:14px}
  .tape-lead{font-size:17px}
  .tape-body{grid-template-columns:1fr;margin-top:32px}
  .tape-tracklist{display:none}
